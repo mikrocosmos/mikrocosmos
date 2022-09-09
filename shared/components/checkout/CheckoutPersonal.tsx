@@ -18,7 +18,7 @@ export const CheckoutPersonal: React.FC<Props> = ({ className }) => {
           <RequiredSymbol />
         </label>
         <FormInput
-          name="firstName"
+          name="name"
           placeholder="Введите ваше имя..."
           className="text-base mt-2"
         />

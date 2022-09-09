@@ -30,7 +30,7 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
       name: session?.user?.name || "",
       email: "",
       phone: "",
-      branch: "",
+      branch: 1,
       comment: "",
       codeWord: "",
     },
@@ -51,6 +51,8 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
 
   const onSubmit = async (data: TCheckoutForm) => {
     try {
+      console.log(data);
+
       setSubmitting(true);
       const url = await createOrder(data);
       toast("Заказ оформлен", toastSuccess);
