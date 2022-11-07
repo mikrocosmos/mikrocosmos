@@ -1,0 +1,20 @@
+import React from "react";
+import { cn } from "../lib/utils";
+
+interface Props {
+  text: string;
+  className?: string;
+}
+
+export const AnimatedLink: React.FC<Props> = ({ className, text }) => {
+  return (
+    <span
+      className={cn(
+        className,
+        "relative cursor-pointer before:w-full before:h-[2px] before:bg-gray-100 before:absolute before:left-0 before:scale-x-0 before:origin-right transition-transform duration-300 ease-in-out hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-300 before:ease-in-out"
+      )}
+    >
+      {text}
+    </span>
+  );
+};
