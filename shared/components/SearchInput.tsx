@@ -77,7 +77,7 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
                 onClick={onClickItem}
                 key={product.id}
                 href={`/product/${product.id}`}
-                className="flex items-center p-4 transition duration-300 hover:bg-primary hover:bg-opacity-10"
+                className="flex items-center p-4 transition duration-300 hover:bg-secondary group hover:bg-opacity-10"
               >
                 <Image
                   className="rounded-full"
@@ -86,7 +86,9 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
                   width={50}
                   height={50}
                 />
-                <div className="px-3 py-2 text-black">{product.name}</div>
+                <div className="px-3 py-2 text-black group-hover:text-white transition duration-300">
+                  {product.name}
+                </div>
               </Link>
             ))}
           </div>

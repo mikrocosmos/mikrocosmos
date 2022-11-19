@@ -78,6 +78,10 @@ input[type="number"] {
   }
 }
 
+.text-shadow {
+  text-shadow: 0 10px 25px rgba(204, 204, 204, 0.25);
+}
+
 @media screen and (max-width: 1024px) {
   .logo {
     background: none;

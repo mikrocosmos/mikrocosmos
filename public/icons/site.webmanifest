@@ -1,0 +1,19 @@
+{
+  "name": "Smoky Moon | Магазин вейпов и кальянов",
+  "short_name": "Smoky Moon",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#494949",
+  "background_color": "#494949",
+  "display": "standalone"
+}

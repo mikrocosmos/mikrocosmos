@@ -1,4 +1,5 @@
 import { Container } from "@/shared/components/Container";
+import { Button } from "@/shared/components/ui/button";
 
 export default function ColorSchemePage() {
   return (
@@ -18,6 +19,7 @@ export default function ColorSchemePage() {
           Destructive-foreground
         </div>
       </div>
+      <Button variant="outline">Hello world</Button>
     </Container>
   );
 }

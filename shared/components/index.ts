@@ -1,5 +1,14 @@
 export { AnimatedLink } from "./AnimatedLink";
 export { Header } from "./Header";
 export { HeaderFilial } from "./HeaderFilial";
+export { HeaderIcon } from "./HeaderIcon";
 export { SearchInput } from "./SearchInput";
 export { Container } from "./Container";
+export { BurgerDrawer } from "./BurgerDrawer";
+export { Title } from "./Title";
+export { Categories } from "./Categories";
+export { Hero } from "./Hero";
+export { HeroSlide } from "./HeroSlide";
+export { ItemCard } from "./ItemCard";
+export { Footer } from "./Footer";
+export { CartItem } from "./CartItem";

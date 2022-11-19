@@ -11,8 +11,8 @@ export const HeaderFilial: React.FC<Props> = ({ className }) => {
   return (
     <div
       className={cn(
-        className,
-        "flex items-center whitespace-nowrap cursor-pointer group"
+        "flex items-center whitespace-nowrap cursor-pointer group",
+        className
       )}
     >
       <ChevronDown
