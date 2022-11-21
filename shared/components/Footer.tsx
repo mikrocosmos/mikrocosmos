@@ -10,7 +10,7 @@ export const Footer: React.FC<Props> = ({ className }) => {
   return (
     <footer className={cn("bg-popover py-5", className)}>
       <Container>
-        <div className="flex flex-col gap-5 sm:flex-row items-center justify-between text-base">
+        <div className="flex flex-col gap-5 lg:flex-row items-center justify-between text-base">
           <div className="opacity-50 transition hover:opacity-100">
             © {new Date().getFullYear()} Smoky Moon
           </div>

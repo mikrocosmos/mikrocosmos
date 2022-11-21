@@ -3,7 +3,7 @@ import { Button } from "@/shared/components/ui";
 
 export default async function CartPage() {
   return (
-    <Container className="min-h-[85vh] max-w-[700px] flex flex-col justify-between items-center py-5">
+    <Container className="min-h-[88.8vh] max-w-[700px] flex flex-col justify-between items-center py-5">
       <Title text="Корзина покупок" size="xl" className="font-bold" />
       <div className="pt-5 w-full flex-1">
         <CartItem />

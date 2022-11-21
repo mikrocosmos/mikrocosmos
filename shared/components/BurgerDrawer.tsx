@@ -4,10 +4,10 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-  SheetFooter,
 } from "./ui/sheet";
 import {
   ChevronRight,
@@ -19,6 +19,7 @@ import {
 import { SearchInput } from "./SearchInput";
 import { cn } from "../lib/utils";
 import Link from "next/link";
+import { Categories } from "@/shared/components/Categories";
 
 interface Props {}
 
@@ -48,19 +49,12 @@ export const BurgerDrawer: React.FC<PropsWithChildren<Props>> = ({
             <ChevronRight
               className={cn(
                 "ml-2 mt-1 transition",
-                categoriesOpen && "rotate-90"
+                categoriesOpen && "rotate-90",
               )}
             />
           </li>
 
-          {categoriesOpen && (
-            <ul className="pl-4">
-              <li className="text-xl mt-2">Категория 1</li>
-              <li className="text-xl mt-2">Категория 1</li>
-              <li className="text-xl mt-2">Категория 1</li>
-              <li className="text-xl mt-2">Категория 1</li>
-            </ul>
-          )}
+          {categoriesOpen && <Categories className="pl-4" />}
 
           <li className="text-xl mt-8">
             <Link href="/cart" className="flex items-center gap-3">
@@ -68,14 +62,14 @@ export const BurgerDrawer: React.FC<PropsWithChildren<Props>> = ({
               Корзина
             </Link>
           </li>
-          <li className="text-xl mt-8 flex items-center gap-3">
+          <li className="text-xl mt-8 flex items-center gap-3 cursor-pointer">
             <Phone className="text-primary" size={30} />
             Контакты
           </li>
           <li className="text-xl mt-8">
-            <Link href="/cart" className="flex items-center gap-3">
+            <Link href="/auth" className="flex items-center gap-3">
               <CircleUserIcon className="text-primary" size={30} />
-              Профиль
+              Войти
             </Link>
           </li>
         </ul>
