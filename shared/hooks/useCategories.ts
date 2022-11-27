@@ -4,6 +4,7 @@ import { Api } from "../services/api-client";
 
 export const useCategories = () => {
   const [categories, setCategories] = React.useState<Category[]>([]);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     (async () => {
@@ -12,9 +13,11 @@ export const useCategories = () => {
         setCategories(categories);
       } catch (error) {
         console.error("[useCategories]", error);
+      } finally {
+        setLoading(false);
       }
     })();
   }, []);
 
-  return { categories };
+  return { categories, loading };
 };

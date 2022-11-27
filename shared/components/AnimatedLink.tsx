@@ -11,7 +11,7 @@ export const AnimatedLink: React.FC<Props> = ({ className, text }) => {
     <span
       className={cn(
         className,
-        "relative cursor-pointer before:w-full before:h-[2px] before:bg-gray-100 before:absolute before:bottom-0 before:left-0 before:scale-x-0 before:origin-right transition-transform duration-300 ease-in-out hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-300 before:ease-in-out"
+        "relative cursor-pointer before:w-full before:h-[2px] text-white before:bg-gray-100 before:absolute before:bottom-0 before:left-0 before:scale-x-0 before:origin-right transition-transform duration-300 ease-in-out hover:before:scale-x-100 hover:before:origin-left before:transition-transform before:duration-300 before:ease-in-out",
       )}
     >
       {text}

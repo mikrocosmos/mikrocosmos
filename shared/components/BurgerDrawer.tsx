@@ -16,10 +16,9 @@ import {
   ShoppingCart,
   X,
 } from "lucide-react";
-import { SearchInput } from "./SearchInput";
 import { cn } from "../lib/utils";
 import Link from "next/link";
-import { Categories } from "@/shared/components/Categories";
+import { Categories, HeaderFilial, SearchInput } from "@/shared/components/";
 
 interface Props {}
 
@@ -73,7 +72,9 @@ export const BurgerDrawer: React.FC<PropsWithChildren<Props>> = ({
             </Link>
           </li>
         </ul>
-        <SheetFooter></SheetFooter>
+        <SheetFooter>
+          <HeaderFilial className="mb-8 text-xl" />
+        </SheetFooter>
       </SheetContent>
     </Sheet>
   );

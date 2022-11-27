@@ -29,8 +29,6 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
           .search(searchQuery)
           .then((items) => {
             setProducts(items);
-            console.log("items", items);
-            console.log("products", products);
           });
       } catch (e) {
         console.error(e);

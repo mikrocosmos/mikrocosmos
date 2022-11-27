@@ -5,7 +5,7 @@ export default function Home() {
     <>
       <Container className="py-5 w-full text-left">
         <div className="flex flex-col gap-5 lg:flex-row justify-between">
-          <div className="bg-popover h-full py-5 px-7 text-base rounded-2xl hidden shadow lg:block h-[500px]">
+          <div className="bg-popover h-full py-5 px-7 text-base rounded-2xl hidden shadow lg:block lg:h-[500px]">
             <h2 className="text-xl font-medium">Категории</h2>
             <Categories />
           </div>
