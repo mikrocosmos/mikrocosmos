@@ -6,9 +6,9 @@ import { SearchInput } from "@/shared/components/SearchInput";
 import { HeaderFilial } from "./HeaderFilial";
 import { cn } from "../lib/utils";
 import { HeaderIcon } from "./HeaderIcon";
-import { CircleUserRound, Menu, ShoppingCart } from "lucide-react";
+import { Menu, ShoppingCart } from "lucide-react";
 import { BurgerDrawer } from "./BurgerDrawer";
-import { ContactModal } from "@/shared/components/modals/header";
+import { AuthModal, ContactModal } from "@/shared/components/modals/header";
 
 interface Props {
   className?: string;
@@ -33,22 +33,20 @@ export const Header: React.FC<Props> = ({ className }) => {
         </Link>
         <SearchInput className="hidden lg:flex" />
         <HeaderFilial className="hidden lg:flex" />
-        <div className="hidden lg:flex">
+        <div className="flex items-center">
           <Link href="/cart">
             <HeaderIcon>
               <ShoppingCart size={30} />
             </HeaderIcon>
           </Link>
           <ContactModal />
-          <HeaderIcon>
-            <CircleUserRound size={30} />
-          </HeaderIcon>
+          <AuthModal />
+          <BurgerDrawer>
+            <HeaderIcon className="p-3 pr-0 lg:hidden">
+              <Menu size={40} />
+            </HeaderIcon>
+          </BurgerDrawer>
         </div>
-        <BurgerDrawer>
-          <HeaderIcon className="p-0 lg:hidden">
-            <Menu size={50} />
-          </HeaderIcon>
-        </BurgerDrawer>
       </Container>
     </header>
   );

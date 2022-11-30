@@ -15,6 +15,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.17.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-popover": "^1.1.1",
@@ -26,14 +27,18 @@
     "dotenv": "^16.4.5",
     "lucide-react": "^0.418.0",
     "next": "14.2.5",
+    "next-auth": "^4.24.7",
     "prisma": "^5.17.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.52.2",
+    "react-hot-toast": "^2.4.1",
     "react-responsive-carousel": "^3.2.23",
     "react-use": "^17.5.1",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "ts-node": "^10.9.2",
+    "zod": "^3.23.8",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

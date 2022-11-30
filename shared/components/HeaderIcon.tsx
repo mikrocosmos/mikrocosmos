@@ -10,13 +10,13 @@ export const HeaderIcon: React.FC<PropsWithChildren<Props>> = ({
   children,
 }) => {
   return (
-    <button
+    <div
       className={cn(
-        "transition duration-200 flex justify-center items-center p-3 text-primary rounded-full hover:bg-white/20 hover:shadow",
-        className
+        "transition duration-200 flex justify-center items-center p-3 text-primary rounded-full hover:bg-white/20 hover:shadow cursor-pointer",
+        className,
       )}
     >
       {children}
-    </button>
+    </div>
   );
 };

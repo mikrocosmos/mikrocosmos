@@ -13,3 +13,6 @@ export { HeroSliderItem } from "./HeroSliderItem";
 export { ItemCard } from "./ItemCard";
 export { Footer } from "./Footer";
 export { CartItem } from "./CartItem";
+export { RequiredSymbol } from "./RequiredSymbol";
+export { ErrorText } from "./ErrorText";
+export { ClearButton } from "./ClearButton";
