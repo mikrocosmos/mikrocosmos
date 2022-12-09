@@ -24,7 +24,7 @@ export const HeroSliderItem: React.FC<Props> = ({
   return (
     <div className={cn("relative", className)}>
       <Image
-        className="rounded-2xl object-cover min-h-[370px] max-h-[500px]"
+        className="rounded-2xl object-cover min-h-[370px] max-h-[500px] lg:h-[500px]"
         src={imageUrl}
         alt={heading}
         width={1920}

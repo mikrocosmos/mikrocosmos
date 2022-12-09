@@ -4,7 +4,7 @@ import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-import { registerUser } from "@/app/actions";
+// import { registerUser } from "@/app/actions";
 import { formRegisterSchema, TFormRegisterValues } from "./schemas";
 import { FormInput } from "@/shared/components/form";
 import { Button } from "@/shared/components/ui";
@@ -27,11 +27,11 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
 
   const onSubmit = async (data: TFormRegisterValues) => {
     try {
-      await registerUser({
-        email: data.email,
-        fullName: data.fullName,
-        password: data.password,
-      });
+      // await registerUser({
+      //   email: data.email,
+      //   fullName: data.fullName,
+      //   password: data.password,
+      // });
 
       toast.error("Регистрация успешна 📝. Подтвердите свою почту", {
         icon: "✅",

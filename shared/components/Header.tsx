@@ -9,6 +9,7 @@ import { HeaderIcon } from "./HeaderIcon";
 import { Menu, ShoppingCart } from "lucide-react";
 import { BurgerDrawer } from "./BurgerDrawer";
 import { AuthModal, ContactModal } from "@/shared/components/modals/header";
+import { CartDrawer } from "@/shared/components/CartDrawer";
 
 interface Props {
   className?: string;
@@ -34,11 +35,11 @@ export const Header: React.FC<Props> = ({ className }) => {
         <SearchInput className="hidden lg:flex" />
         <HeaderFilial className="hidden lg:flex" />
         <div className="flex items-center">
-          <Link href="/cart">
+          <CartDrawer>
             <HeaderIcon>
               <ShoppingCart size={30} />
             </HeaderIcon>
-          </Link>
+          </CartDrawer>
           <ContactModal />
           <AuthModal />
           <BurgerDrawer>

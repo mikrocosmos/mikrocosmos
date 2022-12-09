@@ -45,18 +45,19 @@ model Branch {
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   name        String
   categoryId  Int
-  category    Category @relation(fields: [categoryId], references: [id])
+  category    Category   @relation(fields: [categoryId], references: [id])
   price       Float
   description String
   imageUrl    String
   stock       Stock[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  Branch      Branch?  @relation(fields: [branchId], references: [id])
-  branchId    Int?
+  cartItems   CartItem[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  Branch      Branch[]
+  branchIds   Int[]
 }
 
 model Stock {
@@ -85,6 +86,8 @@ model CartItem {
   id        Int      @id @default(autoincrement())
   cart      Cart     @relation(fields: [cartId], references: [id])
   cartId    Int
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
   quantity  Int      @default(1)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

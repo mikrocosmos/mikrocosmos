@@ -25,7 +25,7 @@ export const Categories: React.FC<Props> = ({ className }) => {
             ))
         : categories.map((category) => (
             <li className="text-lg mt-[11px]" key={category.id}>
-              <Link href={`/categories/${category.id}`}>
+              <Link href={`/category/${category.id}`}>
                 <AnimatedLink text={category.name} />
               </Link>
             </li>

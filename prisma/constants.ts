@@ -37,7 +37,7 @@ export const products = [
     description: "Вкус: Личи",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16634/thumb/XnPPhtF9uHloCrcgFxilr0dXFI5FAg.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Melon (Дыня) До 1200 затяжек 20мг ",
@@ -46,7 +46,7 @@ export const products = [
     description: "Вкус: Дыня",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16637/thumb/uuorX3G1wZUeNH8fd7PHqWWmyrpNUm.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Vanilla Ice Cream (Ванильное Мороженое) До 1200 затяжек 20мг  ",
@@ -55,7 +55,7 @@ export const products = [
     description: "Вкус: Ванильное Мороженое",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16774/thumb/6KE9kBdXtwPbHcE6FOCh5k1mzPgXoX.png",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Strawberry (Клубника) До 1200 затяжек 20мг",
@@ -64,7 +64,7 @@ export const products = [
     description: "Вкус: Клубника",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16774/thumb/6KE9kBdXtwPbHcE6FOCh5k1mzPgXoX.png",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Blueberry (Черника) До 1200 затяжек 20мг",
@@ -73,7 +73,7 @@ export const products = [
     description: "Вкус: Черника",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16774/thumb/6KE9kBdXtwPbHcE6FOCh5k1mzPgXoX.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Mango (Манго) До 1200 затяжек 20мг",
@@ -82,7 +82,7 @@ export const products = [
     description: "Вкус: Манго",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16774/thumb/6KE9kBdXtwPbHcE6FOCh5k1mzPgXoX.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Grape (Виноград) До 1200 затяжек 20мг",
@@ -91,7 +91,7 @@ export const products = [
     description: "Вкус: Виноград",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16774/thumb/6KE9kBdXtwPbHcE6FOCh5k1mzPgXoX.png",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Peach (Персик) До 1200 затяжек 20мг",
@@ -100,7 +100,7 @@ export const products = [
     description: "Вкус: Персик",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16774/thumb/6KE9kBdXtwPbHcE6FOCh5k1mzPgXoX.png",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Кальян Khalil Mamoon - Phunnel Bowl",
@@ -109,7 +109,7 @@ export const products = [
     description: "Классический кальян с фановым чаша",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/10757/thumb/oJ2HY2sCdgien78hfdXadvpCBEqh9s.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Кальян Amy Deluxe - Mini",
@@ -118,7 +118,7 @@ export const products = [
     description: "Компактный кальян для дома и улицы",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/22367/thumb/5UzfmV4lrBG1AlXJgjAf9h7S5XIgmq.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Кальян Starbuzz - Vintage",
@@ -127,7 +127,7 @@ export const products = [
     description: "Элегантный кальян для настоящих ценителей",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16807/thumb/mxL5eKz70BjUFYgvkrgI3kF8I6sCo3.jpg",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Кальян Mya Saray - Hookah",
@@ -136,7 +136,7 @@ export const products = [
     description: "Кальян с уникальным дизайном и качественным дымом",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16812/thumb/LORhAuerlMoXdIILRA7kzahOlytvfs.jpg",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Кальян Oduman - N2",
@@ -145,7 +145,7 @@ export const products = [
     description: "Современный кальян с инновационными решениями",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/17651/thumb/2mvwTX9dRnVqQ41wqXldddEaOKE89X.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Кальян Sahara Smoke - Classic",
@@ -154,7 +154,7 @@ export const products = [
     description: "Традиционный кальян с глубоким вкусом",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/14189/thumb/vNUJJi3xtKRyLYUvFIevx5VfePaaOm.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Кальян Aladin - T-Design",
@@ -163,7 +163,7 @@ export const products = [
     description: "Стильный кальян с высококачественными материалами",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/22049/thumb/GFrqy9xYYhgb3mtkGVMbjUF5Oz44XB.jpg",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Кальян Fumari - Glass Base",
@@ -172,7 +172,7 @@ export const products = [
     description: "Изящный кальян с стеклянной основой и ярким дизайном",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/10706/thumb/fNS3Jd67PwNDh2Tp6YeCr4CkV6f42B.png",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Табак Al Fakher - Mint (Мята)",
@@ -181,7 +181,7 @@ export const products = [
     description: "",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/14838/thumb/i77pt3eLAKvxulMQoE1uctAwHBe8mY.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Табак Starbuzz - Strawberry Margarita",
@@ -190,7 +190,7 @@ export const products = [
     description: "",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/14837/thumb/MeArvccLfrLpDzKklCw8VsXfbCQmuk.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Табак Nakhla - Double Apple",
@@ -199,7 +199,7 @@ export const products = [
     description: "",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/14836/thumb/aQhmtUOyVyplvqfanhvq8PLXLoXrxP.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Табак Fumari - Watermelon",
@@ -208,7 +208,7 @@ export const products = [
     description: "",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/22261/thumb/dZzxg2E10pfAeguqSQJ3CQfG7XfjgB.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Табак Adalya - Blueberry",
@@ -217,7 +217,7 @@ export const products = [
     description: "",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/22262/thumb/vTdPh9duZluEznilLjpEJK41i6eNkQ.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Табак Social Smoke - Vanilla",
@@ -226,7 +226,7 @@ export const products = [
     description: "",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16399/thumb/IyhCO6VmrwyZzFvpWe29S5k3lnS4RU.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Табак Tangiers - Kashmir Peach",
@@ -235,7 +235,7 @@ export const products = [
     description: "",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21037/thumb/rznMIT3k3qAk1jBd0hST065UsU0Syk.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Табак Hookafina - Pineapple",
@@ -244,7 +244,7 @@ export const products = [
     description: "",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21038/thumb/qPOyV3reBE7yLxDAXK3fOcUyOu1jz9.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Чайный лист Green Tea - Sencha",
@@ -253,7 +253,7 @@ export const products = [
     description: "Японский зеленый чай",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/19393/thumb/ZtQbntcZgo5SQXiSxYdu3zMqS9LVyw.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Чайный лист Black Tea - Earl Grey",
@@ -262,7 +262,7 @@ export const products = [
     description: "Английский черный чай с бергамотом",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/19395/thumb/lEnxbbaArnn0tn2pYXiU7vS6p49OGl.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Чайный лист Herbal Tea - Chamomile",
@@ -271,7 +271,7 @@ export const products = [
     description: "Ромашковый чай для расслабления",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21901/thumb/sALduwdDnoWQlfUaBligEnp95iwVb4.png",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Чайный лист Oolong Tea - Tie Guan Yin",
@@ -280,7 +280,7 @@ export const products = [
     description: "Улун из Китая с цветочным ароматом",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/20992/thumb/Q313fe28o34hcFOZKrjxXt2yeRdrpK.jpg",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Чайный лист White Tea - Silver Needle",
@@ -289,7 +289,7 @@ export const products = [
     description: "Белый чай с нежным вкусом",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/17692/thumb/rzBUeP6pFHvIFnIQqe8suA1sSuLycq.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Чайный лист Rooibos Tea - Vanilla",
@@ -298,7 +298,7 @@ export const products = [
     description: "Ройбуш с ванильным ароматом",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21905/thumb/mSbCQIrrw1T9ueY71J7fL9IgbceKXx.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Чайный лист Pu-erh Tea - Aged",
@@ -307,7 +307,7 @@ export const products = [
     description: "Старый пуэр с глубоким вкусом",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/22660/thumb/wk9aJXkpglfgE1kJgr5aGNbEGgBmvI.png",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Чайный лист Matcha Tea",
@@ -316,7 +316,7 @@ export const products = [
     description: "Японский матча для приготовления напитков",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/22661/thumb/e1nQ8gQzqPkOO59YH1TVhzzhWjVi9f.png",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Уголь Coco Nara - Natural Coconut Charcoal",
@@ -325,7 +325,7 @@ export const products = [
     description: "100% кокосовый уголь для кальяна",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16684/thumb/AIDX2QEVHpG1Jl02buwJCO6u4AWxj0.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Уголь Fumari - Quick Light Charcoal",
@@ -334,7 +334,7 @@ export const products = [
     description: "Быстрозажигающий уголь для удобства",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/14985/thumb/3j0eYUy9XJLdF58QfJF5EPo6Otr24a.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Уголь Three Kings - Natural Charcoal",
@@ -343,7 +343,7 @@ export const products = [
     description: "Естественный уголь без добавок",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/15847/thumb/ebBrvaMXEjGQFP1SHwvsq712LztLxC.png",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Уголь Aladin - Coconut Charcoal",
@@ -352,7 +352,7 @@ export const products = [
     description: "Кокосовый уголь с длительным горением",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16268/thumb/6ck8x5ONiWMQuOHCAcM4qNyvzmaKq6.png",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Уголь Starbuzz - Quick Light Charcoal",
@@ -361,7 +361,7 @@ export const products = [
     description: "Быстрозажигающий уголь для быстрого использования",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/20286/thumb/7BUeycbeMcPkrnueEhRjMYwNiD9BAJ.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Уголь Shisha Charcoal - Natural Coconut Coals",
@@ -370,7 +370,7 @@ export const products = [
     description: "Естественные кокосовые угли для кальяна",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16632/thumb/G6em7oFmMyHWM52OBxnvbnV5c8QYuw.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Уголь Nakhla - Charcoal Cubes",
@@ -379,7 +379,7 @@ export const products = [
     description: "Прямоугольные угли для удобного использования",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/20282/thumb/32NgiAY2hf9WiUrRKZFCZC9htVxSPH.png",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Уголь Othmani - Premium Coconut Charcoal",
@@ -388,7 +388,7 @@ export const products = [
     description: "Премиум угли из кокоса для настоящих ценителей",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/20283/thumb/nGLsr8nBXSeDkw7AGWENLQwvkjSb8h.png",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "POD-система Juul - Starter Kit",
@@ -397,7 +397,7 @@ export const products = [
     description: "Комплект с зарядным устройством и картриджами",
     imageUrl:
       "https://vardex.ru/upload/resize_cache/iblock/841/400_400_040cd750bba9870f18aada2478b24840a/juul-RU-devicekit-front-silver-V01.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "POD-система Vaporesso XROS",
@@ -406,7 +406,7 @@ export const products = [
     description: "Компактная POD-система с регулируемой мощностью",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/19505/thumb/8C6WuVVlxmEGzMTX0SlGKCJQ7E3ZIw.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "POD-система SMOK Nord X",
@@ -415,7 +415,7 @@ export const products = [
     description: "Мощная POD-система с сменными картриджами",
     imageUrl:
       "https://vardex.ru/upload/resize_cache/iblock/02a/mw7ifj8q4c4mq3bsn6zqv5dngeracwv4/400_400_040cd750bba9870f18aada2478b24840a/smok-nord-x-pod-kit-fluid-7-color.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "POD-система Voopoo Vinci Air",
@@ -424,7 +424,7 @@ export const products = [
     description: "Эргономичная POD-система с возможностью настройки",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/18859/thumb/COChhqKYQa82aEIdse1cEeOAwUhWdc.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "POD-система GeekVape Aegis Pod",
@@ -433,7 +433,7 @@ export const products = [
     description: "Прочная POD-система с защитой от воды и пыли",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/19623/thumb/sN9F2cmEgZ5aMfntKJbZXS376smfd5.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "POD-система Vapefly Optima",
@@ -442,7 +442,7 @@ export const products = [
     description: "Легкая и удобная POD-система для повседневного использования",
     imageUrl:
       "https://vapezone.ru/wp-content/uploads/2023/05/fbf58c9767b411eb849600155d013100_028901b967b511eb849600155d013100.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "POD-система Innokin Sceptre",
@@ -451,7 +451,7 @@ export const products = [
     description: "POD-система с отличной передачей вкуса",
     imageUrl:
       "https://vardex.ru/upload/iblock/630/innokin-sceptre-pod-kit-pink.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "POD-система Uwell Caliburn G",
@@ -460,7 +460,7 @@ export const products = [
     description: "Известная POD-система с высокой производительностью",
     imageUrl:
       "https://www.vapewholesaleglobal.com/cdn/shop/products/Uwell-Caliburn-G-Pod-System-Kit-3_1024x.jpg?v=1658402710",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Жидкость Naked100 - Lava Flow",
@@ -469,7 +469,7 @@ export const products = [
     description: "Смешение ананаса и клубники с кремом",
     imageUrl:
       "https://giantvapes.com/cdn/shop/files/naked-100-original-lava-flow-60ml-eliquid-445707_800x_12a0d162-22af-40ad-950c-488ae8790f27_grande.jpg?v=1706058829",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Жидкость Ruthless - Swamp Thang",
@@ -478,7 +478,7 @@ export const products = [
     description: "Яркий вкус яблока и лимона",
     imageUrl:
       "https://vapearabian.com/wp-content/uploads/2021/11/Swamp-Thang-Vape-Juice-Ruthless.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Жидкость Dinner Lady - Lemon Tart",
@@ -487,7 +487,7 @@ export const products = [
     description: "Лимонный пирог с кремом и корочкой",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16334/thumb/qrXgb5QlmdL4LuCvYAjkcDmaMVLShy.jpeg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Жидкость Vapetasia - Killer Kustard",
@@ -496,7 +496,7 @@ export const products = [
     description: "Кремовый вкус ванильного пудинга",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/18428/thumb/l0vuyHhLYeLJNBTIo3HPsGO5Z80nbp.png",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Жидкость Charlie's Chalk Dust - Mustache Milk",
@@ -505,7 +505,7 @@ export const products = [
     description: "Молочный коктейль с бананом и клубникой",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/23340/thumb/ZsgrpQdleVtZzP7rM4qWrdEGhLb46s.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Жидкость One Hit Wonder - Muffin Man",
@@ -514,7 +514,7 @@ export const products = [
     description: "Мафин с яблоком и корицей",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/23332/thumb/DrJfUekM4kZ6vCR5Cgtu4O49BsZg1w.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Жидкость Bad Drip Labs - Bad Blood",
@@ -523,7 +523,7 @@ export const products = [
     description: "Смешение черной смородины и граната",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/23661/thumb/FWvwvXtznv6lOwTpTfhmkEMhTwysEj.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Жидкость Cloud Nurdz - Watermelon Apple",
@@ -532,7 +532,7 @@ export const products = [
     description: "Сладкий арбуз и яблоко в одном флаконе",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/23688/thumb/f70BiZUQP6AQyGE9AmaZgjdULyX90N.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Самокурка Raw Organic Hemp Wraps",
@@ -540,7 +540,7 @@ export const products = [
     price: 300,
     description: "Органические обертки из конопли без добавок",
     imageUrl: "https://example.com/image49.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Самокурка Zig-Zag Rolling Papers",
@@ -549,7 +549,7 @@ export const products = [
     description: "Классические бумажные обертки для самокурения",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/15033/thumb/nB2BX3NRfp8YnxczcLx7yEwksrSqU4.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Самокурка Elements Rice Papers",
@@ -558,7 +558,7 @@ export const products = [
     description: "Рисовые бумаги для чистого курения",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/15163/thumb/fLvieAlLbAMQWyohxJimsftEeQiyLq.png",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Самокурка OCB Premium Rolling Papers",
@@ -567,7 +567,7 @@ export const products = [
     description: "Премиум бумага для самокурения без добавок",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/15167/thumb/E2Hfp2lLwsmFC3TAZOxFo5UIyHtYpB.png",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Самокурка King Palm Leaf Wraps",
@@ -576,7 +576,7 @@ export const products = [
     description: "Обертки из пальмовых листьев для натурального курения",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21234/thumb/Shtv7nwP512G7wf0r0FVyQkdQw7tEA.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Самокурка Juicy Jays Flavored Papers",
@@ -585,7 +585,7 @@ export const products = [
     description: "Ароматизированные бумаги для курения с разными вкусами",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/16692/thumb/qsnDjjbQcjszcChljhXtfng1ZVyEPy.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Самокурка Blazy Susan Pink Rolling Papers",
@@ -594,7 +594,7 @@ export const products = [
     description: "Розовые бумаги для стильного курения",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21230/thumb/dS6lUspYKFZSVfWxyYbVHxgVO8oROe.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Самокурка RAW Cones Classic Size",
@@ -603,7 +603,7 @@ export const products = [
     description: "Конусы для легкого заполнения табаком или травами",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21233/thumb/Vjg3y8NS2xSwAgzDI4Cp21ntAm2Zsi.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Аксессуар Grinder - Herb Crusher",
@@ -611,7 +611,7 @@ export const products = [
     price: 700,
     description: "Ручной измельчитель трав и табака",
     imageUrl: "https://m.media-amazon.com/images/I/61UEglFVZ6L.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Аксессуар Rolling Tray - Metal Tray",
@@ -619,7 +619,7 @@ export const products = [
     price: 500,
     description: "Металлическая поднос для самокурения",
     imageUrl: "https://m.media-amazon.com/images/I/51xEJT9qj9L.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Аксессуар Lighter - Torch Lighter",
@@ -627,7 +627,7 @@ export const products = [
     price: 300,
     description: "Газовая зажигалка с регулировкой пламени",
     imageUrl: "https://m.media-amazon.com/images/I/61PndOAXhDL.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Аксессуар Storage Container - Airtight Jar",
@@ -636,7 +636,7 @@ export const products = [
     description: "Контейнер для хранения трав и табака",
     imageUrl:
       "https://m.media-amazon.com/images/I/71iuJnzrtsL._AC_UF894,1000_QL80_.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Аксессуар Pipe Tool Set",
@@ -645,7 +645,7 @@ export const products = [
     description: "Набор инструментов для трубки и самокурки",
     imageUrl:
       "https://m.media-amazon.com/images/I/61Fuu4nuPEL._AC_UF1000,1000_QL80_.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Аксессуар Ashtray - Glass Ashtray",
@@ -653,7 +653,7 @@ export const products = [
     price: 250,
     description: "Стеклянная пепельница для кальяна и сигарет",
     imageUrl: "https://m.media-amazon.com/images/I/71gJVmrykzL.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Аксессуар Filter Tips - Pre-Rolled Tips",
@@ -662,7 +662,7 @@ export const products = [
     description: "Фильтры для самокурки и сигарет",
     imageUrl:
       "https://m.media-amazon.com/images/I/71NkEPayVaL._AC_UF1000,1000_QL80_.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Аксессуар Hookah Hose Holder",
@@ -671,7 +671,7 @@ export const products = [
     description: "Держатель для шланга кальяна",
     imageUrl:
       "https://ae01.alicdn.com/kf/HTB102QtdmCWBuNjy0Fhq6z6EVXac/Watch-Style-Silicone-Shisha-Hose-Holder-For-Hookah-Chicha-Narguile-Hose-Smoking-Accessories.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Картридж Vaporesso XROS Replacement Pods",
@@ -680,7 +680,7 @@ export const products = [
     description: "Замена картриджа для Vaporesso XROS",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/18066/thumb/ikdWjp4WwQmGciRUOzsJYCCSQo6iSD.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Картридж Smok Nord Replacement Pods",
@@ -689,7 +689,7 @@ export const products = [
     description: "Замена картриджа для Smok Nord",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/19699/thumb/Np5dcjY0ZjziEumcD8RfEPs59Mz6q1.png",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Испаритель GeekVape P Coil",
@@ -698,7 +698,7 @@ export const products = [
     description: "Испаритель для GeekVape",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/18739/thumb/DmNJdero4ks23cK5XNleT3GhGP2XWM.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Испаритель Voopoo PnP Coils",
@@ -707,7 +707,7 @@ export const products = [
     description: "Испаритель для Voopoo PnP",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/18700/thumb/2Mvu5ux1nkANRtyzkKsa0u1xek0KRd.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Картридж Uwell Caliburn Replacement Pods",
@@ -715,7 +715,7 @@ export const products = [
     price: 600,
     description: "Замена картриджа для Uwell Caliburn",
     imageUrl: "https://example.com/image69.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Испаритель HorizonTech Falcon Coils",
@@ -724,7 +724,7 @@ export const products = [
     description: "Испаритель для HorizonTech Falcon",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/18700/thumb/2Mvu5ux1nkANRtyzkKsa0u1xek0KRd.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Картридж Innokin Zenith Replacement Pods",
@@ -733,7 +733,7 @@ export const products = [
     description: "Замена картриджа для Innokin Zenith",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/18700/thumb/2Mvu5ux1nkANRtyzkKsa0u1xek0KRd.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Испаритель Smok TFV12 Coils",
@@ -742,7 +742,7 @@ export const products = [
     description: "Испаритель для Smok TFV12",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/18700/thumb/2Mvu5ux1nkANRtyzkKsa0u1xek0KRd.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Жевательный табак Grizzly Wintergreen",
@@ -751,7 +751,7 @@ export const products = [
     description: "Жевательный табак со вкусом зимней зелени",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21062/thumb/T3Aw3gQFslwS3RHMd7Oaye8FiJ75nr.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Жевательный табак Copenhagen Original",
@@ -760,7 +760,7 @@ export const products = [
     description: "Классический жевательный табак Copenhagen",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21318/thumb/EuzguHchcWLNH0RmHNOr0yHb1treBr.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Жевательный табак Skoal Mint",
@@ -769,7 +769,7 @@ export const products = [
     description: "Жевательный табак со вкусом мяты",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21319/thumb/pUFWy4ImIal3m1gpjpjeKnuwHVpdVY.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Жевательный табак Red Man Original",
@@ -778,7 +778,7 @@ export const products = [
     description: "Классический жевательный табак Red Man",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/22485/thumb/A5e8iKtvzZUZJKpXhb5G9Uv1mwLBgE.jpg",
-    branchId: 2,
+    branchIds: [2],
   },
   {
     name: "Жевательный табак Timber Wolf Peach",
@@ -787,7 +787,7 @@ export const products = [
     description: "Жевательный табак со вкусом персика",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/22486/thumb/WlV99Vw0QeqYxksuW1vtzwZRPvQ1RE.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Жевательный табак Longhorn Wintergreen",
@@ -796,7 +796,7 @@ export const products = [
     description: "Жевательный табак со вкусом зимней зелени Longhorn",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/22488/thumb/lyAglyRUleoyY5vTjkdtOHJDESFyfm.jpg",
-    branchId: 1,
+    branchIds: [1],
   },
   {
     name: "Жевательный табак Stoker's Straight Cut",
@@ -805,7 +805,7 @@ export const products = [
     description: "Прямой резанный жевательный табак Stoker's",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/23542/thumb/Mvmqe1gsDdFzJuG8EQChWMPGgFbacY.jpg",
-    branchId: 2,
+    branchIds: [1, 2],
   },
   {
     name: "Жевательный табак Kayak Mint",
@@ -814,6 +814,6 @@ export const products = [
     description: "Жевательный табак со вкусом мяты Kayak",
     imageUrl:
       "https://xn--e1aner7ci.xn--80atei4cxafy.xn--p1ai/site/files/catalog_item/21062/thumb/T3Aw3gQFslwS3RHMd7Oaye8FiJ75nr.jpg",
-    branchId: 2,
+    branchIds: [1, 2],
   },
 ];

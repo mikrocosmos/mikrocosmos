@@ -1,4 +1,4 @@
-import { CartItem, Container, Title } from "@/shared/components";
+import { CartDrawerItem, Container, Title } from "@/shared/components";
 import { Button } from "@/shared/components/ui";
 
 export default async function CartPage() {
@@ -6,8 +6,8 @@ export default async function CartPage() {
     <Container className="min-h-[88.8vh] max-w-[700px] flex flex-col justify-between items-center py-5">
       <Title text="Корзина покупок" size="xl" className="font-bold" />
       <div className="pt-5 w-full flex-1">
-        <CartItem />
-        <CartItem />
+        <CartDrawerItem />
+        <CartDrawerItem />
       </div>
       <div className="flex flex-col justify-between w-full">
         <div className="flex justify-between gap-5">

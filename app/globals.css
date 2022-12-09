@@ -93,3 +93,12 @@ input[type="number"] {
     background: none;
   }
 }
+
+.scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}

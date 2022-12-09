@@ -14,7 +14,9 @@ interface Props {
 
 export const HeaderFilial: React.FC<Props> = ({ className }) => {
   const { loading, branch } = useBranches();
-  const [currentBranch, setCurrentBranch] = React.useState("Стройотрядовская");
+  const [currentBranch, setCurrentBranch] = React.useState(
+    "Стройотрядовская, 6",
+  );
 
   return (
     <Popover>

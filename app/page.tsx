@@ -1,6 +1,16 @@
-import { Categories, Container, Hero, ItemCard } from "@/shared/components/";
+import {
+  Categories,
+  Container,
+  Hero,
+  ProductsGroupList,
+} from "@/shared/components/";
+import { findItems } from "@/shared/lib/findItems";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { TopBar } from "@/shared/components/TopBar";
 
-export default function Home() {
+export default async function Home() {
+  const categories = await findItems();
   return (
     <>
       <Container className="py-5 w-full text-left">
@@ -12,13 +22,27 @@ export default function Home() {
           <Hero />
         </div>
         <section className="mt-7">
-          <h2 className="text-2xl font-bold">Новинки</h2>
-          <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 lg:flex justify-between items-center gap-5">
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-            <ItemCard />
-          </div>
+          <TopBar
+            categories={categories.filter(
+              (category) => category.products.length > 0,
+            )}
+          />
+          {categories.map((category) => (
+            <ProductsGroupList
+              key={category.id}
+              title={category.name}
+              items={category.products}
+              categoryId={category.id}
+            >
+              <Link
+                href={`/category/${category.id}`}
+                className="w-full h-[450px] font-bold text-2xl flex justify-center items-center text-center bg-popover p-5 rounded-2xl shadow-xl cursor-pointer transition-all ease-in-out group hover:shadow-lg hover:bg-secondary origin-top-left"
+              >
+                Ещё
+                <ArrowRight className="group-hover:translate-x-1 transition ease-in-out" />
+              </Link>
+            </ProductsGroupList>
+          ))}
         </section>
       </Container>
     </>
