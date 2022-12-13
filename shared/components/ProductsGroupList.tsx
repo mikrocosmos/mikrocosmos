@@ -45,6 +45,7 @@ export const ProductsGroupList: React.FC<PropsWithChildren<Props>> = ({
             name={product.name}
             imageUrl={product.imageUrl}
             price={product.price}
+            branchIds={product.branchIds}
             description={product.description}
           />
         ))}

@@ -11,7 +11,7 @@ import {
 } from "@/shared/components/ui/sheet";
 import Link from "next/link";
 import { Button } from "@/shared/components/ui";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { CartDrawerItem } from "@/shared/components/CartDrawerItem";
 import Image from "next/image";
 import { Title } from "@/shared/components/Title";
@@ -41,8 +41,11 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="flex flex-col justify-between pb-0 bg-popover border-none">
-        <SheetHeader>
-          <SheetTitle>Корзина</SheetTitle>
+        <SheetHeader className="text-left flex-row justify-between items-center">
+          <SheetTitle className="text-2xl font-bold">Корзина</SheetTitle>
+          <SheetClose>
+            <X size={30} />
+          </SheetClose>
         </SheetHeader>
 
         {totalPrice > 0 ? (
@@ -66,15 +69,17 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                 />
               ))}
             </div>
-            <SheetFooter className="-mx-6 bg-white p-8">
+            <SheetFooter className="-mx-6 bg-background p-8">
               <div className="w-full">
-                <div className="flex mb-4">
-                  <span className="flex flex-1 text-lg text-neutral-500">
+                <div className="flex items-center mb-4">
+                  <span className="flex flex-1 text-lg">
                     Итого
                     <div className="flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2" />
                   </span>
 
-                  <span className="font-bold text-lg">{totalPrice} ₽</span>
+                  <span className="font-bold text-xl text-primary">
+                    {totalPrice} ₽
+                  </span>
                 </div>
 
                 <Button
@@ -93,7 +98,6 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                     className="w-full h-12 text-base"
                   >
                     Оформить заказ
-                    <ArrowRight className="w-5 ml-2" />
                   </Button>
                 </Link>
               </div>

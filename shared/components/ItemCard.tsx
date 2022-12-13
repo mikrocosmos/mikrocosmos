@@ -3,6 +3,7 @@ import Image from "next/image";
 import { cn } from "../lib/utils";
 import { Button } from "./ui";
 import Link from "next/link";
+import { AddToCartButton } from "@/shared/components/AddToCartButton";
 
 interface Props {
   id: number;
@@ -10,15 +11,17 @@ interface Props {
   imageUrl: string;
   price: number;
   description: string;
+  branchIds: number[];
   className?: string;
 }
 
 export const ItemCard: React.FC<Props> = ({
+  id,
   name,
   price,
   description,
   imageUrl,
-  id,
+  branchIds,
   className,
 }) => {
   return (
@@ -45,9 +48,12 @@ export const ItemCard: React.FC<Props> = ({
           {name}
         </p>
       </Link>
-      <Button variant="outline_accent" className="w-5/6">
-        В корзину
-      </Button>
+      <AddToCartButton
+        productId={id}
+        branchIds={branchIds}
+        variant="outline_accent"
+        className="w-5/6"
+      />
     </div>
   );
 };

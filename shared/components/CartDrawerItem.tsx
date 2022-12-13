@@ -24,21 +24,20 @@ export const CartDrawerItem = ({
 }: Props) => {
   return (
     <div
-      className={cn(className, "flex bg-white p-5 gap-6 mb-2", {
+      className={cn(className, "flex bg-background p-5 gap-6 mb-2", {
         "opacity-50 pointer-events-none": disabled,
       })}
     >
-      <Link href={`/product/${productId}`}>
+      <a href={`/product/${productId}`}>
         <CartItem.Image src={imageUrl} />
-      </Link>
+      </a>
 
-      <div className="flex-1">
-        <Link href={`/product/${productId}`}>
+      <div className="flex-1 flex flex-col justify-between">
+        <a href={`/product/${productId}`}>
           <CartItem.Info name={name} description={description} />
-        </Link>
+        </a>
 
-        <hr className="my-3" />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-3">
           <CartItem.CountButton
             onClick={(type) => onClickCountButton(type)}
             value={quantity}
@@ -47,8 +46,8 @@ export const CartDrawerItem = ({
             <CartItem.Price value={price} />
             <CircleX
               onClick={onRemove}
-              className="cursor-pointer text-gray-400 hover:text-gray-600"
-              size={16}
+              className="cursor-pointer text-destructive hover:text-destructive-foreground"
+              size={30}
             />
           </div>
         </div>

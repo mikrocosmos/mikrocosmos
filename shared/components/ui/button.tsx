@@ -6,7 +6,7 @@ import { cn } from "@/shared/lib/utils";
 import { Loader2 } from "lucide-react";
 
 const buttonVariants = cva(
-  "rounded-3xl py-3 px-11 transition-all duration-100 ease-linear hover:shadow-lg ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:bg-gray-500",
+  "inline-flex items-center justify-center white-space-nowrap rounded-3xl py-3 px-11 transition-all duration-100 ease-linear hover:shadow-lg ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:bg-gray-500",
   {
     variants: {
       variant: {
@@ -24,7 +24,7 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 export interface ButtonProps
@@ -45,7 +45,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       loading,
       ...props
     },
-    ref
+    ref,
   ) => {
     const Comp = asChild ? Slot : "button";
     return (
@@ -58,7 +58,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {!loading ? children : <Loader2 className="w-5 h-5 animate-spin" />}
       </Comp>
     );
-  }
+  },
 );
 Button.displayName = "Button";
 

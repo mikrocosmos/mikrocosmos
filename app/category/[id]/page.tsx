@@ -27,6 +27,7 @@ export default async function CategoryPage({
             imageUrl={product.imageUrl}
             price={product.price}
             description={product.description}
+            branchIds={product.branchIds}
           />
         ))}
       </div>

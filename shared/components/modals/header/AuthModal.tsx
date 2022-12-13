@@ -27,7 +27,7 @@ export const AuthModal: React.FC<Props> = ({ className }) => {
         </HeaderIcon>
       </DialogTrigger>
       <DialogContent className={className}>
-        <DialogDescription className={cn("text-white text-xl", className)}>
+        <div className={cn("text-white text-xl", className)}>
           <Tabs defaultValue="login">
             <TabsList>
               <TabsTrigger value="login">Вход в аккаунт</TabsTrigger>
@@ -42,7 +42,7 @@ export const AuthModal: React.FC<Props> = ({ className }) => {
               <p>Регистрация</p>
             </TabsContent>
           </Tabs>
-        </DialogDescription>
+        </div>
       </DialogContent>
     </Dialog>
   );

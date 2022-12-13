@@ -19,18 +19,14 @@ export const Header: React.FC<Props> = ({ className }) => {
   return (
     <header className={cn("w-full h-24 bg-popover", className)}>
       <Container className="flex gap-5 justify-between items-center">
-        <Link
-          href="/"
-          className="logo h-24 flex justify-center items-center text-primary"
-        >
+        <Link href="/" className="logo">
           <Image
-            className=""
             src="/assets/images/logo.png"
             alt="Smoky Moon"
             width={60}
             height={60}
           />
-          <h1 className="hidden lg:block">SMOKY MOON</h1>
+          <h1>SMOKY MOON</h1>
         </Link>
         <SearchInput className="hidden lg:flex" />
         <HeaderFilial className="hidden lg:flex" />

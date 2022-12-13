@@ -9,9 +9,9 @@ interface Props {
 export const CartItemDetailsImage: React.FC<Props> = ({ src, className }) => {
   return (
     <Image
-      width={60}
-      height={60}
-      className={cn("", className)}
+      width={80}
+      height={80}
+      className={cn("rounded", className)}
       src={src}
       alt="товар"
     />
