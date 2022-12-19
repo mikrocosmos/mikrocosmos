@@ -11,7 +11,10 @@ export const CartItemDetailsImage: React.FC<Props> = ({ src, className }) => {
     <Image
       width={80}
       height={80}
-      className={cn("rounded", className)}
+      className={cn(
+        "rounded transition-all duration-100 outline-primary outline outline-0 hover:outline-1 hover:shadow-lg",
+        className
+      )}
       src={src}
       alt="товар"
     />

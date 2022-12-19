@@ -3,7 +3,7 @@ import { Button } from "@/shared/components/ui/button";
 
 export default function ColorSchemePage() {
   return (
-    <Container>
+    <Container className="min-h-[82.7vh]">
       <h2 className="text-2xl font-bold">Удалить на проде!</h2>
       <h1>Color Scheme</h1>
       <div className="flex gap-4 my-6 w-full flex-wrap">

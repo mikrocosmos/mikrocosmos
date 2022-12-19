@@ -49,7 +49,7 @@ export const AddToCartButton: React.FC<Props> = ({
       onClick={() => onSubmit?.(productId, branchIds)}
       className={className}
     >
-      Добавить в корзину
+      В корзину
     </Button>
   );
 };

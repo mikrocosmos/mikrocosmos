@@ -105,11 +105,37 @@ input[type="number"] {
   }
 }
 
-.scrollbar {
+.scrollbar-none {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
 
-.scrollbar::-webkit-scrollbar {
+.scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+.scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #666 #333; /* Firefox */
+}
+
+/** Chrome, Edge **/
+.scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 6px;
+  background: #333;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 6px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #eee;
+}
+
+/** **/

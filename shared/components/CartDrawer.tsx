@@ -33,14 +33,14 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
   const onClickCountButton = (
     id: number,
     quantity: number,
-    type: "plus" | "minus",
+    type: "plus" | "minus"
   ) => {
     updateItemQuantity(id, quantity + (type === "plus" ? 1 : -1));
   };
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent className="flex flex-col justify-between pb-0 bg-popover border-none">
+      <SheetContent className="flex flex-col justify-between pb-0 bg-popover border-none h-full w-full">
         <SheetHeader className="text-left flex-row justify-between items-center">
           <SheetTitle className="text-2xl font-bold">Корзина</SheetTitle>
           <SheetClose>
@@ -50,7 +50,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
 
         {totalPrice > 0 ? (
           <>
-            <div className="-mx-6 mt-5 overflow-auto flex-1">
+            <div className="-mx-6 mt-5 overflow-auto flex-1 scrollbar">
               {items.map((item) => (
                 <CartDrawerItem
                   key={item.id}

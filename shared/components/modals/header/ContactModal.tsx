@@ -8,8 +8,9 @@ import {
   DialogTrigger,
 } from "@/shared/components/ui";
 import { Phone } from "lucide-react";
-import { HeaderIcon, Title } from "@/shared/components";
+import { HeaderIcon } from "@/shared/components";
 import { cn } from "@/shared/lib/utils";
+import { AnimatedLink } from "../../AnimatedLink";
 
 interface Props {
   className?: string;
@@ -31,14 +32,22 @@ export const ContactModal: React.FC<Props> = ({ className }) => {
           <div>
             <p>Вы можете связаться с нами по этим номерам:</p>
             <p>
-              <b>+7 (901) 029-20-20</b> (Стройотрядовская, 6)
+              <a href="tel:+79010292020" className="font-bold">
+                <AnimatedLink text="+7 (901) 029-20-20" />
+              </a>{" "}
+              (Стройотрядовская, 6)
             </p>
             <p>
-              <b>+7 (830) 021-05-88</b>
+              <a href="tel:+78300292020" className="font-bold">
+                <AnimatedLink text="+7 (830) 029-20-20" />
+              </a>{" "}
               (Подшибякина,12)
             </p>
             <p>
-              Наша почта: <b>example@mail.com</b>
+              Наша почта:{" "}
+              <a href="mailto:example@mail.com">
+                <AnimatedLink text="example@mail.com" />
+              </a>
             </p>
             <p>Наши адреса:</p>
             <p>
