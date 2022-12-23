@@ -22,3 +22,5 @@ export { CountButton } from "./CountButton";
 export { CountIconButton } from "./CountIconButton";
 export { ProductForm } from "./ProductForm";
 export { AddToCartButton } from "./AddToCartButton";
+export { RangeSlider } from "./RangeSlider";
+export { CheckboxFiltersGroup } from "./CheckboxFiltersGroup";

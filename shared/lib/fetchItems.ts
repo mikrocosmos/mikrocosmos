@@ -11,12 +11,11 @@ export interface GetSearchParams {
 const DEFAULT_MIN_PRICE = 0;
 const DEFAULT_MAX_PRICE = 10000;
 
-export const findItems = async (id?: number, params?: GetSearchParams) => {
+export const fetchItems = async (params?: GetSearchParams) => {
   const minPrice = Number(params?.min) || DEFAULT_MIN_PRICE;
   const maxPrice = Number(params?.max) || DEFAULT_MAX_PRICE;
 
-  return prisma.category.findFirst({
-    where: { id: Number(id) },
+  return prisma.category.findMany({
     include: {
       products: {
         orderBy: {
@@ -28,7 +27,7 @@ export const findItems = async (id?: number, params?: GetSearchParams) => {
             lte: maxPrice,
           },
         },
-        take: Number(params?.limit) || 80,
+        take: Number(params?.limit) || 3,
       },
     },
   });

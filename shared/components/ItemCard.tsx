@@ -26,9 +26,10 @@ export const ItemCard: React.FC<Props> = ({
 }) => {
   return (
     <div
+      title={name}
       className={cn(
-        "w-full h-[450px] flex flex-col gap-5 items-center text-center relative bg-popover p-5 rounded-2xl shadow-xl cursor-pointer transition-all ease-in-out hover:-translate-y-1 hover:shadow-md",
-        className,
+        "w-full h-[450px] min-w-[250px] flex flex-col gap-5 items-center text-center relative bg-popover p-5 rounded-2xl shadow-xl cursor-pointer transition-all ease-in-out hover:-translate-y-1 hover:shadow-md",
+        className
       )}
     >
       <Link href={`/product/${id}`} className="flex-1">
@@ -41,10 +42,7 @@ export const ItemCard: React.FC<Props> = ({
           />
         </div>
         <p className="text-primary text-2xl font-bold mt-2">{price} ₽</p>
-        <p
-          className="text-lg font-medium h-12 overflow-hidden text-ellipsis"
-          title={name}
-        >
+        <p className="text-md font-medium h-12 overflow-hidden text-ellipsis">
           {name}
         </p>
       </Link>
