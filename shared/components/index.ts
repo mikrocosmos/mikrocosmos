@@ -24,3 +24,5 @@ export { ProductForm } from "./ProductForm";
 export { AddToCartButton } from "./AddToCartButton";
 export { RangeSlider } from "./RangeSlider";
 export { CheckboxFiltersGroup } from "./CheckboxFiltersGroup";
+export { Filters } from "./Filters";
+export { ShowPasswordButton } from "./ShowPasswordButton";

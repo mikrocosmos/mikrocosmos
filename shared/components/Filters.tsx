@@ -46,13 +46,12 @@ export const Filters: React.FC<Props> = ({ className }) => {
           </span>
         )}
       </div>
-      {/* Верхние чекбоксы */}
 
       {loading ? (
         <Skeleton className="ml-1 w-32 h-3" />
       ) : (
         <CheckboxFiltersGroup
-          title="Наличие"
+          title="Наличие:"
           name="pizzaTypes"
           className="mb-5"
           onClickCheckbox={filters.setBranches}
@@ -64,10 +63,8 @@ export const Filters: React.FC<Props> = ({ className }) => {
         />
       )}
 
-      {/* Фильтры цен */}
-
       <div className="mt-5 border-t border-t-neutral-100 pt-6 pb-7">
-        <p className="font-bold mb-3">Цена от и до:</p>
+        <p className="font-bold mb-3">Цена:</p>
         <div className="flex gap-3 mb-5 text-black">
           <Input
             type="number"

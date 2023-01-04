@@ -28,7 +28,7 @@ export const ProductForm: React.FC<Props> = ({ product }) => {
         alt={product.name}
         width={500}
         height={500}
-        className="rounded-3xl object-cover w-[500px] h-[500px]"
+        className="rounded-3xl object-cover w-[500px] h-[500px] bg-white"
       />
       <div>
         <Title text={product.name} size="lg" className="font-bold mb-1" />
@@ -56,10 +56,12 @@ export const ProductForm: React.FC<Props> = ({ product }) => {
             branchIds={product.branchIds}
           />
         </div>
-        <div className="my-5">
-          <Title size="md" text="Описание" className="font-bold" />
-          <p className="text-lg mt-2">{product.description}</p>
-        </div>
+        {product.description && (
+          <div className="my-5">
+            <Title size="md" text="Описание" className="font-bold" />
+            <p className="text-lg mt-2">{product.description}</p>
+          </div>
+        )}
       </div>
     </div>
   );

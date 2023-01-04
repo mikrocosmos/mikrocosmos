@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import { Container, ItemCard, Title } from "@/shared/components";
-import { Filters } from "../../../shared/components/Filters";
+import { Container, ItemCard, Title, Filters } from "@/shared/components";
 import { findItems } from "@/shared/lib";
 import { GetSearchParams } from "@/shared/lib/findItems";
 
@@ -17,8 +16,8 @@ export default async function CategoryPage({
   return (
     <Container className="min-h-[82.7vh]">
       <Title text={category.name} size="lg" className="font-extrabold my-5" />
-      <div className="flex gap-[80px]">
-        <aside className="w-[350px] bg-popover p-5">
+      <div className="flex gap-[20px]">
+        <aside className="min-w-[300px] bg-popover p-5 rounded-xl mb-5">
           <Filters />
         </aside>
 

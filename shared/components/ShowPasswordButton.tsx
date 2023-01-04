@@ -1,5 +1,5 @@
 import { cn } from "@/shared/lib/utils";
-import { X } from "lucide-react";
+import { Eye } from "lucide-react";
 import React from "react";
 
 interface Props {
@@ -7,17 +7,17 @@ interface Props {
   onClick?: VoidFunction;
 }
 
-export const ClearButton: React.FC<Props> = ({ onClick, className }) => {
+export const ShowPasswordButton: React.FC<Props> = ({ onClick, className }) => {
   return (
     <button
       onClick={onClick}
       type="button"
       className={cn(
-        "absolute right-4 top-1/2 -translate-y-1/2 opacity-30 hover:opacity-100 cursor-pointer text-black",
+        "absolute right-8 top-1/2 -translate-y-1/2 opacity-30 hover:opacity-100 cursor-pointer text-black",
         className
       )}
     >
-      <X className="h-5 w-5" />
+      <Eye className="h-5 w-5" />
     </button>
   );
 };

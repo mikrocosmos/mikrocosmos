@@ -1,6 +1,11 @@
 "use client";
 import React from "react";
-import { ClearButton, ErrorText, RequiredSymbol } from "@/shared/components/";
+import {
+  ClearButton,
+  ErrorText,
+  RequiredSymbol,
+  ShowPasswordButton,
+} from "@/shared/components/";
 import { Input } from "@/shared/components/ui";
 import { useFormContext } from "react-hook-form";
 
@@ -30,6 +35,9 @@ export const FormInput: React.FC<Props> = ({
   const value = watch(name);
   const errorText = errors[name]?.message as string;
 
+  const [showPassword, setShowPassword] = React.useState(false);
+  const onShowPassword = () => setShowPassword((prev) => !prev);
+
   const onClickClear = () => {
     setValue(name, "", { shouldValidate: true });
   };
@@ -44,14 +52,20 @@ export const FormInput: React.FC<Props> = ({
 
       <div className="relative">
         <Input
-          type={type}
+          type={
+            type === "password" ? (showPassword ? "text" : "password") : type
+          }
           className="h-9 text-md"
           placeholder={placeholder}
           {...props}
           {...register(name)}
         />
-
-        {value && <ClearButton onClick={onClickClear} />}
+        <div className="flex">
+          {value && type === "password" && (
+            <ShowPasswordButton onClick={onShowPassword} className="mr-2" />
+          )}
+          {value && <ClearButton onClick={onClickClear} />}
+        </div>
       </div>
       {errorText && <ErrorText text={errorText} className="mt-2" />}
     </div>

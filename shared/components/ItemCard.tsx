@@ -36,7 +36,7 @@ export const ItemCard: React.FC<Props> = ({
         <div className="flex justify-center items-center relative h-[250px]">
           <Image
             src={imageUrl}
-            className="rounded-2xl object-cover"
+            className="rounded-2xl object-cover bg-white"
             alt={name}
             fill
           />

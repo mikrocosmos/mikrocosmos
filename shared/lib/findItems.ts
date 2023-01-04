@@ -4,6 +4,7 @@ export interface GetSearchParams {
   query?: string;
   sortBy?: string;
   limit?: number;
+  branches?: string;
   min?: string;
   max?: string;
 }
@@ -11,7 +12,8 @@ export interface GetSearchParams {
 const DEFAULT_MIN_PRICE = 0;
 const DEFAULT_MAX_PRICE = 10000;
 
-export const findItems = async (id?: number, params?: GetSearchParams) => {
+export const findItems = async (id: number, params: GetSearchParams) => {
+  const branches = params.branches?.split(",").map(Number);
   const minPrice = Number(params?.min) || DEFAULT_MIN_PRICE;
   const maxPrice = Number(params?.max) || DEFAULT_MAX_PRICE;
 
@@ -23,6 +25,7 @@ export const findItems = async (id?: number, params?: GetSearchParams) => {
           id: "desc",
         },
         where: {
+          branchIds: branches ? { hasSome: branches } : undefined,
           price: {
             gte: minPrice,
             lte: maxPrice,
