@@ -3,6 +3,7 @@ import React from "react";
 import { useCartStore } from "@/shared/store";
 import toast from "react-hot-toast";
 import { Button } from "@/shared/components/ui";
+import { toastError, toastSuccess } from "../constants/toastSettings";
 
 interface Props {
   productId?: number;
@@ -35,9 +36,9 @@ export const AddToCartButton: React.FC<Props> = ({
         productId,
         branchIds,
       });
-      toast.success(`Товар добавлен в корзину`);
+      toast("Товар добавлен в корзину", toastSuccess);
     } catch (error) {
-      toast.error(`Не удалось добавить товар в корзину`);
+      toast.error("Не удалось добавить товар в корзину", toastError);
       console.error(error);
     }
   };

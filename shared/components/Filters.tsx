@@ -5,13 +5,20 @@ import { Input, Skeleton } from "@/shared/components/ui";
 import { useBranches, useFilters, useQueryFilters } from "@/shared/hooks";
 
 interface Props {
+  maxPrice: number;
+  minPrice: number;
   className?: string;
 }
 
-export const Filters: React.FC<Props> = ({ className }) => {
+export const Filters: React.FC<Props> = ({ className, maxPrice, minPrice }) => {
   const { loading, branch } = useBranches();
   const filters = useFilters();
   useQueryFilters(filters);
+
+  React.useEffect(() => {
+    filters.priceStatic.max = maxPrice;
+    filters.priceStatic.min = minPrice;
+  }, []);
 
   const updatePrices = (prices: number[]) => {
     filters.setPrice("min", prices[0]);
@@ -20,16 +27,16 @@ export const Filters: React.FC<Props> = ({ className }) => {
 
   const isFiltersChanged = () => {
     return (
-      (filters.price.min !== undefined && filters.price.min !== 0) ||
-      (filters.price.max !== undefined && filters.price.max !== 10000) ||
+      (filters.price.min !== undefined && filters.price.min !== minPrice) ||
+      (filters.price.max !== undefined && filters.price.max !== maxPrice) ||
       filters.selectedBranches.size !== 0 ||
       false
     );
   };
 
   const onClear = () => {
-    filters.setPrice("min", 0);
-    filters.setPrice("max", 10000);
+    filters.setPrice("min", minPrice);
+    filters.setPrice("max", maxPrice);
     filters.clearBranches();
   };
 
@@ -68,29 +75,26 @@ export const Filters: React.FC<Props> = ({ className }) => {
         <div className="flex gap-3 mb-5 text-black">
           <Input
             type="number"
-            placeholder={`${filters.priceStatic.min}`}
-            min={filters.priceStatic.min}
-            max={filters.priceStatic.max}
+            placeholder={`${minPrice}`}
+            min={minPrice}
+            max={maxPrice}
             value={`${filters.price.min}`}
             onChange={(e) => filters.setPrice("min", +e.target.value)}
           />
           <Input
             type="number"
-            placeholder={`${filters.priceStatic.max}`}
+            placeholder={`${maxPrice}`}
             min={100}
-            max={filters.priceStatic.max}
+            max={maxPrice}
             value={`${filters.price.max}`}
             onChange={(e) => filters.setPrice("max", +e.target.value)}
           />
         </div>
         <RangeSlider
-          min={filters.priceStatic.min}
-          max={filters.priceStatic.max}
+          min={minPrice}
+          max={maxPrice}
           step={10}
-          value={[
-            filters.price.min || filters.priceStatic.min,
-            filters.price.max || filters.priceStatic.max,
-          ]}
+          value={[filters.price.min || minPrice, filters.price.max || maxPrice]}
           onValueChange={updatePrices}
         />
       </div>

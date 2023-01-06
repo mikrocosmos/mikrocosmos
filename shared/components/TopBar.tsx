@@ -12,7 +12,7 @@ interface Props {
 
 export const TopBar: React.FC<Props> = ({ className, categories }) => {
   const categoryActiveId = useCategoryStore((state) => state.activeId);
-  React.useEffect(() => {}, [categoryActiveId]);
+
   return (
     <div
       className={cn(

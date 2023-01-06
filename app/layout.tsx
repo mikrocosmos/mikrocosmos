@@ -1,6 +1,7 @@
 import React from "react";
 import { Jost } from "next/font/google";
 import "./globals.css";
+import { Providers } from "../shared/components/Providers";
 
 const jost = Jost({ subsets: ["latin", "cyrillic"] });
 
@@ -11,7 +12,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={jost.className}>{children}</body>
+      <body className={jost.className}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

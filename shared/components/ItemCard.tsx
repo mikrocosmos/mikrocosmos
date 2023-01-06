@@ -10,7 +10,6 @@ interface Props {
   name: string;
   imageUrl: string;
   price: number;
-  description: string;
   branchIds: number[];
   className?: string;
 }
@@ -19,7 +18,6 @@ export const ItemCard: React.FC<Props> = ({
   id,
   name,
   price,
-  description,
   imageUrl,
   branchIds,
   className,
@@ -41,15 +39,15 @@ export const ItemCard: React.FC<Props> = ({
             fill
           />
         </div>
-        <p className="text-primary text-2xl font-bold mt-2">{price} ₽</p>
-        <p className="text-md font-medium h-12 overflow-hidden text-ellipsis">
+        <p className="text-md font-medium h-12 mt-2 overflow-hidden text-ellipsis">
           {name}
         </p>
+        <p className="text-primary text-2xl font-bold">{price} ₽</p>
       </Link>
       <AddToCartButton
         productId={id}
         branchIds={branchIds}
-        variant="outline_accent"
+        variant="white_accent"
         className="w-5/6"
       />
     </div>

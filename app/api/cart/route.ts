@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/prisma-client";
 import { findOrCreateCart, updateCartTotal } from "@/shared/lib";
-import {
-  CartItemDTO,
-  CreateCartItemValues,
-} from "@/shared/services/dto/cart.dto";
 
 export async function GET(req: NextRequest) {
   try {
@@ -33,7 +29,7 @@ export async function GET(req: NextRequest) {
     console.log("[CART_GET] Server error", error);
     return NextResponse.json(
       { message: "Не удалось получить корзину" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
@@ -85,7 +81,7 @@ export async function POST(req: NextRequest) {
     console.log("[CART_POST] Server error", error);
     return NextResponse.json(
       { message: "Не удалось добавить в корзину" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
@@ -132,7 +128,7 @@ export async function DELETE(req: NextRequest) {
     console.log("[CART_DELETE] Server error", error);
     return NextResponse.json(
       { message: "Не удалось удалить из корзины" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
