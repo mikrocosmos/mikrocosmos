@@ -1,5 +1,9 @@
-import { Container } from "@/shared/components";
+import { CheckoutForm, Container } from "@/shared/components";
 
 export default async function CheckoutPage() {
-  return <Container className="page">Checkout</Container>;
+  return (
+    <Container className="page">
+      <CheckoutForm />
+    </Container>
+  );
 }

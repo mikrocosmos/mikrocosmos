@@ -8,6 +8,7 @@ import { FormInput } from "@/shared/components/form";
 import { Button } from "@/shared/components/ui";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
+import { toastError, toastSuccess } from "@/shared/constants";
 
 interface Props {
   onClose?: VoidFunction;
@@ -33,16 +34,12 @@ export const LoginForm: React.FC<Props> = ({ onClose }) => {
         throw Error();
       }
 
-      toast.success("Вы успешно вошли в аккаунт", {
-        icon: "✅",
-      });
+      toast("Вы успешно вошли в аккаунт", toastSuccess);
 
       onClose?.();
     } catch (error) {
       console.error("Error [LOGIN]", error);
-      toast.error("Не удалось войти в аккаунт", {
-        icon: "❌",
-      });
+      toast("Не удалось войти в аккаунт", toastError);
     }
   };
 

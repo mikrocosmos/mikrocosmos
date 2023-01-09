@@ -10,6 +10,7 @@ import { Menu, ShoppingCart } from "lucide-react";
 import { BurgerDrawer } from "./BurgerDrawer";
 import { AuthModal, ContactModal } from "@/shared/components/modals/header";
 import { CartDrawer } from "@/shared/components/CartDrawer";
+import { ProfileButton } from "@/shared/components/ProfileButton";
 
 interface Props {
   className?: string;
@@ -37,7 +38,7 @@ export const Header: React.FC<Props> = ({ className }) => {
             </HeaderIcon>
           </CartDrawer>
           <ContactModal />
-          <AuthModal />
+          <ProfileButton />
           <BurgerDrawer>
             <HeaderIcon className="p-3 pr-0 lg:hidden">
               <Menu size={40} />

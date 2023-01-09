@@ -28,3 +28,4 @@ export { Filters } from "./Filters";
 export { ShowPasswordButton } from "./ShowPasswordButton";
 export { Providers } from "./Providers";
 export { CheckoutForm } from "./CheckoutForm";
+export { ProfileButton } from "./ProfileButton";

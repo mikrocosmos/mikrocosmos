@@ -12,6 +12,7 @@ model User {
   name             String
   surName          String
   email            String            @unique
+  phone            String?           @unique
   password         String
   verified         DateTime?
   verificationCode VerificationCode?

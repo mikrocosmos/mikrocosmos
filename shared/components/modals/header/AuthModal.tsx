@@ -12,7 +12,7 @@ import {
 import { HeaderIcon } from "@/shared/components";
 import { CircleUserRound } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
-import { LoginForm } from "@/shared/components/modals/forms/LoginForm";
+import { LoginForm, RegisterForm } from "@/shared/components/modals/forms/";
 
 interface Props {
   className?: string;
@@ -39,7 +39,7 @@ export const AuthModal: React.FC<Props> = ({ className }) => {
             </TabsContent>
 
             <TabsContent value="register">
-              <p>Регистрация</p>
+              <RegisterForm />
             </TabsContent>
           </Tabs>
         </div>

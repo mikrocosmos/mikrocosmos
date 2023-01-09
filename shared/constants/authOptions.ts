@@ -7,6 +7,7 @@ import { UserRole } from "@prisma/client";
 export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
+      type: "credentials",
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "text" },
@@ -30,7 +31,7 @@ export const authOptions: AuthOptions = {
 
         const isPasswordValid = await compare(
           credentials.password,
-          findUser.password
+          findUser.password,
         );
 
         if (!isPasswordValid) {
@@ -96,7 +97,7 @@ export const authOptions: AuthOptions = {
           data: {
             email: user.email,
             name: user.name || "User #",
-            surName: user.id,
+            surName: `${user.id}`,
             password: hashSync(String(Math.floor(Math.random())), 10),
             verified: new Date(),
             provider: account?.provider,
