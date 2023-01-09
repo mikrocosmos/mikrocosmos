@@ -55,6 +55,10 @@ html {
   }
 }
 
+.page {
+  min-height: 72.6vh;
+}
+
 /* Hide arrows in number input */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

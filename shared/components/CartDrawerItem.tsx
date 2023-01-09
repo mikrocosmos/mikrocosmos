@@ -1,7 +1,6 @@
 import { CircleX } from "lucide-react";
 import { CartItemProps } from "@/shared/components/cart-item-details/cart-item-details.types";
 import * as CartItem from "@/shared/components/cart-item-details/";
-import Link from "next/link";
 import { cn } from "@/shared/lib/utils";
 
 interface Props extends CartItemProps {

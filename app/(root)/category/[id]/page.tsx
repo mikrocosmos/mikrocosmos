@@ -14,14 +14,14 @@ export default async function CategoryPage({
   const categoryStatic = await findItems(id);
   if (!category) return notFound();
   const maxPrice = Math.max(
-    ...categoryStatic!.products.map((product) => product.price)
+    ...categoryStatic!.products.map((product) => product.price),
   );
   const minPrice = Math.min(
-    ...categoryStatic!.products.map((product) => product.price)
+    ...categoryStatic!.products.map((product) => product.price),
   );
 
   return (
-    <Container className="min-h-[82.7vh]">
+    <Container className="page">
       <Title text={category.name} size="lg" className="font-extrabold my-5" />
       <div className="flex gap-[20px]">
         <aside className="min-w-[300px] bg-popover p-5 rounded-xl mb-5">

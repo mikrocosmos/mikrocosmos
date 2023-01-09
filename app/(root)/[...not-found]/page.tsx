@@ -4,7 +4,7 @@ import { Container, Title } from "@/shared/components";
 
 export default function NotFound() {
   return (
-    <Container className="h-[90vh] flex flex-col md:flex-row items-center justify-center">
+    <Container className="page flex flex-col md:flex-row items-center justify-center">
       <div>
         <Title
           size="2xl"

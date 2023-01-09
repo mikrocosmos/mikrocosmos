@@ -27,3 +27,4 @@ export { CheckboxFiltersGroup } from "./CheckboxFiltersGroup";
 export { Filters } from "./Filters";
 export { ShowPasswordButton } from "./ShowPasswordButton";
 export { Providers } from "./Providers";
+export { CheckoutForm } from "./CheckoutForm";

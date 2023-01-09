@@ -15,7 +15,7 @@ export default async function ProductPage({
   if (!product) return notFound();
 
   return (
-    <Container className="min-h-[82.7vh]">
+    <Container className="page">
       <div className="flex flex-1">
         <ProductForm product={product} />
       </div>

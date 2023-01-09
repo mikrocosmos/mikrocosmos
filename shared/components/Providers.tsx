@@ -8,7 +8,7 @@ export const Providers: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <SessionProvider>{children}</SessionProvider>
-      <Toaster position="top-right" />
+      <Toaster position="bottom-right" />
       <NextTopLoader />
     </>
   );
