@@ -1,16 +1,20 @@
 "use client";
 import React from "react";
 import { useCart } from "@/shared/hooks";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import {
   checkoutFormSchema,
   TCheckoutForm,
   toastError,
-} from "@/shared/constants/";
+  toastSuccess,
+} from "@/shared/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { Api } from "@/shared/services/api-client";
 import toast from "react-hot-toast";
+import { createOrder } from "@/app/actions";
+import { Title } from "@/shared/components/Title";
+import * as Checkout from "@/shared/components/checkout";
 
 interface Props {
   className?: string;
@@ -48,6 +52,12 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
   const onSubmit = async (data: TCheckoutForm) => {
     try {
       setSubmitting(true);
+      const url = await createOrder(data);
+      toast("Заказ оформлен", toastSuccess);
+
+      if (url) {
+        window.location.href = url;
+      }
     } catch (e) {
       console.error("[CHECKOUT], Client Error", e);
       toast("Не удалось оформить заказ", toastError);
@@ -56,5 +66,18 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
     }
   };
 
-  return <div className={className}></div>;
+  return (
+    <div className={className}>
+      <Title text="Оформление заказа" size="lg" className="font-bold my-2" />
+      <FormProvider {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="flex gap-10">
+            <div className="flex flex-col gap-10 flex-1 mb-20">
+              <Checkout.Cart />
+            </div>
+          </div>
+        </form>
+      </FormProvider>
+    </div>
+  );
 };

@@ -24,7 +24,11 @@ export const ProfileButton: React.FC<Props> = ({ onClickLogin, className }) => {
   return (
     <div className={className}>
       {!session ? (
-        <Button loading={loading} onClick={onClickLogin}>
+        <Button
+          className="bg-transparent p-0 hover:bg-transparent"
+          loading={loading}
+          onClick={onClickLogin}
+        >
           <AuthModal />
         </Button>
       ) : (

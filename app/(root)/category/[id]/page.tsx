@@ -23,12 +23,12 @@ export default async function CategoryPage({
   return (
     <Container className="page">
       <Title text={category.name} size="lg" className="font-extrabold my-5" />
-      <div className="flex gap-[20px]">
+      <div className="flex flex-col lg:flex-row gap-5">
         <aside className="min-w-[300px] bg-popover p-5 rounded-xl mb-5">
           <Filters minPrice={minPrice} maxPrice={maxPrice} />
         </aside>
 
-        <div className="grid grid-cols-4 justify-items-center content-center gap-5 mb-5">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center content-center gap-5 mb-5">
           {category.products.map((product) => (
             <ItemCard
               key={product.id}
