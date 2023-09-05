@@ -31,7 +31,7 @@ export const authOptions: AuthOptions = {
 
         const isPasswordValid = await compare(
           credentials.password,
-          findUser.password,
+          findUser.password
         );
 
         if (!isPasswordValid) {

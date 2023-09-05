@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import { createOrder } from "@/app/actions";
 import { Title } from "@/shared/components/Title";
 import * as Checkout from "@/shared/components/checkout";
+import { TotalItem } from "@/shared/components/checkout";
 
 interface Props {
   className?: string;
@@ -56,7 +57,7 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
       toast("Заказ оформлен", toastSuccess);
 
       if (url) {
-        window.location.href = url;
+        location.href = url;
       }
     } catch (e) {
       console.error("[CHECKOUT], Client Error", e);
@@ -73,7 +74,15 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="flex gap-10">
             <div className="flex flex-col gap-10 flex-1 mb-20">
-              <Checkout.Cart />
+              <Checkout.Cart
+                className={loading ? "opacity-40 pointer-events-none" : ""}
+              />
+              <Checkout.Personal
+                className={loading ? "opacity-40 pointer-events-none" : ""}
+              />
+            </div>
+            <div className="w-[450px]">
+              <Checkout.Total submitting={submitting} />
             </div>
           </div>
         </form>

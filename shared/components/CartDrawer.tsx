@@ -28,12 +28,10 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
   const { totalPrice, updateItemQuantity, removeCartItem, items, cleanCart } =
     useCart();
 
-  const [redirecting, setRedirecting] = React.useState(false);
-
   const onClickCountButton = (
     id: number,
     quantity: number,
-    type: "plus" | "minus"
+    type: "plus" | "minus",
   ) => {
     updateItemQuantity(id, quantity + (type === "plus" ? 1 : -1));
   };
@@ -93,8 +91,6 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                   <Button
                     variant="white_accent"
                     type="submit"
-                    onClick={() => setRedirecting(true)}
-                    loading={redirecting}
                     className="w-full h-12 text-base"
                   >
                     Оформить заказ

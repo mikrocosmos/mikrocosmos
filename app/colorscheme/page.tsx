@@ -1,23 +1,25 @@
 import { Container } from "@/shared/components/Container";
 import { Button } from "@/shared/components/ui/button";
 
+function Square({ color }: { color: string }) {
+  return <div className={`w-24 h-24 bg-${color}`}>{color}</div>;
+}
+
 export default function ColorSchemePage() {
   return (
     <Container className="min-h-[82.7vh]">
       <h2 className="text-2xl font-bold">Удалить на проде!</h2>
       <h1>Color Scheme</h1>
       <div className="flex gap-4 my-6 w-full flex-wrap">
-        <div className="w-24 h-24 bg-primary">Primary</div>
-        <div className="w-24 h-24 bg-secondary">Secondary</div>
-        <div className="w-24 h-24 bg-accent text-black">Accent</div>
-        <div className="w-24 h-24 bg-background">Background</div>
-        <div className="w-24 h-24 bg-foreground text-black">Foreground</div>
-        <div className="w-24 h-24 bg-popover">Popover</div>
-        <div className="w-24 h-24 bg-success">Success</div>
-        <div className="w-24 h-24 bg-destructive">Destructive</div>
-        <div className="w-24 h-24 bg-destructive-foreground">
-          Destructive-foreground
-        </div>
+        <Square color="bg-primary" />
+        <Square color="bg-secondary" />
+        <Square color="bg-accent text-black" />
+        <Square color="bg-background" />
+        <Square color="bg-foreground text-black" />
+        <Square color="bg-popover" />
+        <Square color="bg-success" />
+        <Square color="bg-destructive" />
+        <Square color="bg-destructive-foreground" />
       </div>
       <Button variant="outline">Hello world</Button>
     </Container>

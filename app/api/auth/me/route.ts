@@ -25,7 +25,7 @@ export async function GET() {
     console.log(error);
     return NextResponse.json(
       { error: "[USER_GET] Server error" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
