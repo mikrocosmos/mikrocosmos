@@ -3,7 +3,6 @@ import { CartItemProps } from "@/shared/components/cart-item-details/cart-item-d
 import { cn } from "@/shared/lib/utils";
 import * as CartItem from "@/shared/components/cart-item-details/";
 import Link from "next/link";
-import { on } from "react-use/lib/misc/util";
 import { CircleX } from "lucide-react";
 
 interface Props {
@@ -44,9 +43,9 @@ export const CheckoutCartItem: React.FC<Props> = ({
         <CartItem.Image src={imageUrl} />
         <CartItem.Info name={name} description={description} />
       </Link>
-      <CartItem.Price value={price} />
+      <CartItem.Price value={price} className="ml-5" />
 
-      <div className="flex items-center gap-5 ml-20">
+      <div className="flex items-center gap-5 ml-5">
         <CartItem.CountButton onClick={onClickCountButton} value={quantity} />
         <button type="button" onClick={onClickRemove}>
           <CircleX

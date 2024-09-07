@@ -11,7 +11,7 @@ interface Props {
 
 export const CheckoutPersonal: React.FC<Props> = ({ className }) => {
   return (
-    <CheckoutBlock className={className} title="2. Персональные данные">
+    <CheckoutBlock className={className} title="Персональные данные">
       <div className="flex flex-col gap-2">
         <label htmlFor="firstName" className="text-lg">
           Имя

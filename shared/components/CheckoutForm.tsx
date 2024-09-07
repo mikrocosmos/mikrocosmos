@@ -15,7 +15,6 @@ import toast from "react-hot-toast";
 import { createOrder } from "@/app/actions";
 import { Title } from "@/shared/components/Title";
 import * as Checkout from "@/shared/components/checkout";
-import { TotalItem } from "@/shared/components/checkout";
 
 interface Props {
   className?: string;
@@ -78,6 +77,9 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
                 className={loading ? "opacity-40 pointer-events-none" : ""}
               />
               <Checkout.Personal
+                className={loading ? "opacity-40 pointer-events-none" : ""}
+              />
+              <Checkout.Address
                 className={loading ? "opacity-40 pointer-events-none" : ""}
               />
             </div>

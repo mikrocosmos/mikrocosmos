@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { useBranches } from "../hooks";
 import { HeaderFilialItem } from "@/shared/components/HeaderFilialItem";
 import { Skeleton } from "@/shared/components/ui";
+import { branchStore } from "@/shared/store";
 
 interface Props {
   className?: string;
@@ -14,9 +15,7 @@ interface Props {
 
 export const HeaderFilial: React.FC<Props> = ({ className }) => {
   const { loading, branch } = useBranches();
-  const [currentBranch, setCurrentBranch] = React.useState(
-    "Стройотрядовская, 6",
-  );
+  const { branchId, setBranchId } = branchStore((state) => state);
 
   return (
     <Popover>
@@ -35,7 +34,7 @@ export const HeaderFilial: React.FC<Props> = ({ className }) => {
             <Skeleton className="ml-1 w-32 h-3" />
           ) : (
             <AnimatedLink
-              text={currentBranch}
+              text={branch[branchId - 1].address}
               className="ml-1 before:bottom-0"
             />
           )}
@@ -46,11 +45,13 @@ export const HeaderFilial: React.FC<Props> = ({ className }) => {
           {branch.map((item) => (
             <HeaderFilialItem
               key={item.id}
-              setCurrentBranch={setCurrentBranch}
+              id={item.id}
+              setCurrentBranch={setBranchId}
               address={item.address}
               phone={item.phone}
               opensAt={item.opensAt}
               closesAt={item.closesAt}
+              daysOpen={item.daysOpen}
             />
           ))}
         </ul>

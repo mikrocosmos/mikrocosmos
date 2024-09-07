@@ -7,3 +7,5 @@ export { Textarea } from "./textarea";
 export * from "./dialog";
 export * from "./tabs";
 export * from "./accordion";
+export { Label } from "./label";
+export * from "./radio-group";
