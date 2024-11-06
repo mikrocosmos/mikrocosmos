@@ -1,7 +1,9 @@
 import React from "react";
 import type { Metadata } from "next";
 import "../globals.css";
-import { Footer, Header } from "@/shared/components/";
+import { AdulthoodMessage, Footer, Header } from "@/shared/components/";
+import { CookieMessage } from "@/shared/components/CookieMessage";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Smoky Moon",
@@ -15,10 +17,15 @@ export default function HomeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = cookies();
+  const acceptedCookies = cookieStore.get("acceptedCookies");
+  const adult = cookieStore.get("adult");
   return (
     <main className="min-h-screen bg-background bg-hero-pattern">
       <Header />
       {children}
+      {!acceptedCookies && <CookieMessage />}
+      {!adult && <AdulthoodMessage />}
       <Footer />
     </main>
   );

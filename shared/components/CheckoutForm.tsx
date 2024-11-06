@@ -40,7 +40,7 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
     async function fetchUserInfo() {
       const data = await Api.auth.getMe();
 
-      form.setValue("name", `${data.name} + ${data.surName}`);
+      form.setValue("name", data.name);
       form.setValue("email", data.email);
     }
 
@@ -51,10 +51,11 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
 
   const onSubmit = async (data: TCheckoutForm) => {
     try {
-      console.log(data);
-
       setSubmitting(true);
-      const url = await createOrder(data);
+      const url = await createOrder({
+        ...data,
+        userId: Number(session?.user?.id),
+      });
       toast("Заказ оформлен", toastSuccess);
 
       if (url) {

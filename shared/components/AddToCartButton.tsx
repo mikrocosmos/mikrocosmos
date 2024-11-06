@@ -4,6 +4,7 @@ import { useCartStore } from "@/shared/store";
 import toast from "react-hot-toast";
 import { Button } from "@/shared/components/ui";
 import { toastError, toastSuccess } from "@/shared/constants";
+import { useSession } from "next-auth/react";
 
 interface Props {
   productId?: number;
@@ -30,10 +31,19 @@ export const AddToCartButton: React.FC<Props> = ({
     state.addCartItem,
   ]);
 
-  const onSubmit = async (productId?: number, branchIds?: number[]) => {
+  const session = useSession();
+
+  const userId = Number(session.data?.user?.id);
+
+  const onSubmit = async (
+    productId?: number,
+    userId?: number,
+    branchIds?: number[],
+  ) => {
     try {
       await addCartItem({
         productId,
+        userId,
         branchIds,
       });
       toast("Товар добавлен в корзину", toastSuccess);
@@ -47,7 +57,7 @@ export const AddToCartButton: React.FC<Props> = ({
     <Button
       variant={variant}
       loading={loading}
-      onClick={() => onSubmit?.(productId, branchIds)}
+      onClick={() => onSubmit?.(productId, userId, branchIds)}
       className={className}
     >
       В корзину

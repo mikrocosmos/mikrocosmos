@@ -10,7 +10,6 @@ datasource db {
 model User {
   id               Int               @id @default(autoincrement())
   name             String
-  surName          String
   email            String            @unique
   phone            String?           @unique
   password         String
@@ -99,7 +98,7 @@ model CartItem {
 model Order {
   id         Int         @id @default(autoincrement())
   user       User?       @relation(fields: [userId], references: [id])
-  userId     Int?        @unique
+  userId     Int?
   token      String
   totalPrice Int         @default(0)
   status     OrderStatus

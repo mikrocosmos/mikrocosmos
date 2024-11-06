@@ -1,7 +1,22 @@
 import { prisma } from "@/prisma/prisma-client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
   const heroSlide = await prisma.heroSlide.findMany();
+  return NextResponse.json(heroSlide);
+}
+
+export async function POST(req: NextRequest) {
+  const data = await req.json();
+
+  const heroSlide = await prisma.heroSlide.create({
+    data: {
+      heading: data.heading,
+      text: data.text,
+      imageUrl: data.imageUrl,
+      link: data.link,
+      btnText: data.btnText,
+    },
+  });
   return NextResponse.json(heroSlide);
 }

@@ -9,3 +9,4 @@ export * from "./tabs";
 export * from "./accordion";
 export { Label } from "./label";
 export * from "./radio-group";
+export { Separator } from "./separator";

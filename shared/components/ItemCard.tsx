@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { cn } from "../lib/utils";
-import { Button } from "./ui";
 import Link from "next/link";
 import { AddToCartButton } from "@/shared/components/AddToCartButton";
 
@@ -27,7 +26,7 @@ export const ItemCard: React.FC<Props> = ({
       title={name}
       className={cn(
         "w-full h-[450px] min-w-[250px] flex flex-col gap-5 items-center text-center relative bg-popover p-5 rounded-2xl shadow-xl cursor-pointer transition-all ease-in-out hover:-translate-y-1 hover:shadow-md",
-        className
+        className,
       )}
     >
       <Link href={`/product/${id}`} className="flex-1">

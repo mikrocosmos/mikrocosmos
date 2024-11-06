@@ -6,6 +6,7 @@ export const checkoutFormSchema = z.object({
     .string()
     .email({ message: "Введите корректный адрес электронной почты" }),
   phone: z.string().min(10, "Телефон должен содержать не менее 10 символов"),
+  userId: z.number().optional(),
   comment: z.string().optional(),
   branch: z.number(),
   codeWord: z.string().optional(),

@@ -2,7 +2,7 @@ import { Container } from "@/shared/components/Container";
 import { Button } from "@/shared/components/ui/button";
 
 function Square({ color }: { color: string }) {
-  return <div className={`w-24 h-24 bg-${color}`}>{color}</div>;
+  return <div className={`w-24 h-24 ${color}`}>{color}</div>;
 }
 
 export default function ColorSchemePage() {

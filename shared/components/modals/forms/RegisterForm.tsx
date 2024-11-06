@@ -20,7 +20,7 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
     resolver: zodResolver(formRegisterSchema),
     defaultValues: {
       email: "",
-      fullName: "",
+      name: "",
       password: "",
       confirmPassword: "",
     },
@@ -29,17 +29,16 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
   const onSubmit = async (data: TFormRegisterValues) => {
     try {
       await registerUser({
-        name: data.fullName.split(" ")[0],
-        surName: data.fullName.split(" ")[1],
+        name: data.name,
         email: data.email,
         password: data.password,
       });
 
-      toast.error("Регистрация прошла успешно!", toastSuccess);
+      toast("Регистрация прошла успешно!", toastSuccess);
 
       onClose?.();
     } catch (error) {
-      return toast.error("Неверный E-Mail или пароль", toastError);
+      return toast("Неверный E-Mail или пароль", toastError);
     }
   };
 
@@ -50,7 +49,7 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormInput name="email" label="E-Mail" required />
-        <FormInput name="fullName" label="Полное имя" required />
+        <FormInput name="name" label="Имя" required />
         <FormInput name="password" label="Пароль" type="password" required />
         <FormInput
           name="confirmPassword"

@@ -3,6 +3,7 @@ import * as categories from "./categories";
 import * as branch from "./branch";
 import * as cart from "./cart";
 import * as auth from "./auth";
+import * as orders from "./orders";
 
 export const Api = {
   products,
@@ -10,4 +11,5 @@ export const Api = {
   branch,
   cart,
   auth,
+  orders,
 };

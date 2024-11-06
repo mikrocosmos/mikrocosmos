@@ -19,7 +19,11 @@ export async function createOrder(data: TCheckoutForm) {
         token: cartToken,
       },
       include: {
-        items: true,
+        items: {
+          include: {
+            product: true,
+          },
+        },
       },
     });
     if (!userCart) {
@@ -32,7 +36,7 @@ export async function createOrder(data: TCheckoutForm) {
     const order = await prisma.order.create({
       data: {
         token: cartToken,
-        userId: userCart.userId,
+        userId: data.userId,
         fullName: data.name,
         phone: data.phone,
         email: data.email,
@@ -115,10 +119,10 @@ export async function registerUser(body: Prisma.UserCreateInput) {
     const createdUser = await prisma.user.create({
       data: {
         name: body.name,
-        surName: body.surName,
         email: body.email,
         password: hashSync(body.password as string, 10),
         verified: new Date(),
+        role: body.email === "web@mikrocosmos.ru" ? "ADMIN" : "USER",
       },
     });
 
@@ -126,4 +130,10 @@ export async function registerUser(body: Prisma.UserCreateInput) {
   } catch (error) {
     console.log("[actions/registerUser] Server error", error);
   }
+}
+
+export async function setCookie(key: string, value: string) {
+  const cookieStore = cookies();
+  cookieStore.set(key, value);
+  return cookieStore;
 }

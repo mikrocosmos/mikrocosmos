@@ -22,7 +22,7 @@ export default async function CategoryPage({
 
   return (
     <Container className="page">
-      <Title text={category.name} size="lg" className="font-extrabold my-5" />
+      <Title text={category.name} size="lg" className="font-bold my-5" />
       <div className="flex flex-col lg:flex-row gap-5">
         <aside className="min-w-[300px] bg-popover p-5 rounded-xl mb-5">
           <Filters minPrice={minPrice} maxPrice={maxPrice} />

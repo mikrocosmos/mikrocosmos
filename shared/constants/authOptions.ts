@@ -31,7 +31,7 @@ export const authOptions: AuthOptions = {
 
         const isPasswordValid = await compare(
           credentials.password,
-          findUser.password
+          findUser.password,
         );
 
         if (!isPasswordValid) {
@@ -46,7 +46,6 @@ export const authOptions: AuthOptions = {
           id: findUser.id,
           email: findUser.email,
           name: findUser.name,
-          surName: findUser.surName,
           role: findUser.role,
         };
       },
@@ -96,8 +95,7 @@ export const authOptions: AuthOptions = {
         await prisma.user.create({
           data: {
             email: user.email,
-            name: user.name || "User #",
-            surName: `${user.id}`,
+            name: user.name || `User #${user.id}`,
             password: hashSync(String(Math.floor(Math.random())), 10),
             verified: new Date(),
             provider: account?.provider,

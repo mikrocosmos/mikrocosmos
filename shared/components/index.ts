@@ -29,3 +29,6 @@ export { ShowPasswordButton } from "./ShowPasswordButton";
 export { Providers } from "./Providers";
 export { CheckoutForm } from "./CheckoutForm";
 export { ProfileButton } from "./ProfileButton";
+export { ProfileForm } from "./ProfileForm";
+export { AdulthoodMessage } from "./AdulthoodMessage";
+export { CookieMessage } from "./CookieMessage";

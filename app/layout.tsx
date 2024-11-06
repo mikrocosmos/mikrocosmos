@@ -1,7 +1,7 @@
 import React from "react";
 import { Jost } from "next/font/google";
 import "./globals.css";
-import { Providers } from "../shared/components/Providers";
+import { Providers } from "@/shared/components";
 
 const jost = Jost({ subsets: ["latin", "cyrillic"] });
 

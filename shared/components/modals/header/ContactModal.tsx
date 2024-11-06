@@ -33,20 +33,29 @@ export const ContactModal: React.FC<Props> = ({ className }) => {
             <p>Вы можете связаться с нами по этим номерам:</p>
             <p>
               <a href="tel:+79010292020" className="font-bold">
-                <AnimatedLink text="+7 (901) 029-20-20" />
+                <AnimatedLink
+                  className="transition before:transition hover:text-primary before:hover:bg-primary"
+                  text="+7 (901) 029-20-20"
+                />
               </a>{" "}
               (Стройотрядовская, 6)
             </p>
             <p>
               <a href="tel:+78300292020" className="font-bold">
-                <AnimatedLink text="+7 (830) 029-20-20" />
+                <AnimatedLink
+                  className="transition before:transition hover:text-primary before:hover:bg-primary"
+                  text="+7 (830) 029-20-20"
+                />
               </a>{" "}
               (Подшибякина,12)
             </p>
             <p>
               Наша почта:{" "}
               <a href="mailto:example@mail.com">
-                <AnimatedLink text="example@mail.com" />
+                <AnimatedLink
+                  className="transition before:transition hover:text-primary before:hover:bg-primary"
+                  text="example@mail.com"
+                />
               </a>
             </p>
             <p>Наши адреса:</p>

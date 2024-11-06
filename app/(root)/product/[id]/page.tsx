@@ -1,6 +1,6 @@
 import { Container } from "@/shared/components";
 import { prisma } from "@/prisma/prisma-client";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { ProductForm } from "@/shared/components/";
 
 export default async function ProductPage({
@@ -12,7 +12,7 @@ export default async function ProductPage({
     where: { id: Number(id) },
   });
 
-  if (!product) return notFound();
+  if (!product) return redirect("/404");
 
   return (
     <Container className="page">
