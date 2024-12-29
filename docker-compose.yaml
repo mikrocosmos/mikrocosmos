@@ -1,0 +1,44 @@
+services:
+  db:
+    container_name: db
+    image: postgres:16.4-alpine
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - 5432:5432
+    tty: true
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d smoky-moon" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    volumes:
+      - pgdata:/var/lib/postgresql
+  smoky-moon:
+    image: node:20.17.0-alpine
+    container_name: smoky-moon
+    tty: true
+    command: npm run start
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgresql://postgres:admin@db:5432/smoky-moon
+    ports:
+      - 3000:3000
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata: {}
+
+networks:
+  default:
+    driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450

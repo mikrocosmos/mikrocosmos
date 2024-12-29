@@ -11,12 +11,14 @@ declare module "next-auth" {
       role: UserRole;
       name: string;
       image: string;
+      currentBranchId: number;
     };
   }
 
   interface User extends DefaultUser {
     id: number;
     role: UserRole;
+    currentBranchId: number;
   }
 }
 
@@ -24,5 +26,6 @@ declare module "next-auth/jwt" {
   interface JWT extends DefaultJWT {
     id: string;
     role: UserRole;
+    currentBranchId: number;
   }
 }

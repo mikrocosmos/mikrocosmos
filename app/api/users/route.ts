@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/prisma-client";
-import { hashSync } from "bcrypt";
+import { hashSync } from "bcryptjs";
 
 export async function GET() {
   const users = await prisma.user.findMany();
@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
       email: data.email,
       password: hashSync(data.password, 10),
       role: data.role || "USER",
+      currentBranchId: 1,
     },
   });
   return NextResponse.json(user);

@@ -8,20 +8,19 @@ datasource db {
 }
 
 model User {
-  id               Int               @id @default(autoincrement())
-  name             String
-  email            String            @unique
-  phone            String?           @unique
-  password         String
-  verified         DateTime?
-  verificationCode VerificationCode?
-  cart             Cart?
-  role             UserRole          @default(USER)
-  orders           Order[]
-  provider         String?
-  providerId       String?
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
+  id              Int      @id @default(autoincrement())
+  name            String
+  email           String   @unique
+  phone           String?  @unique
+  password        String
+  cart            Cart?
+  currentBranchId Int
+  role            UserRole @default(USER)
+  orders          Order[]
+  provider        String?
+  providerId      String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Category {
@@ -33,44 +32,40 @@ model Category {
 }
 
 model Branch {
-  id        Int       @id @default(autoincrement())
+  id        Int               @id @default(autoincrement())
   address   String
   phone     String
-  items     Product[]
+  items     BranchToProduct[]
   opensAt   String?
   closesAt  String?
   daysOpen  String[]
-  Stock     Stock[]
-  Order     Order[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  orders    Order[]
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
 }
 
 model Product {
-  id          Int        @id @default(autoincrement())
+  id          Int               @id @default(autoincrement())
   name        String
   categoryId  Int
-  category    Category   @relation(fields: [categoryId], references: [id])
+  category    Category          @relation(fields: [categoryId], references: [id])
   price       Float
   description String
   imageUrl    String
-  stock       Stock[]
   cartItems   CartItem[]
-  branch      Branch[]
-  branchIds   Int[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  branchIds   BranchToProduct[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
 }
 
-model Stock {
-  id        Int      @id @default(autoincrement())
-  product   Product  @relation(fields: [productId], references: [id])
-  productId Int
-  quantity  Int      @default(0)
-  branch    Branch   @relation(fields: [branchId], references: [id])
-  branchId  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model BranchToProduct {
+  product       Product @relation(fields: [productId], references: [id])
+  productId     Int
+  branch        Branch  @relation(fields: [branchId], references: [id])
+  branchId      Int
+  totalQuantity Int
+
+  @@id([branchId, productId])
 }
 
 model Cart {
@@ -126,21 +121,8 @@ model HeroSlide {
   updatedAt DateTime @updatedAt
 }
 
-model VerificationCode {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int      @unique
-  code      String
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([userId, code])
-}
-
 enum OrderStatus {
   PENDING
-  PAID
   COMPLETED
   CANCELED
 }

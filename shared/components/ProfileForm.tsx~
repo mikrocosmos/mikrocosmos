@@ -38,9 +38,9 @@ export const ProfileForm: React.FC<Props> = ({ className, user }) => {
         name: data.name,
         password: data.password,
       });
-      toast.success("Данные обновлены", toastSuccess);
+      toast("Данные обновлены", toastSuccess);
     } catch (error) {
-      return toast.error("Неверный E-Mail или пароль", toastError);
+      return toast("Неверный E-Mail или пароль", toastError);
     }
   };
 

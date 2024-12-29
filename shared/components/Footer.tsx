@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "./Container";
 import { cn } from "../lib/utils";
+import Link from "next/link";
 
 interface Props {
   className?: string;
@@ -27,10 +28,10 @@ export const Footer: React.FC<Props> = ({ className }) => {
             Все права защищены
           </div>
           <div className="opacity-50 transition hover:opacity-100 -link">
-            <a href="#">Политика конфиденциальности</a>
+            <Link href="/privacy">Политика конфиденциальности</Link>
           </div>
           <div className="opacity-50 transition hover:opacity-100 -link">
-            <a href="#">Пользовательское соглашение</a>
+            <Link href="/agreement">Пользовательское соглашение</Link>
           </div>
         </div>
       </Container>

@@ -2,7 +2,7 @@
 import React from "react";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/components/ui";
-import { setCookie } from "@/app/actions";
+import { setCookie } from "@/app/actions/actions";
 
 interface Props {
   className?: string;
@@ -25,10 +25,10 @@ export const CookieMessage: React.FC<Props> = ({ className }) => {
         <Button
           onClick={() => setCookie("acceptedCookies", "true")}
           variant="white_accent"
+          className="w-full"
         >
           Принять
         </Button>
-        <Button variant="outline_red">Отклонить</Button>
       </div>
     </div>
   );

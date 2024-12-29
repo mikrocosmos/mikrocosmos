@@ -5,6 +5,8 @@ import { getUserSession } from "@/shared/lib/getUserSession";
 import { Separator } from "@/shared/components/ui";
 import { LogoutBtn } from "@/shared/components/admin/header/LogoutBtn";
 import Link from "next/link";
+import { AdminBurger } from "@/shared/components/admin";
+import { Menu } from "lucide-react";
 
 interface Props {
   className?: string;
@@ -28,13 +30,18 @@ export const AdminHeader: React.FC<Props> = async ({ className }) => {
         </Link>
         <HeaderFilial className="ml-5 hidden sm:!flex" />
       </div>
-      <div className="flex items-center">
+      <div className="items-center hidden sm:!flex">
         <div className="text-lg">{session?.name}</div>
         <Separator
           orientation="vertical"
           className="mx-4 w-px h-6 bg-neutral-200"
         />
         <LogoutBtn />
+      </div>
+      <div className="block sm:hidden">
+        <AdminBurger>
+          <Menu size={40} />
+        </AdminBurger>
       </div>
     </header>
   );

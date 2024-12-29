@@ -2,7 +2,11 @@ import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
-  const branch = await prisma.branch.findMany();
+  const branch = await prisma.branch.findMany({
+    orderBy: {
+      id: "asc",
+    },
+  });
   return NextResponse.json(branch);
 }
 

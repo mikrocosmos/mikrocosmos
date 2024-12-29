@@ -17,9 +17,6 @@ export default function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = cookies();
-  const acceptedCookies = cookieStore.get("acceptedCookies");
-  const adult = cookieStore.get("adult");
   return (
     <main className="min-h-screen bg-background">
       <AdminHeader />

@@ -4,6 +4,7 @@ import * as branch from "./branch";
 import * as cart from "./cart";
 import * as auth from "./auth";
 import * as orders from "./orders";
+import * as adminProducts from "./admin-products";
 
 export const Api = {
   products,
@@ -12,4 +13,5 @@ export const Api = {
   cart,
   auth,
   orders,
+  adminProducts,
 };

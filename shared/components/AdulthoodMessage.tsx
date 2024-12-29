@@ -3,7 +3,7 @@ import React from "react";
 import { Title } from "@/shared/components/Title";
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/components/ui";
-import { setCookie } from "@/app/actions";
+import { setCookie } from "@/app/actions/actions";
 
 interface Props {
   className?: string;

@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
 import { Api } from "@/shared/services/api-client";
 import toast from "react-hot-toast";
-import { createOrder } from "@/app/actions";
+import { createOrder } from "@/app/actions/actions";
 import { Title } from "@/shared/components/Title";
 import * as Checkout from "@/shared/components/checkout";
 
@@ -74,7 +74,7 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
       <Title text="Оформление заказа" size="lg" className="font-bold my-2" />
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="flex gap-10">
+          <div className="sm:flex gap-10">
             <div className="flex flex-col gap-10 flex-1 mb-20">
               <Checkout.Cart
                 className={loading ? "opacity-40 pointer-events-none" : ""}

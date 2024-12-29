@@ -20,7 +20,7 @@ export const ProductForm: React.FC<Props> = ({ product }) => {
     <div
       className={cn(
         "flex flex-1 flex-col justify-center items-center gap-5 md:items-start md:justify-normal md:flex-row mt-5",
-        className
+        className,
       )}
     >
       <Image
@@ -43,7 +43,7 @@ export const ProductForm: React.FC<Props> = ({ product }) => {
               key={item}
               className="before:inline-block before:rounded-full before:mr-[10px] before:bg-success before:w-[10px] before:h-[10px]"
             >
-              {branch[index].address}
+              {branch[item - 1].address}
             </p>
           ))
         )}

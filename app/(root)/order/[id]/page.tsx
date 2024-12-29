@@ -6,8 +6,9 @@ import { orderStatusMap } from "@/shared/constants";
 import { cn } from "@/shared/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { Separator } from "@/shared/components/ui";
+import { Button, Separator } from "@/shared/components/ui";
 import { getOrderStatusClass } from "@/shared/lib";
+import { CancelOrderConfirm } from "@/shared/components/modals/CancelOrderConfirm";
 
 export default async function OrderPage({
   params,
@@ -23,6 +24,7 @@ export default async function OrderPage({
     },
   });
   if (!order) return redirect("/404");
+
   // @ts-ignore
   const items = JSON.parse(order.items);
 
@@ -39,7 +41,7 @@ export default async function OrderPage({
           {orderStatusMap.get(order.status)}
         </div>
       </div>
-      <div className="flex w-[320px] text-lg mt-4">
+      <div className="flex w-[360px] text-lg mt-4">
         <div>Заказ на {order.totalPrice} ₽</div>
         <Separator
           orientation="vertical"
@@ -49,17 +51,10 @@ export default async function OrderPage({
       </div>
       {items.map((item: CartItem & { product: Product }) => (
         <div key={item.id}>
-          <Link href={`/product/${item.product.id}`}>
-            <Title
-              size="md"
-              text={item.product.name}
-              className="font-bold mt-5 transition hover:text-primary"
-            />
-          </Link>
-          <div className="flex items-center mt-5">
+          <div className="flex flex-col md:flex-row mt-5">
             <Link href={`/product/${item.product.id}`}>
               <Image
-                className="rounded-3xl shadow-lg border-2 border-gray-200 object-cover w-[200px] h-[200px] bg-white transition hover:border-primary"
+                className="rounded-3xl shadow-lg border-2 border-gray-200 object-cover md:w-[200px] w-full h-[200px] bg-white transition hover:border-primary"
                 src={item.product.imageUrl}
                 alt={item.product.name}
                 width={200}
@@ -67,12 +62,26 @@ export default async function OrderPage({
               />
             </Link>
             <div className="ml-5">
+              <Link href={`/product/${item.product.id}`}>
+                <Title
+                  size="sm"
+                  text={item.product.name}
+                  className="font-bold mt-5 transition hover:text-primary cursor-pointer"
+                />
+              </Link>
               <p className="text-lg font-bold">{item.product.price} ₽</p>
               <p className="text-lg font-medium">Количество: {item.quantity}</p>
             </div>
           </div>
         </div>
       ))}
+      {order.status === "PENDING" && (
+        <CancelOrderConfirm id={Number(params.id)}>
+          <Button variant="outline_red" className="mt-5">
+            Отменить заказ
+          </Button>
+        </CancelOrderConfirm>
+      )}
     </Container>
   );
 }

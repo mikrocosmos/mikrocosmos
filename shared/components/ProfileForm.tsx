@@ -7,7 +7,7 @@ import {
   formRegisterSchema,
   TFormRegisterValues,
 } from "@/shared/components/modals/forms/schemas";
-import { updateUserInfo } from "@/app/actions";
+import { updateUserInfo } from "@/app/actions/actions";
 import toast from "react-hot-toast";
 import { toastError, toastSuccess } from "@/shared/constants";
 import { signOut } from "next-auth/react";

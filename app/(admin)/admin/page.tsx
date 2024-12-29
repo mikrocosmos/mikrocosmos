@@ -13,7 +13,7 @@ export default async function AdminPage() {
 
   return (
     <Container className="admin-page">
-      <Title text={`Привет, ${session?.name}.`} className="font-semibold" />
+      <Title text="Панель управления" className="font-semibold" />
       <div className="flex flex-wrap gap-5 mt-5">
         {sidebarItems.map((item) => (
           <Card

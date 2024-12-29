@@ -1,6 +1,6 @@
 import { prisma } from "./prisma-client";
 import { branches, categories, products } from "./constants";
-import { hashSync } from "bcrypt";
+import { hashSync } from "bcryptjs";
 
 async function up() {
   await prisma.user.createMany({
@@ -10,14 +10,14 @@ async function up() {
         email: "admin@test.ru",
         password: hashSync("111111", 10),
         role: "ADMIN",
-        verified: new Date(),
+        currentBranchId: 1,
       },
       {
         name: "Юзер",
         email: "user@test.ru",
         password: hashSync("111111", 10),
         role: "USER",
-        verified: new Date(),
+        currentBranchId: 1,
       },
     ],
   });
@@ -65,6 +65,7 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "Branch" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "HeroSlide" RESTART IDENTITY CASCADE;`;
+  await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE;`;
 }
 
 async function main() {

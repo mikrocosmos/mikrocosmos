@@ -1,6 +1,13 @@
 import { axiosInstance } from "@/shared/services/instance";
-import { Order } from "@prisma/client";
+import { Branch, Order, OrderStatus } from "@prisma/client";
 
-export async function getAll() {
-  return (await axiosInstance.get<Order[]>("/orders")).data;
+export type TOrders = Order & { branch: Branch };
+
+export async function getAll(branchId: number) {
+  return (await axiosInstance.get<TOrders[]>(`/orders?branch=${branchId}`))
+    .data;
+}
+
+export async function changeStatus(id: number, status: OrderStatus) {
+  return (await axiosInstance.patch<Order>(`/orders/${id}`, { status })).data;
 }

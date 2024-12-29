@@ -122,7 +122,8 @@ export async function registerUser(body: Prisma.UserCreateInput) {
         email: body.email,
         password: hashSync(body.password as string, 10),
         verified: new Date(),
-        role: body.role === "web@mikrocosmos.ru" ? "ADMIN" : "USER",
+        role: body.email === "web@mikrocosmos.ru" ? "ADMIN" : "USER",
+        currentBranchId: 1,
       },
     });
 
@@ -136,4 +137,19 @@ export async function setCookie(key: string, value: string) {
   const cookieStore = cookies();
   cookieStore.set(key, value);
   return cookieStore;
+}
+
+export async function changeBranch(currentBranchId: number) {
+  const user = await getUserSession();
+  if (!user) {
+    throw new Error("User not found");
+  }
+  await prisma.user.update({
+    where: {
+      id: Number(user.id),
+    },
+    data: {
+      currentBranchId,
+    },
+  });
 }

@@ -1,28 +1,49 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/prisma-client";
 import { findOrCreateCart, updateCartTotal } from "@/shared/lib";
+import { getUserSession } from "@/shared/lib/getUserSession";
 
 export async function GET(req: NextRequest) {
   try {
     const token = req.cookies.get("cartToken")?.value;
 
     if (!token) return NextResponse.json({ totalPrice: 0, items: [] });
+    const session = await getUserSession();
+    let userCart;
 
-    const userCart = await prisma.cart.findFirst({
-      where: {
-        OR: [{ token }],
-      },
-      include: {
-        items: {
-          orderBy: {
-            createdAt: "desc",
-          },
-          include: {
-            product: true,
+    if (session) {
+      userCart = await prisma.cart.findFirst({
+        where: {
+          OR: [{ userId: Number(session!.id) }],
+        },
+        include: {
+          items: {
+            orderBy: {
+              createdAt: "desc",
+            },
+            include: {
+              product: true,
+            },
           },
         },
-      },
-    });
+      });
+    } else {
+      userCart = await prisma.cart.findFirst({
+        where: {
+          OR: [{ token }],
+        },
+        include: {
+          items: {
+            orderBy: {
+              createdAt: "desc",
+            },
+            include: {
+              product: true,
+            },
+          },
+        },
+      });
+    }
 
     return NextResponse.json(userCart);
   } catch (error) {
@@ -44,7 +65,21 @@ export async function POST(req: NextRequest) {
 
     const data = await req.json();
 
-    const userCart = await findOrCreateCart(token);
+    let findUser;
+    
+    if (data.userId) {
+      findUser = await prisma.user.findFirst({
+        where: {
+          id: data.userId,
+        },
+      });
+    }
+
+    const userCart = await findOrCreateCart(token, findUser?.id);
+
+    if (findUser) {
+      token = userCart.token;
+    }
 
     const findCartItem = await prisma.cartItem.findFirst({
       where: {
@@ -72,6 +107,7 @@ export async function POST(req: NextRequest) {
       });
     }
     const updatedUserCart = await updateCartTotal(token);
+
     const resp = NextResponse.json(updatedUserCart);
     resp.cookies.set("cartToken", token, {
       maxAge: 60 * 60 * 24 * 30, // 30 days

@@ -1,7 +1,7 @@
 import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/prisma/prisma-client";
-import { compare, hashSync } from "bcrypt";
+import { compare, hashSync } from "bcryptjs";
 import { UserRole } from "@prisma/client";
 
 export const authOptions: AuthOptions = {
@@ -38,15 +38,12 @@ export const authOptions: AuthOptions = {
           return null;
         }
 
-        if (!findUser.verified) {
-          return null;
-        }
-
         return {
           id: findUser.id,
           email: findUser.email,
           name: findUser.name,
           role: findUser.role,
+          currentBranchId: findUser.currentBranchId,
         };
       },
     }),
@@ -97,10 +94,10 @@ export const authOptions: AuthOptions = {
             email: user.email,
             name: user.name || `User #${user.id}`,
             password: hashSync(String(Math.floor(Math.random())), 10),
-            verified: new Date(),
             provider: account?.provider,
             providerId: account?.providerAccountId,
             role: "USER" as UserRole,
+            currentBranchId: 1,
           },
         });
 

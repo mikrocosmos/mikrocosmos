@@ -8,6 +8,7 @@ import { useBranches } from "../hooks";
 import { HeaderFilialItem } from "@/shared/components/HeaderFilialItem";
 import { Skeleton } from "@/shared/components/ui";
 import { branchStore } from "@/shared/store";
+import { useSession } from "next-auth/react";
 
 interface Props {
   className?: string;

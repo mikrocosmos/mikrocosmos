@@ -4,7 +4,7 @@ import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-import { registerUser } from "@/app/actions";
+import { registerUser } from "@/app/actions/actions";
 import { formRegisterSchema, TFormRegisterValues } from "./schemas";
 import { FormInput } from "@/shared/components/form";
 import { Button } from "@/shared/components/ui";
@@ -32,6 +32,7 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
         name: data.name,
         email: data.email,
         password: data.password,
+        currentBranchId: 1,
       });
 
       toast("Регистрация прошла успешно!", toastSuccess);

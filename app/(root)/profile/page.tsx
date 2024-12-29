@@ -37,14 +37,14 @@ export default async function ProfilePage() {
 
   return (
     <Container className="page">
-      <div className="flex flex-col lg:flex-row justify-between">
+      <div className="flex flex-col lg:flex-row gap-10 justify-between">
         <div>
           <Title text="Профиль" size="lg" className="font-bold mt-4" />
           <ProfileForm className="w-full lg:w-96" user={user} />
         </div>
 
         {orders.length > 0 && (
-          <div className="bg-popover rounded-xl my-4 p-4 scrollable-container h-[500px]">
+          <div className="bg-popover my-4 p-4 scrollable-container h-[500px] !rounded-2xl">
             <Title text="Заказы" size="md" className="font-bold" />
             {orders.map((order) => (
               <Link
