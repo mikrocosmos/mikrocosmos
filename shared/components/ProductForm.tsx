@@ -2,20 +2,21 @@
 import React from "react";
 import { cn } from "@/shared/lib/utils";
 import { className } from "postcss-selector-parser";
-import { Product } from "@prisma/client";
+import { BranchToProduct, Product } from "@prisma/client";
 import Image from "next/image";
 import { Title } from "@/shared/components/";
 import { AddToCartButton } from "@/shared/components/";
 import { useBranches } from "../hooks";
 import { Skeleton } from "./ui";
+import { branchToProduct } from "@/prisma/constants";
 
 interface Props {
   product: Product;
+  branchToProduct: BranchToProduct[];
 }
 
-export const ProductForm: React.FC<Props> = ({ product }) => {
+export const ProductForm: React.FC<Props> = ({ product, branchToProduct }) => {
   const { branch, loading } = useBranches();
-
   return (
     <div
       className={cn(
@@ -38,23 +39,25 @@ export const ProductForm: React.FC<Props> = ({ product }) => {
             <Skeleton className="w-32 h-5 mt-5" />
           </>
         ) : (
-          product.branchIds.map((item, index) => (
+          branchToProduct.map((item, index) => (
             <p
-              key={item}
-              className="before:inline-block before:rounded-full before:mr-[10px] before:bg-success before:w-[10px] before:h-[10px]"
+              key={item.branchId}
+              className={cn(
+                "before:inline-block before:rounded-full before:mr-[10px] before:bg-success before:w-[10px] before:h-[10px]",
+                item.totalQuantity > 0
+                  ? "before:bg-success"
+                  : "before:bg-destructive",
+              )}
             >
-              {branch[item - 1].address}
+              Осталось {item.totalQuantity} шт. на&nbsp;
+              {branch[item.branchId - 1].address}
             </p>
           ))
         )}
 
         <div className="flex items-center justify-between md:justify-normal gap-5 mt-5">
           <p className="text-3xl text-primary font-bold">{product.price} ₽</p>
-          <AddToCartButton
-            variant={"white_accent"}
-            productId={product.id}
-            branchIds={product.branchIds}
-          />
+          <AddToCartButton variant={"white_accent"} productId={product.id} />
         </div>
         {product.description && (
           <div className="my-5">

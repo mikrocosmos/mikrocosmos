@@ -18,6 +18,11 @@ export const HeaderFilial: React.FC<Props> = ({ className }) => {
   const { loading, branch } = useBranches();
   const { branchId, setBranchId } = branchStore((state) => state);
 
+  const user = useSession();
+  React.useEffect(() => {
+    setBranchId(user?.data?.user.currentBranchId || 1);
+  }, [setBranchId, user?.data?.user.currentBranchId]);
+
   return (
     <Popover>
       <PopoverTrigger>

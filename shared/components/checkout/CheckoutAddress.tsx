@@ -20,17 +20,17 @@ export const CheckoutAddress: React.FC<Props> = ({ className }) => {
   const { branch, loading } = useBranches();
   return (
     <Checkout.Block title="Адрес самовывоза" className={className}>
-      <iframe
-        src={
-          branchId === 1
-            ? yandexMapsFrames.stroyotryadovskaya
-            : yandexMapsFrames.podshibyakina
-        }
-        className="border-0 w-full h-[300px] rounded-3xl"
-      />
+      {loading ? (
+        <Skeleton className="w-full h-40 rounded-2xl" />
+      ) : (
+        <iframe
+          src={branch[branchId - 1].yandexMapLink}
+          className="border-0 w-full h-[300px] rounded-3xl"
+        />
+      )}
       {loading ? (
         <>
-          <Skeleton className="w-[50px] h-6 rounded-2xl" />
+          <Skeleton className="w-full mt-4 h-6 rounded-2xl" />
         </>
       ) : (
         <RadioGroup

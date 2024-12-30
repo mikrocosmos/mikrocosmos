@@ -6,9 +6,9 @@ import { Button } from "@/shared/components/ui";
 import { toastError, toastSuccess } from "@/shared/constants";
 import { useSession } from "next-auth/react";
 
-interface Props {
+interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   productId?: number;
-  branchIds?: number[];
+  branchId?: number;
   variant?:
     | "default"
     | "outline"
@@ -22,9 +22,10 @@ interface Props {
 
 export const AddToCartButton: React.FC<Props> = ({
   productId,
-  branchIds,
+  branchId,
   variant = "outline_accent",
   className,
+  ...props
 }) => {
   const [loading, addCartItem] = useCartStore((state) => [
     state.loading,
@@ -38,13 +39,13 @@ export const AddToCartButton: React.FC<Props> = ({
   const onSubmit = async (
     productId?: number,
     userId?: number,
-    branchIds?: number[],
+    branchId?: number,
   ) => {
     try {
       await addCartItem({
         productId,
         userId,
-        branchIds,
+        branchId,
       });
       toast("Товар добавлен в корзину", toastSuccess);
     } catch (error) {
@@ -55,9 +56,10 @@ export const AddToCartButton: React.FC<Props> = ({
 
   return (
     <Button
+      {...props}
       variant={variant}
       loading={loading}
-      onClick={() => onSubmit?.(productId, userId, branchIds)}
+      onClick={() => onSubmit?.(productId, userId, branchId)}
       className={className}
     >
       В корзину

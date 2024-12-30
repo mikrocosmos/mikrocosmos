@@ -23,7 +23,7 @@ import {
 } from "@/shared/components/ui/select";
 import { cn } from "@/shared/lib/utils";
 import { ProductWithCategory } from "@/@types/prisma";
-import { getProducts } from "@/app/actions/admin.actions";
+import { getProducts } from "@/app/actions/admin.products.actions";
 import { Skeleton } from "@/shared/components/ui";
 import { ProductsSearch } from "@/shared/components/admin/products/ProductsSearch";
 import { useAdminProductSearchStore } from "@/shared/store";

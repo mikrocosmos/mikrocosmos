@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { ProductWithCategory } from "@/@types/prisma";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import {
@@ -8,41 +7,33 @@ import {
   TFormProductValues,
 } from "@/shared/components/admin/form/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/shared/components/ui/form";
-import { FormInput } from "@/shared/components/form";
-import { Button, Input, Skeleton, Textarea } from "@/shared/components/ui";
-import { RequiredSymbol } from "@/shared/components";
-import { Checkbox } from "@/shared/components/ui/checkbox";
-import { useBranches, useCategories } from "@/shared/hooks";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/shared/components/ui/select";
-import { cn } from "@/shared/lib/utils";
-import { createProduct } from "@/app/actions/admin.actions";
+import { Form } from "@/shared/components/ui/form";
+import { createProduct } from "@/app/actions/admin.products.actions";
 import { ProductForm } from "@/shared/components/admin/form/ProductForm";
+import { useBranches } from "@/shared/hooks";
+import { Branch } from "@prisma/client";
 
 interface Props {
+  branch: Branch[];
   className?: string;
 }
 
-export const AddProductForm: React.FC<Props> = ({ className }) => {
+export const AddProductForm: React.FC<Props> = ({ className, branch }) => {
   const router = useRouter();
+
+  const defaultBranches = branch.map((item) => {
+    return {
+      id: item.id,
+      quantity: 0,
+    };
+  });
+
   const form = useForm<TFormProductValues>({
     resolver: zodResolver(formProductSchema),
     defaultValues: {
       name: "",
       description: "",
-      branchIds: [],
+      branches: defaultBranches,
     },
   });
 
@@ -54,7 +45,7 @@ export const AddProductForm: React.FC<Props> = ({ className }) => {
       formData.append("description", data.description);
       formData.append("price", String(data.price));
       formData.append("image", data.image);
-      formData.append("branchIds", JSON.stringify(data.branchIds));
+      formData.append("branches", JSON.stringify(data.branches));
       formData.append("category", data.category);
 
       await createProduct(formData);

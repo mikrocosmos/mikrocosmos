@@ -1,6 +1,7 @@
 import {
   Box,
   ChartBarStacked,
+  Newspaper,
   RectangleEllipsis,
   Rows4,
   Store,
@@ -38,5 +39,10 @@ export const sidebarItems = [
     name: "Пользователи",
     link: "users",
     icon: <Users />,
+  },
+  {
+    name: "Статьи",
+    link: "articles",
+    icon: <Newspaper />,
   },
 ];

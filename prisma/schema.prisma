@@ -32,16 +32,17 @@ model Category {
 }
 
 model Branch {
-  id        Int               @id @default(autoincrement())
-  address   String
-  phone     String
-  items     BranchToProduct[]
-  opensAt   String?
-  closesAt  String?
-  daysOpen  String[]
-  orders    Order[]
-  createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
+  id            Int               @id @default(autoincrement())
+  address       String
+  phone         String
+  items         BranchToProduct[]
+  opensAt       String?
+  closesAt      String?
+  daysOpen      String[]
+  orders        Order[]
+  yandexMapLink String
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
 }
 
 model Product {
@@ -117,6 +118,14 @@ model HeroSlide {
   imageUrl  String
   link      String
   btnText   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Article {
+  id        Int      @id @default(autoincrement())
+  name      String
+  text      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

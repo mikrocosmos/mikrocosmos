@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { deleteProduct } from "@/app/actions/admin.actions";
+import { deleteProduct } from "@/app/actions/admin.products.actions";
 import { useRouter } from "next/navigation";
 import { Button } from "@/shared/components/ui";
 

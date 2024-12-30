@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   manifest: "../icons/site.webmanifest",
 };
 
-export default function HomeLayout({
+export default async function HomeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

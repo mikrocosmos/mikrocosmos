@@ -9,7 +9,7 @@ import { getUserSession } from "@/shared/lib/getUserSession";
 
 export async function createOrder(data: TCheckoutForm) {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const cartToken = cookieStore.get("cartToken")?.value;
     if (!cartToken) {
       throw new Error("Cart token not found");
@@ -130,7 +130,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 }
 
 export async function setCookie(key: string, value: string) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   cookieStore.set(key, value);
   return cookieStore;
 }

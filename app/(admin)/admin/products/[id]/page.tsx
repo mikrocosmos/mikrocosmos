@@ -3,14 +3,16 @@ import { getUserSession } from "@/shared/lib/getUserSession";
 import { redirect } from "next/navigation";
 import { EditProductForm } from "@/shared/components/admin/form/EditProductForm";
 import { prisma } from "@/prisma/prisma-client";
-import { deleteProduct } from "@/app/actions/admin.actions";
+import { deleteProduct } from "@/app/actions/admin.products.actions";
 import { DeleteProductBtn } from "@/shared/components/admin/products/DeleteProductBtn";
 
-export default async function AdminProductPage({
-  params: { id },
-}: {
-  params: { id: string };
+export default async function AdminProductPage(props: {
+  params: Promise<{ id: string }>;
 }) {
+  const params = await props.params;
+
+  const { id } = params;
+
   const session = await getUserSession();
 
   if (!session || session?.role !== ("ADMIN" || "CASHIER")) {
@@ -23,6 +25,11 @@ export default async function AdminProductPage({
     },
     include: {
       category: true,
+      branchIds: {
+        include: {
+          branch: true,
+        },
+      },
     },
   });
 

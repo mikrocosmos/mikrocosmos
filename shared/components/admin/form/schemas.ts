@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+const branchSchema = z.object({
+  id: z.number(),
+  quantity: z.coerce.number().min(0, "Количество не может быть отрицательным"),
+});
+
 export const formProductSchema = z.object({
   name: z.string().min(2, "Имя должно содержать не менее 2 символов"),
   description: z
@@ -10,7 +15,9 @@ export const formProductSchema = z.object({
     .any()
     .refine((file: File) => file !== undefined, "Выберите картинку"),
   category: z.string(),
-  branchIds: z.array(z.number()),
+  branches: z
+    .array(branchSchema)
+    .min(1, "Укажите количество хотя бы одного филиала"),
 });
 
 export type TFormProductValues = z.infer<typeof formProductSchema>;

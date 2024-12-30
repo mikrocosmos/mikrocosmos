@@ -1,5 +1,5 @@
 import { prisma } from "./prisma-client";
-import { branches, categories, products } from "./constants";
+import { branches, branchToProduct, categories, products } from "./constants";
 import { hashSync } from "bcryptjs";
 
 async function up() {
@@ -24,12 +24,19 @@ async function up() {
   await prisma.category.createMany({
     data: categories,
   });
+
   await prisma.branch.createMany({
     data: branches,
   });
+
   await prisma.product.createMany({
     data: products,
   });
+
+  await prisma.branchToProduct.createMany({
+    data: branchToProduct,
+  });
+
   await prisma.heroSlide.createMany({
     data: [
       {
@@ -64,6 +71,7 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "Category" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "Branch" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE;`;
+  await prisma.$executeRaw`TRUNCATE TABLE "BranchToProduct" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "HeroSlide" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE;`;
 }

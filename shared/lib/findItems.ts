@@ -25,7 +25,16 @@ export const findItems = async (id: number, params?: GetSearchParams) => {
           id: "desc",
         },
         where: {
-          branchIds: branches ? { hasSome: branches } : undefined,
+          branchIds: {
+            some: {
+              branchId: {
+                in: branches,
+              },
+              totalQuantity: {
+                gt: 0,
+              },
+            },
+          },
           price: {
             gte: minPrice,
             lte: maxPrice,

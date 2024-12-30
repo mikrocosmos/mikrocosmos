@@ -31,7 +31,7 @@ export async function getProducts(searchValue?: string) {
 
 export async function updateProduct(id: number, formData: FormData) {
   const data = getProductFormData(formData);
-
+  console.log(data);
   const category = await prisma.category.findFirst({
     where: {
       name: data.categoryName,
@@ -58,16 +58,53 @@ export async function updateProduct(id: number, formData: FormData) {
       description: data.description,
       price: Number(data.price),
       imageUrl,
-      branchIds: data.branchIds,
       categoryId: category.id,
     },
   });
+
+  const allBranches = await prisma.branch.findMany();
+
+  const branchToProducts = await prisma.branchToProduct.findMany({
+    where: {
+      productId: id,
+    },
+  });
+
+  for (let i = 0; i < allBranches.length; i++) {
+    if (!branchToProducts[i]) {
+      await prisma.branchToProduct.create({
+        data: {
+          branchId: allBranches[i].id,
+          productId: id,
+          totalQuantity: 0,
+        },
+      });
+    } else {
+      await prisma.branchToProduct.update({
+        where: {
+          branchId_productId: {
+            branchId: allBranches[i].id,
+            productId: id,
+          },
+        },
+        data: {
+          totalQuantity: data.branches[i].quantity,
+        },
+      });
+    }
+  }
 }
 
 export async function deleteProduct(id: number) {
   await prisma.product.delete({
     where: {
       id,
+    },
+  });
+
+  await prisma.branchToProduct.deleteMany({
+    where: {
+      productId: id,
     },
   });
 }
@@ -92,14 +129,25 @@ export async function createProduct(formData: FormData) {
   const uploader = new ImageUploader(data.image);
   const imageUrl = await uploader.upload();
 
-  await prisma.product.create({
+  const product = await prisma.product.create({
     data: {
       name: data.name,
       description: data.description,
       price: Number(data.price),
       imageUrl,
-      branchIds: data.branchIds,
       categoryId: category.id,
     },
   });
+
+  const allBranches = await prisma.branch.findMany();
+
+  for (let i = 0; i < allBranches.length; i++) {
+    await prisma.branchToProduct.create({
+      data: {
+        branchId: allBranches[i].id,
+        productId: product.id,
+        totalQuantity: data.branches[i].quantity,
+      },
+    });
+  }
 }

@@ -15,6 +15,7 @@ import toast from "react-hot-toast";
 import { createOrder } from "@/app/actions/actions";
 import { Title } from "@/shared/components/Title";
 import * as Checkout from "@/shared/components/checkout";
+import { branchStore } from "@/shared/store";
 
 interface Props {
   className?: string;
@@ -24,13 +25,14 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
   const [submitting, setSubmitting] = React.useState(false);
   const { loading } = useCart();
   const { data: session } = useSession();
+  const branchId = branchStore((state) => state.branchId);
   const form = useForm<TCheckoutForm>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
       name: session?.user?.name || "",
       email: "",
       phone: "",
-      branch: 1,
+      branch: branchId,
       comment: "",
       codeWord: "",
     },
@@ -74,8 +76,8 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
       <Title text="Оформление заказа" size="lg" className="font-bold my-2" />
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="sm:flex gap-10">
-            <div className="flex flex-col gap-10 flex-1 mb-20">
+          <div className="md:flex md:gap-10">
+            <div className="flex flex-col gap-10 flex-1 mb-10">
               <Checkout.Cart
                 className={loading ? "opacity-40 pointer-events-none" : ""}
               />
@@ -86,7 +88,7 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
                 className={loading ? "opacity-40 pointer-events-none" : ""}
               />
             </div>
-            <div className="w-[450px]">
+            <div className="md:w-[450px] mb-10">
               <Checkout.Total submitting={submitting} />
             </div>
           </div>

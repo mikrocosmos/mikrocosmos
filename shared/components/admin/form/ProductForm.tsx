@@ -5,7 +5,7 @@ import {
   FormItem,
   FormLabel,
 } from "@/shared/components/ui/form";
-import { FormInput } from "@/shared/components/form";
+import { FormInput, FormTextarea } from "@/shared/components/form";
 import { Button, Input, Skeleton, Textarea } from "@/shared/components/ui";
 import {
   Select,
@@ -17,14 +17,14 @@ import {
 import { cn } from "@/shared/lib/utils";
 import { BranchIdsFormField } from "@/shared/components/admin/products/BranchIdsFormField";
 import { useFormContext } from "react-hook-form";
-import { ProductWithCategory } from "@/@types/prisma";
+import { ProductWithCategoryAndBranch } from "@/@types/prisma";
 import { TFormProductValues } from "@/shared/components/admin/form/schemas";
 import { useBranches, useCategories } from "@/shared/hooks";
 import { DeleteProductBtn } from "@/shared/components/admin/products/DeleteProductBtn";
 
 interface Props {
   onSubmit: (data: TFormProductValues) => void;
-  product?: ProductWithCategory;
+  product?: ProductWithCategoryAndBranch;
   className?: string;
 }
 
@@ -36,10 +36,6 @@ export const ProductForm: React.FC<Props> = ({
   const { branch, loading } = useBranches();
   const { categories } = useCategories();
   const form = useFormContext<TFormProductValues>();
-
-  React.useEffect(() => {
-    console.log(form.formState.errors);
-  }, [form.formState.errors]);
 
   return (
     <form
@@ -66,14 +62,11 @@ export const ProductForm: React.FC<Props> = ({
             name="description"
             control={form.control}
             render={({ field }) => (
-              <div>
-                <p className="mb-2">Описание</p>
-                <Textarea
-                  className="text-base bg-white text-black"
-                  {...field}
-                  placeholder={product?.description || "Описание"}
-                />
-              </div>
+              <FormTextarea
+                label="Описание"
+                {...field}
+                placeholder={product?.description || "Описание"}
+              />
             )}
           />
           <FormField
@@ -111,7 +104,10 @@ export const ProductForm: React.FC<Props> = ({
           {loading ? (
             <Skeleton className="w-40 h-10" />
           ) : (
-            <BranchIdsFormField branch={branch} />
+            <BranchIdsFormField
+              branch={branch}
+              branchToProducts={product?.branchIds}
+            />
           )}
           <FormField
             name="image"

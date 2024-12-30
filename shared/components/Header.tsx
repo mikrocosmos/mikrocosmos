@@ -8,7 +8,7 @@ import { cn } from "../lib/utils";
 import { HeaderIcon } from "./HeaderIcon";
 import { Menu, ShoppingCart } from "lucide-react";
 import { BurgerDrawer } from "./BurgerDrawer";
-import { AuthModal, ContactModal } from "@/shared/components/modals/header";
+import { ContactModal } from "@/shared/components/modals/header";
 import { CartDrawer } from "@/shared/components/CartDrawer";
 import { ProfileButton } from "@/shared/components/ProfileButton";
 

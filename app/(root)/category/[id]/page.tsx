@@ -3,13 +3,19 @@ import { Container, ItemCard, Title, Filters } from "@/shared/components";
 import { findItems } from "@/shared/lib";
 import { GetSearchParams } from "@/shared/lib/findItems";
 
-export default async function CategoryPage({
-  params: { id },
-  searchParams,
-}: {
-  params: { id: number };
-  searchParams: GetSearchParams;
-}) {
+export default async function CategoryPage(
+  props: {
+    params: Promise<{ id: number }>;
+    searchParams: Promise<GetSearchParams>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const {
+    id
+  } = params;
+
   const category = await findItems(id, searchParams);
   const categoryStatic = await findItems(id);
   if (!category) return notFound();
@@ -36,7 +42,6 @@ export default async function CategoryPage({
               name={product.name}
               imageUrl={product.imageUrl}
               price={product.price}
-              branchIds={product.branchIds}
             />
           ))}
         </div>

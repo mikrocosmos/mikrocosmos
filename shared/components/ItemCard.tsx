@@ -9,7 +9,6 @@ interface Props {
   name: string;
   imageUrl: string;
   price: number;
-  branchIds: number[];
   className?: string;
 }
 
@@ -18,7 +17,6 @@ export const ItemCard: React.FC<Props> = ({
   name,
   price,
   imageUrl,
-  branchIds,
   className,
 }) => {
   return (
@@ -45,7 +43,6 @@ export const ItemCard: React.FC<Props> = ({
       </Link>
       <AddToCartButton
         productId={id}
-        branchIds={branchIds}
         variant="white_accent"
         className="w-5/6"
       />

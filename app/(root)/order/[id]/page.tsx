@@ -10,11 +10,12 @@ import { Button, Separator } from "@/shared/components/ui";
 import { getOrderStatusClass } from "@/shared/lib";
 import { CancelOrderConfirm } from "@/shared/components/modals/CancelOrderConfirm";
 
-export default async function OrderPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function OrderPage(
+  props: {
+    params: Promise<{ id: string }>;
+  }
+) {
+  const params = await props.params;
   const order = await prisma.order.findFirst({
     where: {
       id: Number(params.id),

@@ -1,8 +1,8 @@
-import { Branch, Cart, CartItem, Product } from "@prisma/client";
+import { Cart, CartItem, Product } from "@prisma/client";
 
 export interface CartItemDTO extends CartItem {
   product: Product;
-  branchIds: Branch[];
+  branchId: number;
 }
 
 export interface CartDTO extends Cart {
@@ -12,5 +12,5 @@ export interface CartDTO extends Cart {
 export interface CreateCartItemValues {
   productId: number;
   userId?: number;
-  branchIds?: number[];
+  branchId?: number;
 }

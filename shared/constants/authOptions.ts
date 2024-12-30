@@ -123,6 +123,7 @@ export const authOptions: AuthOptions = {
         token.id = String(findUser.id);
         token.name = findUser.name;
         token.email = findUser.email;
+        token.currentBranchId = findUser.currentBranchId;
       }
 
       return token;
@@ -131,6 +132,7 @@ export const authOptions: AuthOptions = {
       if (session?.user) {
         session.user.role = token.role;
         session.user.id = token.id;
+        session.user.currentBranchId = token.currentBranchId;
       }
 
       return session;
