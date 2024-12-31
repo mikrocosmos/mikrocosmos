@@ -29,7 +29,7 @@ export const ContactModal: React.FC<Props> = ({ className }) => {
           <DialogTitle className="text-3xl">Контакты</DialogTitle>
         </DialogHeader>
         <DialogDescription className={cn("text-white text-xl", className)}>
-          <div>
+          <article>
             <p>Вы можете связаться с нами по этим номерам:</p>
             <p>
               <a href="tel:+79010292020" className="font-bold">
@@ -68,7 +68,7 @@ export const ContactModal: React.FC<Props> = ({ className }) => {
             <p>
               <b>Ждём вас в нашем магазине!</b>
             </p>
-          </div>
+          </article>
         </DialogDescription>
       </DialogContent>
     </Dialog>

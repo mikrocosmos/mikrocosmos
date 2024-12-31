@@ -96,15 +96,15 @@ export async function updateProduct(id: number, formData: FormData) {
 }
 
 export async function deleteProduct(id: number) {
-  await prisma.product.delete({
-    where: {
-      id,
-    },
-  });
-
   await prisma.branchToProduct.deleteMany({
     where: {
       productId: id,
+    },
+  });
+
+  await prisma.product.delete({
+    where: {
+      id,
     },
   });
 }

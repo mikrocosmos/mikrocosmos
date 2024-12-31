@@ -3,6 +3,7 @@ import React from "react";
 import { deleteProduct } from "@/app/actions/admin.products.actions";
 import { useRouter } from "next/navigation";
 import { Button } from "@/shared/components/ui";
+import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
 
 interface Props {
   id: number;
@@ -11,16 +12,15 @@ interface Props {
 
 export const DeleteProductBtn: React.FC<Props> = ({ className, id }) => {
   const router = useRouter();
+  const onConfirm = async () => {
+    await deleteProduct(id);
+    router.back();
+  };
   return (
-    <Button
-      variant="outline_red"
-      onClick={() => {
-        deleteProduct(id);
-        router.back();
-      }}
-      className={className}
-    >
-      Удалить товар
-    </Button>
+    <AreYouSureConfirm onConfirm={onConfirm}>
+      <Button type="button" variant="outline_red" className={className}>
+        Удалить товар
+      </Button>
+    </AreYouSureConfirm>
   );
 };

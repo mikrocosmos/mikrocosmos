@@ -8,10 +8,11 @@ import { HeroSliderItem } from "@/shared/components/";
 import { Skeleton } from "@/shared/components/ui/";
 
 interface Props {
+  inAdmin?: boolean;
   className?: string;
 }
 
-export const Hero: React.FC<Props> = ({ className }) => {
+export const Hero: React.FC<Props> = ({ className, inAdmin }) => {
   const [slides, setSlides] = React.useState<HeroSlide[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
   React.useEffect(() => {
@@ -41,7 +42,14 @@ export const Hero: React.FC<Props> = ({ className }) => {
           showStatus={false}
         >
           {slides.map((slide) => (
-            <HeroSliderItem key={slide.id} {...slide} />
+            <HeroSliderItem
+              key={slide.id}
+              text={slide.text}
+              imageUrl={slide.imageUrl}
+              heading={slide.heading}
+              btnText={inAdmin ? "Редактировать" : slide.btnText}
+              link={inAdmin ? `/admin/slider/${slide.id}` : slide.link}
+            />
           ))}
         </Carousel>
       )}

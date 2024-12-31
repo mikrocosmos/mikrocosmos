@@ -21,6 +21,9 @@ import { ProductWithCategoryAndBranch } from "@/@types/prisma";
 import { TFormProductValues } from "@/shared/components/admin/form/schemas";
 import { useBranches, useCategories } from "@/shared/hooks";
 import { DeleteProductBtn } from "@/shared/components/admin/products/DeleteProductBtn";
+import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
+import { router } from "next/client";
+import { deleteProduct } from "@/app/actions/admin.products.actions";
 
 interface Props {
   onSubmit: (data: TFormProductValues) => void;

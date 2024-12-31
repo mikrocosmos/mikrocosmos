@@ -8,6 +8,7 @@ import { Category } from "@prisma/client";
 import { FormInput } from "@/shared/components/form";
 import { Button } from "@/shared/components/ui";
 import {
+  createCategory,
   deleteCategory,
   updateCategory,
 } from "@/app/actions/admin.category.actions";
@@ -15,38 +16,33 @@ import { useRouter } from "next/navigation";
 import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
 
 interface Props {
-  category: Category;
+  lastIndex: number;
   className?: string;
 }
 
-export const EditCategoryForm: React.FC<Props> = ({ className, category }) => {
+export const AddCategoryForm: React.FC<Props> = ({ className, lastIndex }) => {
   const router = useRouter();
   const formCategoryValues = z.object({
     name: z.string().min(1, "Название должно содержать не менее 1 символа"),
-    order: z.coerce.number(),
+    order: z.coerce.number().optional(),
   });
   type TFormCategoryValues = z.infer<typeof formCategoryValues>;
 
   const form = useForm<TFormCategoryValues>({
     resolver: zodResolver(formCategoryValues),
     defaultValues: {
-      name: category.name,
-      order: category.order,
+      name: "",
+      order: lastIndex + 1,
     },
   });
 
   const onSubmit = async (data: TFormCategoryValues) => {
     try {
-      await updateCategory(category.id, data.name);
+      await createCategory(data.name, data?.order);
       router.push("/admin/categories");
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const onDelete = async () => {
-    await deleteCategory(category.id);
-    router.push("/admin/categories");
   };
 
   return (
@@ -63,7 +59,7 @@ export const EditCategoryForm: React.FC<Props> = ({ className, category }) => {
             <FormInput
               {...field}
               label="Название"
-              placeholder={category?.name || "Название"}
+              placeholder="Название"
               name="name"
             />
           )}
@@ -76,7 +72,7 @@ export const EditCategoryForm: React.FC<Props> = ({ className, category }) => {
               {...field}
               className="mt-4"
               label="Порядок"
-              placeholder={String(category?.order) || "Порядок"}
+              placeholder={String(lastIndex + 1) || "Порядок"}
             />
           )}
         />
@@ -84,14 +80,6 @@ export const EditCategoryForm: React.FC<Props> = ({ className, category }) => {
           <Button type="submit" variant="white_accent">
             Сохранить
           </Button>
-          <AreYouSureConfirm
-            text="Вы уверены, что хотите удалить категорию? Все товары, связанные с ней, будут удалены"
-            onConfirm={onDelete}
-          >
-            <Button type="button" variant="outline_red">
-              Удалить
-            </Button>
-          </AreYouSureConfirm>
         </div>
       </form>
     </Form>
