@@ -40,7 +40,9 @@ export const HeaderFilial: React.FC<Props> = ({ className }) => {
             <Skeleton className="ml-1 w-32 h-3" />
           ) : (
             <AnimatedLink
-              text={branch[branchId - 1].address}
+              text={
+                branch.find((item) => item.id === branchId)?.address || "Адрес"
+              }
               className="ml-1 before:bottom-0"
             />
           )}

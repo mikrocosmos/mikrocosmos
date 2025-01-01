@@ -31,7 +31,6 @@ export async function getProducts(searchValue?: string) {
 
 export async function updateProduct(id: number, formData: FormData) {
   const data = getProductFormData(formData);
-  console.log(data);
   const category = await prisma.category.findFirst({
     where: {
       name: data.categoryName,

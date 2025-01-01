@@ -1,22 +1,12 @@
-import {
-  AnimatedLink,
-  Categories,
-  Container,
-  Title,
-} from "@/shared/components";
+import { Container, Title } from "@/shared/components";
 import { prisma } from "@/prisma/prisma-client";
 import Link from "next/link";
 import React from "react";
 import { CirclePlus, Pencil } from "lucide-react";
-import { getUserSession } from "@/shared/lib/getUserSession";
-import { redirect } from "next/navigation";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminCategoriesPage() {
-  const session = await getUserSession();
-
-  if (!session || session?.role !== ("ADMIN" || "CASHIER")) {
-    return redirect("/404");
-  }
+  await checkAdmin();
 
   const categories = await prisma.category.findMany({
     orderBy: {

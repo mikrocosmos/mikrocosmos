@@ -24,7 +24,7 @@ export const CheckoutAddress: React.FC<Props> = ({ className }) => {
         <Skeleton className="w-full h-40 rounded-2xl" />
       ) : (
         <iframe
-          src={branch[branchId - 1].yandexMapLink}
+          src={branch.find((item) => item.id === branchId)?.yandexMapLink}
           className="border-0 w-full h-[300px] rounded-3xl"
         />
       )}

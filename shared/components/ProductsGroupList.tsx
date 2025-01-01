@@ -2,11 +2,12 @@
 import React, { PropsWithChildren } from "react";
 import { useIntersection } from "react-use";
 import { ItemCard, Title } from "./";
-import { useCategoryStore } from "@/shared/store/";
-import { Product } from "@prisma/client";
+import { branchStore, useCategoryStore } from "@/shared/store/";
+import { BranchToProduct, Product } from "@prisma/client";
 
 interface Props {
   title: string;
+  btps: BranchToProduct[];
   items: Product[];
   categoryId: number;
   className?: string;
@@ -17,6 +18,7 @@ export const ProductsGroupList: React.FC<PropsWithChildren<Props>> = ({
   title,
   items,
   className,
+  btps,
   categoryId,
   children,
 }) => {
@@ -42,10 +44,10 @@ export const ProductsGroupList: React.FC<PropsWithChildren<Props>> = ({
           <ItemCard
             key={product.id}
             id={product.id}
+            btps={btps}
             name={product.name}
             imageUrl={product.imageUrl}
             price={product.price}
-            branchIds={product.branchIds}
           />
         ))}
         {children}

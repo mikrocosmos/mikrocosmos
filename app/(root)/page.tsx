@@ -8,9 +8,12 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { TopBar } from "@/shared/components/TopBar";
 import { fetchItems } from "@/shared/lib";
+import React from "react";
+import { prisma } from "@/prisma/prisma-client";
 
 export default async function Home() {
   const categories = await fetchItems();
+  const btps = await prisma.branchToProduct.findMany();
   return (
     <>
       <Container className="py-5 w-full text-left">
@@ -24,13 +27,14 @@ export default async function Home() {
         <section className="mt-7">
           <TopBar
             categories={categories.filter(
-              (category) => category.products.length > 0
+              (category) => category.products.length > 0,
             )}
           />
           {categories.map((category) => (
             <ProductsGroupList
               key={category.id}
               title={category.name}
+              btps={btps}
               items={category.products}
               categoryId={category.id}
             >

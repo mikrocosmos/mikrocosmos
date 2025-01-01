@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
       opensAt: data.opensAt,
       closesAt: data.closesAt,
       daysOpen: data.daysOpen,
+      yandexMapLink: data.yandexMapLink,
     },
   });
   return NextResponse.json(branch);

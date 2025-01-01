@@ -27,7 +27,6 @@ export const getCartDetails = (data: CartDTO): ReturnProps => {
     description: item.product.description,
     productId: item.product.id,
     disabled: false,
-    branchIds: item.product.branchIds,
   })) as unknown as CartStateItem[];
   return {
     items,

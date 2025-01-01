@@ -65,6 +65,36 @@ async function up() {
       },
     ],
   });
+  await prisma.article.createMany({
+    data: [
+      {
+        name: "Контакты",
+        text: `Вы можете связаться с нами по этим номерам:
+
++7 (901) 029-20-20 (Стройотрядовская, 6)
+
++7 (830) 029-20-20 (Подшибякина,12)
+
+Наша почта: example@mail.com
+
+Наши адреса:
+
+Стройотрядовская, 6
+
+Подшибякина, 12
+
+Ждём вас в нашем магазине!`,
+      },
+      {
+        name: "Политика конфиденциальности",
+        text: `lorem ipsum dolor sit amet consectetur adipiscing elit iriure non eleifend proident feugait option dolor hendrerit zzril cupiditat excepteur lobortis dignissim magna aliquam sed dignissim euismod praesent et accusam nonummy eleifend exerci feugait fugiat tincidunt odio sed wisi ad adipiscing aliquid ullamco fugiat velit mollit est luptatum nam cupiditat sadipscing sit te soluta eleifend justo adipiscing euismod sed veniam excepteur hendrerit nonumy stet nisi possim duo ea culpa vulputate mollit exerci velit tation nihil at aliquam delenit adipiscing consectetur incidunt`,
+      },
+      {
+        name: "Пользовательское соглашение",
+        text: "lorem ipsum dolor sit amet consectetur adipiscing elit iriure non eleifend proident feugait option dolor hendrerit zzril cupiditat excepteur lobortis dignissim magna aliquam sed dignissim euismod praesent et accusam nonummy eleifend exerci feugait fugiat tincidunt odio sed wisi ad adipiscing aliquid ullamco fugiat velit mollit est luptatum nam cupiditat sadipscing sit te soluta eleifend justo adipiscing euismod sed veniam excepteur hendrerit nonumy stet nisi possim duo ea culpa vulputate mollit exerci velit tation nihil at aliquam delenit adipiscing consectetur incidunt",
+      },
+    ],
+  });
 }
 
 async function down() {
@@ -74,6 +104,7 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "BranchToProduct" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "HeroSlide" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "User" RESTART IDENTITY CASCADE;`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Article" RESTART IDENTITY CASCADE;`;
 }
 
 async function main() {

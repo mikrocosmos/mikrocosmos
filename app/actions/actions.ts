@@ -6,10 +6,11 @@ import { prisma } from "@/prisma/prisma-client";
 import { OrderStatus, Prisma } from "@prisma/client";
 import { hashSync } from "bcryptjs";
 import { getUserSession } from "@/shared/lib/getUserSession";
+import { undefined } from "zod";
 
 export async function createOrder(data: TCheckoutForm) {
   try {
-    const cookieStore = await cookies();
+    const cookieStore = cookies();
     const cartToken = cookieStore.get("cartToken")?.value;
     if (!cartToken) {
       throw new Error("Cart token not found");
@@ -62,6 +63,23 @@ export async function createOrder(data: TCheckoutForm) {
       where: {
         cartId: userCart.id,
       },
+    });
+    console.log(userCart.items);
+
+    userCart.items.forEach(async (item) => {
+      await prisma.branchToProduct.update({
+        where: {
+          branchId_productId: {
+            branchId: Number(data.branch),
+            productId: item.productId,
+          },
+        },
+        data: {
+          totalQuantity: {
+            decrement: item.quantity,
+          },
+        },
+      });
     });
 
     return "/order/" + order.id;

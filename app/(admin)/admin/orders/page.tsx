@@ -2,16 +2,17 @@ import { Container, Title } from "@/shared/components";
 import { Orders } from "@/shared/components/admin";
 import { getUserSession } from "@/shared/lib/getUserSession";
 import { redirect } from "next/navigation";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminOrdersPage() {
-  const session = await getUserSession();
-
-  if (!session || session?.role !== ("ADMIN" || "CASHIER")) {
-    return redirect("/404");
-  }
+  await checkAdmin(true);
   return (
     <Container className="admin-page">
       <Title text="Заказы" className="font-semibold" />
+      <p>
+        Здесь находятся все заказы. Вы можете сменить филиал, чтобы увидеть его
+        заказы. В поле поиска можно ввести номер заказа для удобства поиска.
+      </p>
       <Orders />
     </Container>
   );

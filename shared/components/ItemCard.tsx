@@ -3,9 +3,11 @@ import Image from "next/image";
 import { cn } from "../lib/utils";
 import Link from "next/link";
 import { AddToCartButton } from "@/shared/components/AddToCartButton";
+import { BranchToProduct } from "@prisma/client";
 
 interface Props {
   id: number;
+  btps: BranchToProduct[];
   name: string;
   imageUrl: string;
   price: number;
@@ -14,6 +16,7 @@ interface Props {
 
 export const ItemCard: React.FC<Props> = ({
   id,
+  btps,
   name,
   price,
   imageUrl,
@@ -42,6 +45,7 @@ export const ItemCard: React.FC<Props> = ({
         <p className="text-primary text-2xl font-bold">{price} ₽</p>
       </Link>
       <AddToCartButton
+        btps={btps}
         productId={id}
         variant="white_accent"
         className="w-5/6"

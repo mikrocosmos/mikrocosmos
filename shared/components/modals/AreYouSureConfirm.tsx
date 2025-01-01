@@ -36,7 +36,7 @@ export const AreYouSureConfirm: React.FC<PropsWithChildren<Props>> = ({
             <Title text="Вы уверены?" size="md" />
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className={className}>
+        <DialogDescription>
           <p className="text-white text-base">{text}</p>
           <div className="mt-5 flex gap-5 items-center justify-center">
             <Button onClick={() => onConfirm()} variant="outline_red">

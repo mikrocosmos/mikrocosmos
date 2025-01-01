@@ -2,8 +2,10 @@ import { Categories, Container, Hero, Title } from "@/shared/components";
 import { Button } from "@/shared/components/ui";
 import Link from "next/link";
 import { CirclePlus } from "lucide-react";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminSliderPage() {
+  await checkAdmin();
   return (
     <Container className="admin-page">
       <div className="flex justify-between">

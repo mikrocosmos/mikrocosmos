@@ -11,16 +11,18 @@ import {
   Users,
 } from "lucide-react";
 import { sidebarItems } from "@/shared/constants";
+import { getUserSession } from "@/shared/lib/getUserSession";
 
 interface Props {
   className?: string;
 }
 
-export const AdminSidebarContent: React.FC<Props> = ({ className }) => {
+export const AdminSidebarContent: React.FC<Props> = async ({ className }) => {
+  const session = await getUserSession();
   return (
     <>
       <ul className="flex h-full flex-1 flex-col gap-5">
-        {sidebarItems.map((item) => (
+        {sidebarItems(session?.role).map((item) => (
           <AdminSidebarItem
             key={item.name}
             name={item.name}

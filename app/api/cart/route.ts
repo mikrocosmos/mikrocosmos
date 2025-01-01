@@ -5,7 +5,7 @@ import { getUserSession } from "@/shared/lib/getUserSession";
 
 export async function GET(req: NextRequest) {
   try {
-    const token = await req.cookies.get("cartToken")?.value;
+    const token = req.cookies.get("cartToken")?.value;
 
     if (!token) return NextResponse.json({ totalPrice: 0, items: [] });
     const session = await getUserSession();

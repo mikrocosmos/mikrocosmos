@@ -50,14 +50,18 @@ export const ProductForm: React.FC<Props> = ({ product, branchToProduct }) => {
               )}
             >
               Осталось {item.totalQuantity} шт. на&nbsp;
-              {branch[item.branchId - 1].address}
+              {branch.find((b) => b.id === item.branchId)?.address}
             </p>
           ))
         )}
 
         <div className="flex items-center justify-between md:justify-normal gap-5 mt-5">
           <p className="text-3xl text-primary font-bold">{product.price} ₽</p>
-          <AddToCartButton variant={"white_accent"} productId={product.id} />
+          <AddToCartButton
+            btps={branchToProduct}
+            variant={"white_accent"}
+            productId={product.id}
+          />
         </div>
         {product.description && (
           <div className="my-5">

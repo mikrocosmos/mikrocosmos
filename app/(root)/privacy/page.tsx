@@ -1,11 +1,25 @@
-import { Container } from "@/shared/components";
+import { Container, Title } from "@/shared/components";
+import { prisma } from "@/prisma/prisma-client";
+import { redirect } from "next/navigation";
+import React from "react";
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const article = await prisma.article.findFirst({
+    where: {
+      name: "Политика конфиденциальности",
+    },
+  });
+
+  if (!article) {
+    return redirect("/");
+  }
   return (
-    <Container className="page">
-      <div className="flex flex-1">
-        <h1>Политика конфиденциальности</h1>
-      </div>
+    <Container className="page pt-4">
+      <Title text={article.name} className="font-semibold" />
+      <article
+        className="py-4"
+        dangerouslySetInnerHTML={{ __html: article.text || "" }}
+      />
     </Container>
   );
 }

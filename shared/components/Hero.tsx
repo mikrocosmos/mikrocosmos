@@ -6,6 +6,7 @@ import { getHeroSlider } from "@/shared/lib";
 import { HeroSlide } from "@prisma/client";
 import { HeroSliderItem } from "@/shared/components/";
 import { Skeleton } from "@/shared/components/ui/";
+import { deleteSlide } from "@/app/actions/admin.slider.actions";
 
 interface Props {
   inAdmin?: boolean;
@@ -26,7 +27,8 @@ export const Hero: React.FC<Props> = ({ className, inAdmin }) => {
         setIsLoading(false);
       }
     })();
-  }, []);
+  }, [isLoading]);
+
   return (
     <div className={className}>
       {isLoading ? (
@@ -44,11 +46,14 @@ export const Hero: React.FC<Props> = ({ className, inAdmin }) => {
           {slides.map((slide) => (
             <HeroSliderItem
               key={slide.id}
+              id={slide.id}
               text={slide.text}
               imageUrl={slide.imageUrl}
               heading={slide.heading}
+              setIsLoading={setIsLoading}
               btnText={inAdmin ? "Редактировать" : slide.btnText}
               link={inAdmin ? `/admin/slider/${slide.id}` : slide.link}
+              inAdmin={inAdmin}
             />
           ))}
         </Carousel>

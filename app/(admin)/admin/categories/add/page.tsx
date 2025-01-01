@@ -1,15 +1,10 @@
-import { redirect } from "next/navigation";
-import { getUserSession } from "@/shared/lib/getUserSession";
 import { Container, Title } from "@/shared/components";
 import { getCategoryLastIndex } from "@/shared/lib/getCategoryLastIndex";
-import { AddCategoryForm } from "@/shared/components/admin/form/AddCategoryForm";
+import { AddCategoryForm } from "@/shared/components/admin/categories/AddCategoryForm";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminCategoryAddPage() {
-  const session = await getUserSession();
-
-  if (!session || session?.role !== ("ADMIN" || "CASHIER")) {
-    return redirect("/404");
-  }
+  await checkAdmin();
 
   const lastIndex = await getCategoryLastIndex();
 

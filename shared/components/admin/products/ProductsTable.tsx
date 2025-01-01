@@ -8,7 +8,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/components/ui/table";
-import { Category, Product } from "@prisma/client";
 import Link from "next/link";
 import Image from "next/image";
 import { Pencil } from "lucide-react";

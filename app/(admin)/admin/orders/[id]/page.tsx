@@ -7,18 +7,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { OrderStatusSelect } from "@/shared/components/admin/orders/OrderStatusSelect";
 import { getUserSession } from "@/shared/lib/getUserSession";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
-export default async function AdminOrderPage(
-  props: {
-    params: Promise<{ id: string }>;
-  }
-) {
+export default async function AdminOrderPage(props: {
+  params: Promise<{ id: string }>;
+}) {
   const params = await props.params;
-  const session = await getUserSession();
-
-  if (!session || session?.role !== ("ADMIN" || "CASHIER")) {
-    return redirect("/404");
-  }
+  await checkAdmin(true);
 
   const order = await prisma.order.findFirst({
     where: {
@@ -42,6 +37,9 @@ export default async function AdminOrderPage(
           orderId={Number(params.id)}
           status={order.status}
         />
+      </div>
+      <div className="mt-4 text-lg">
+        Дата: {order.createdAt.toLocaleString("ru")}
       </div>
       <div className="flex flex-col md:flex-row w-[350px] text-lg mt-4">
         <div>Заказ на {order.totalPrice} ₽</div>

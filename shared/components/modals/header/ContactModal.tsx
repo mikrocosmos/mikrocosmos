@@ -10,13 +10,13 @@ import {
 import { Phone } from "lucide-react";
 import { HeaderIcon } from "@/shared/components";
 import { cn } from "@/shared/lib/utils";
-import { AnimatedLink } from "../../AnimatedLink";
 
 interface Props {
+  text?: string;
   className?: string;
 }
 
-export const ContactModal: React.FC<Props> = ({ className }) => {
+export const ContactModal: React.FC<Props> = ({ className, text }) => {
   return (
     <Dialog>
       <DialogTrigger>
@@ -29,46 +29,7 @@ export const ContactModal: React.FC<Props> = ({ className }) => {
           <DialogTitle className="text-3xl">Контакты</DialogTitle>
         </DialogHeader>
         <DialogDescription className={cn("text-white text-xl", className)}>
-          <article>
-            <p>Вы можете связаться с нами по этим номерам:</p>
-            <p>
-              <a href="tel:+79010292020" className="font-bold">
-                <AnimatedLink
-                  className="transition before:transition hover:text-primary before:hover:bg-primary"
-                  text="+7 (901) 029-20-20"
-                />
-              </a>{" "}
-              (Стройотрядовская, 6)
-            </p>
-            <p>
-              <a href="tel:+78300292020" className="font-bold">
-                <AnimatedLink
-                  className="transition before:transition hover:text-primary before:hover:bg-primary"
-                  text="+7 (830) 029-20-20"
-                />
-              </a>{" "}
-              (Подшибякина,12)
-            </p>
-            <p>
-              Наша почта:{" "}
-              <a href="mailto:example@mail.com">
-                <AnimatedLink
-                  className="transition before:transition hover:text-primary before:hover:bg-primary"
-                  text="example@mail.com"
-                />
-              </a>
-            </p>
-            <p>Наши адреса:</p>
-            <p>
-              <b>Стройотрядовская, 6</b>
-            </p>
-            <p>
-              <b>Подшибякина, 12</b>
-            </p>
-            <p>
-              <b>Ждём вас в нашем магазине!</b>
-            </p>
-          </article>
+          <article dangerouslySetInnerHTML={{ __html: text || "" }} />
         </DialogDescription>
       </DialogContent>
     </Dialog>

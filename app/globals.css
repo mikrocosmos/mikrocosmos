@@ -176,3 +176,11 @@ input[type="number"] {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
 }
+
+.tiptap {
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 1rem;
+  overflow-y: auto;
+}

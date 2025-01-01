@@ -1,10 +1,11 @@
 import { Container, Title } from "@/shared/components";
 import { getUserSession } from "@/shared/lib/getUserSession";
 import { redirect } from "next/navigation";
-import { EditProductForm } from "@/shared/components/admin/form/EditProductForm";
+import { EditProductForm } from "@/shared/components/admin/products/EditProductForm";
 import { prisma } from "@/prisma/prisma-client";
 import { deleteProduct } from "@/app/actions/admin.products.actions";
 import { DeleteProductBtn } from "@/shared/components/admin/products/DeleteProductBtn";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminProductPage(props: {
   params: Promise<{ id: string }>;
@@ -13,11 +14,7 @@ export default async function AdminProductPage(props: {
 
   const { id } = params;
 
-  const session = await getUserSession();
-
-  if (!session || session?.role !== ("ADMIN" || "CASHIER")) {
-    return redirect("/404");
-  }
+  await checkAdmin();
 
   const product = await prisma.product.findFirst({
     where: {

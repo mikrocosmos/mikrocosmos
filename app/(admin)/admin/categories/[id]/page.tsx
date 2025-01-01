@@ -1,17 +1,14 @@
-import { EditCategoryForm } from "@/shared/components/admin/form/EditCategoryForm";
+import { EditCategoryForm } from "@/shared/components/admin/categories/EditCategoryForm";
 import { prisma } from "@/prisma/prisma-client";
 import { redirect } from "next/navigation";
 import { getUserSession } from "@/shared/lib/getUserSession";
 import { Container, Title } from "@/shared/components";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminCategoryPage(props: {
   params: Promise<{ id: string }>;
 }) {
-  const session = await getUserSession();
-
-  if (!session || session?.role !== ("ADMIN" || "CASHIER")) {
-    return redirect("/404");
-  }
+  await checkAdmin();
   const params = await props.params;
 
   const { id } = params;

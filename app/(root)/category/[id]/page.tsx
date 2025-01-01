@@ -2,19 +2,17 @@ import { notFound } from "next/navigation";
 import { Container, ItemCard, Title, Filters } from "@/shared/components";
 import { findItems } from "@/shared/lib";
 import { GetSearchParams } from "@/shared/lib/findItems";
+import { prisma } from "@/prisma/prisma-client";
 
-export default async function CategoryPage(
-  props: {
-    params: Promise<{ id: number }>;
-    searchParams: Promise<GetSearchParams>;
-  }
-) {
+export default async function CategoryPage(props: {
+  params: Promise<{ id: number }>;
+  searchParams: Promise<GetSearchParams>;
+}) {
+  const btps = await prisma.branchToProduct.findMany();
   const searchParams = await props.searchParams;
   const params = await props.params;
 
-  const {
-    id
-  } = params;
+  const { id } = params;
 
   const category = await findItems(id, searchParams);
   const categoryStatic = await findItems(id);
@@ -39,6 +37,7 @@ export default async function CategoryPage(
             <ItemCard
               key={product.id}
               id={product.id}
+              btps={btps}
               name={product.name}
               imageUrl={product.imageUrl}
               price={product.price}

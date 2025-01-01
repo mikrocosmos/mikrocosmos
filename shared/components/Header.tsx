@@ -6,17 +6,25 @@ import { SearchInput } from "@/shared/components/SearchInput";
 import { HeaderFilial } from "./HeaderFilial";
 import { cn } from "../lib/utils";
 import { HeaderIcon } from "./HeaderIcon";
-import { Menu, ShoppingCart } from "lucide-react";
+import { FolderCog, Menu, ShoppingCart } from "lucide-react";
 import { BurgerDrawer } from "./BurgerDrawer";
 import { ContactModal } from "@/shared/components/modals/header";
 import { CartDrawer } from "@/shared/components/CartDrawer";
 import { ProfileButton } from "@/shared/components/ProfileButton";
+import { getUserSession } from "@/shared/lib/getUserSession";
+import { prisma } from "@/prisma/prisma-client";
 
 interface Props {
   className?: string;
 }
 
-export const Header: React.FC<Props> = ({ className }) => {
+export const Header: React.FC<Props> = async ({ className }) => {
+  const session = await getUserSession();
+  const contactArticle = await prisma.article.findFirst({
+    where: {
+      name: "Контакты",
+    },
+  });
   return (
     <header className={cn("w-full h-24 bg-popover", className)}>
       <Container className="flex gap-5 justify-between items-center">
@@ -32,12 +40,19 @@ export const Header: React.FC<Props> = ({ className }) => {
         <SearchInput className="hidden lg:flex" />
         <HeaderFilial className="hidden lg:flex" />
         <div className="flex items-center">
+          {session?.role && session.role !== "USER" && (
+            <HeaderIcon>
+              <Link href="/admin">
+                <FolderCog size={30} />
+              </Link>
+            </HeaderIcon>
+          )}
           <CartDrawer>
             <HeaderIcon>
               <ShoppingCart size={30} />
             </HeaderIcon>
           </CartDrawer>
-          <ContactModal />
+          <ContactModal text={contactArticle?.text} />
           <ProfileButton />
           <BurgerDrawer>
             <HeaderIcon className="p-3 pr-0 lg:hidden">

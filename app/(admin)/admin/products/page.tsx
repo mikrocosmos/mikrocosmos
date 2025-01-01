@@ -5,13 +5,10 @@ import { CirclePlus } from "lucide-react";
 import { getUserSession } from "@/shared/lib/getUserSession";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminProductsPage() {
-  const session = await getUserSession();
-
-  if (!session || session?.role !== ("ADMIN" || "CASHIER")) {
-    return redirect("/404");
-  }
+  await checkAdmin();
   return (
     <Container className="admin-page w-[75vw]">
       <div className="flex flex-col md:flex-row items-center justify-between w-full">
