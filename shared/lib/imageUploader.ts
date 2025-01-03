@@ -16,10 +16,13 @@ export class ImageUploader {
 
   public async upload() {
     const imageData = await this.image.arrayBuffer();
-    const imageUrl = `${process.cwd()}/public/uploads/${this.generateId()}`;
-    await fs.writeFile(imageUrl, Buffer.from(imageData));
+    const filePath = `${process.cwd()}/public/uploads/${this.generateId()}`;
+    console.log(`Writing image to: ${filePath}`);
+    await fs.writeFile(filePath, Buffer.from(imageData));
 
-    return imageUrl.split("public")[1];
+    const imageUrl = filePath.split("public")[1];
+    console.log(`Image URL: ${imageUrl}`);
+    return imageUrl;
   }
 
   constructor(image: File) {
