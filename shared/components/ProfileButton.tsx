@@ -29,7 +29,11 @@ export const ProfileButton: React.FC<Props> = ({ onClickLogin, className }) => {
           loading={loading}
           onClick={onClickLogin}
         >
-          <AuthModal />
+          <AuthModal>
+            <HeaderIcon>
+              <CircleUserRound size={30} />
+            </HeaderIcon>
+          </AuthModal>
         </Button>
       ) : (
         <Link href="/profile">

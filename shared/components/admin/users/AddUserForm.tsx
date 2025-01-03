@@ -126,14 +126,22 @@ export const AddUserForm: React.FC<Props> = ({ className }) => {
             />
           )}
         />
-        <RadioGroup className="flex gap-6" name="role" defaultValue="USER">
+        <RadioGroup
+          className="adaptive !md:flex-row gap-6"
+          name="role"
+          defaultValue="USER"
+        >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="USER" onClick={() => setRole("USER")} />
-            <Label htmlFor="USER">Пользователь</Label>
+            <Label className="text-base" htmlFor="USER">
+              Пользователь
+            </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="ADMIN" onClick={() => setRole("ADMIN")} />
-            <Label htmlFor="ADMIN">Администратор</Label>
+            <Label className="text-base" htmlFor="ADMIN">
+              Администратор
+            </Label>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -141,7 +149,9 @@ export const AddUserForm: React.FC<Props> = ({ className }) => {
               value="CASHIER"
               onClick={() => setRole("CASHIER")}
             />
-            <Label htmlFor="CASHIER">Кассир</Label>
+            <Label className="text-base" htmlFor="CASHIER">
+              Кассир
+            </Label>
           </div>
         </RadioGroup>
         <div className="lg:flex items-center lg:space-x-4">

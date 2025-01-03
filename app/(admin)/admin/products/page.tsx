@@ -2,16 +2,14 @@ import { Container, Title } from "@/shared/components";
 import { ProductsTable } from "@/shared/components/admin/products/ProductsTable";
 import { Button } from "@/shared/components/ui";
 import { CirclePlus } from "lucide-react";
-import { getUserSession } from "@/shared/lib/getUserSession";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminProductsPage() {
   await checkAdmin();
   return (
-    <Container className="admin-page w-[75vw]">
-      <div className="flex flex-col md:flex-row items-center justify-between w-full">
+    <Container className="admin-page">
+      <div className="flex flex-col gap-2 md:gap-0 md:flex-row items-center justify-between w-full">
         <Title text="Товары" className="font-semibold" />
         <Link href="/admin/products/add">
           <Button variant="white_accent" className="flex items-center gap-2">
@@ -20,7 +18,7 @@ export default async function AdminProductsPage() {
           </Button>
         </Link>
       </div>
-      <div className="w-full">
+      <div className="mt-4 max-w-[100vw]">
         <ProductsTable />
       </div>
     </Container>

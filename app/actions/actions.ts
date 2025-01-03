@@ -64,7 +64,6 @@ export async function createOrder(data: TCheckoutForm) {
         cartId: userCart.id,
       },
     });
-    console.log(userCart.items);
 
     userCart.items.forEach(async (item) => {
       await prisma.branchToProduct.update({
@@ -109,6 +108,7 @@ export async function updateUserInfo(body: Prisma.UserUpdateInput) {
       data: {
         name: body.name,
         email: body.email,
+        phone: body.phone,
         password: body.password
           ? hashSync(body.password as string, 10)
           : findUser?.password,
@@ -155,8 +155,9 @@ export async function setCookie(key: string, value: string) {
 
 export async function changeBranch(currentBranchId: number) {
   const user = await getUserSession();
+
   if (!user) {
-    throw new Error("User not found");
+    return;
   }
   await prisma.user.update({
     where: {

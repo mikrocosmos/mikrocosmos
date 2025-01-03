@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import {
   Dialog,
   DialogContent,
@@ -18,14 +18,13 @@ interface Props {
   className?: string;
 }
 
-export const AuthModal: React.FC<Props> = ({ className }) => {
+export const AuthModal: React.FC<PropsWithChildren<Props>> = ({
+  className,
+  children,
+}) => {
   return (
     <Dialog>
-      <DialogTrigger>
-        <HeaderIcon>
-          <CircleUserRound size={30} />
-        </HeaderIcon>
-      </DialogTrigger>
+      <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className={className}>
         <div className={cn("text-white text-xl", className)}>
           <Tabs defaultValue="login">

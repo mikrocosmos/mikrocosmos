@@ -2,10 +2,8 @@ import { CircleX } from "lucide-react";
 import { CartItemProps } from "@/shared/components/cart-item-details/cart-item-details.types";
 import * as CartItem from "@/shared/components/cart-item-details/";
 import { cn } from "@/shared/lib/utils";
-import { branchStore } from "@/shared/store";
 import React from "react";
-import { BranchToProduct } from "@prisma/client";
-import { getBtp } from "@/app/actions/btp.actions";
+import { useMaxQuantity } from "@/shared/hooks/useMaxQuantity";
 
 interface Props extends CartItemProps {
   onClickCountButton: (type: "plus" | "minus") => void;
@@ -25,21 +23,7 @@ export const CartDrawerItem = ({
   onRemove,
   className,
 }: Props) => {
-  const branchId = branchStore((state) => state.branchId);
-  const [btp, setBtp] = React.useState<BranchToProduct[]>([]);
-
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const data = await getBtp(productId, branchId);
-        setBtp(data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [branchId, productId]);
-
-  const maxQuantity = btp[branchId - 1]?.totalQuantity;
+  const maxQuantity = useMaxQuantity(productId);
   return (
     <div
       className={cn(className, "flex bg-background p-5 gap-6 mb-2", {

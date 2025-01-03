@@ -19,6 +19,13 @@ async function up() {
         role: "USER",
         currentBranchId: 1,
       },
+      {
+        name: "Кассир",
+        email: "cashier@test.ru",
+        password: hashSync("111111", 10),
+        role: "CASHIER",
+        currentBranchId: 1,
+      },
     ],
   });
   await prisma.category.createMany({
@@ -44,7 +51,7 @@ async function up() {
         heading: "Мы открылись",
         text: "Теперь вы можете сделать первый заказ",
         imageUrl: "/assets/images/hero-carousel/hero1.jpg",
-        link: "/contact",
+        link: "/product/10",
         btnText: "Подробнее",
       },
       {
@@ -52,7 +59,7 @@ async function up() {
         heading: "Получите скидку",
         text: "Если приведёте друга",
         imageUrl: "/assets/images/hero-carousel/hero2.jpg",
-        link: "/contact",
+        link: "/product/10",
         btnText: "Подробнее",
       },
       {
@@ -60,7 +67,7 @@ async function up() {
         heading: "Как дела?",
         text: "Сюда можно вставить любой текст",
         imageUrl: "/assets/images/hero-carousel/hero3.jpg",
-        link: "/contact",
+        link: "/product/10",
         btnText: "И сюда",
       },
     ],

@@ -23,7 +23,7 @@ export const branches = [
       "https://yandex.ru/map-widget/v1/?um=constructor%3A1e3477c3ca12cc0ad23e55017eee9cd8f04268846543f296330ff66258a522a0&amp;source=constructor",
   },
   {
-    address: "Подшибякина,12",
+    address: "Подшибякина, 12",
     phone: "8-800-555-35-35",
     opensAt: "10:00",
     closesAt: "20:00",

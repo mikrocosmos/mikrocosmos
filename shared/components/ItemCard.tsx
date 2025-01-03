@@ -1,9 +1,12 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { cn } from "../lib/utils";
 import Link from "next/link";
 import { AddToCartButton } from "@/shared/components/AddToCartButton";
 import { BranchToProduct } from "@prisma/client";
+import { useSession } from "next-auth/react";
+import { HiddenPhoto } from "@/shared/components/HiddenPhoto";
 
 interface Props {
   id: number;
@@ -22,6 +25,7 @@ export const ItemCard: React.FC<Props> = ({
   imageUrl,
   className,
 }) => {
+  const session = useSession();
   return (
     <div
       title={name}
@@ -32,17 +36,24 @@ export const ItemCard: React.FC<Props> = ({
     >
       <Link href={`/product/${id}`} className="flex-1">
         <div className="flex justify-center items-center relative h-[250px]">
-          <Image
-            src={imageUrl}
-            className="rounded-2xl object-cover bg-white"
-            alt={name}
-            fill
-          />
+          {session.data?.user ? (
+            <Image
+              src={imageUrl}
+              className="rounded-2xl h-[250px] w-[220px] object-fill bg-white"
+              alt={name}
+              width={250}
+              height={250}
+            />
+          ) : (
+            <HiddenPhoto className="h-[250px] w-[220px]" />
+          )}
         </div>
         <p className="text-md font-medium h-12 mt-2 overflow-hidden text-ellipsis">
           {name}
         </p>
-        <p className="text-primary text-2xl font-bold">{price} ₽</p>
+        <p className="text-primary text-2xl font-bold">
+          {session.data?.user ? `${price} ₽` : "Недоступно"}
+        </p>
       </Link>
       <AddToCartButton
         btps={btps}

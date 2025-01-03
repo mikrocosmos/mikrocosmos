@@ -1,7 +1,14 @@
 import { EditorProvider, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import React from "react";
-import { Bold, Italic, Strikethrough } from "lucide-react";
+import {
+  Bold,
+  Italic,
+  List,
+  ListOrdered,
+  MessageSquareQuote,
+  Strikethrough,
+} from "lucide-react";
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
@@ -46,6 +53,39 @@ const MenuBar = () => {
           value="strike"
         >
           <Strikethrough />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          className={
+            editor.isActive("bulletList")
+              ? `is-active ${buttonClass}`
+              : buttonClass
+          }
+          value="bulletList"
+        >
+          <List />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          className={
+            editor.isActive("orderedList")
+              ? `is-active ${buttonClass}`
+              : buttonClass
+          }
+          value="orderedList"
+        >
+          <ListOrdered />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          className={
+            editor.isActive("blockquote")
+              ? `is-active ${buttonClass}`
+              : buttonClass
+          }
+          value="blockquote"
+        >
+          <MessageSquareQuote />
         </button>
       </div>
     </div>

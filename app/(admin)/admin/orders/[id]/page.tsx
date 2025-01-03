@@ -30,7 +30,7 @@ export default async function AdminOrderPage(props: {
 
   return (
     <Container className="admin-page">
-      <div className="flex flex-col md:flex-row md:gap-10 items-center">
+      <div className="adaptive md:gap-10 items-center">
         <Title text={`Заказ #${params.id}`} size="lg" className="font-bold" />
         <OrderStatusSelect
           className="w-[200px]"
@@ -41,7 +41,7 @@ export default async function AdminOrderPage(props: {
       <div className="mt-4 text-lg">
         Дата: {order.createdAt.toLocaleString("ru")}
       </div>
-      <div className="flex flex-col md:flex-row w-[350px] text-lg mt-4">
+      <div className="adaptive w-[350px] text-lg mt-4">
         <div>Заказ на {order.totalPrice} ₽</div>
         <Separator
           orientation="vertical"
@@ -51,7 +51,7 @@ export default async function AdminOrderPage(props: {
       </div>
       {items.map((item: CartItem & { product: Product }) => (
         <div key={item.id}>
-          <div className="flex flex-col md:flex-row mt-5">
+          <div className="adaptive mt-5">
             <Link href={`/product/${item.product.id}`}>
               <Image
                 className="rounded-3xl shadow-lg border-2 border-gray-200 object-cover md:w-[200px] w-full h-[200px] bg-white transition hover:border-primary"

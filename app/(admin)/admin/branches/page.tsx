@@ -10,7 +10,7 @@ export default async function AdminBranchesPage() {
 
   return (
     <Container className="admin-page">
-      <div className="flex items-center justify-between">
+      <div className="adaptive gap-2 md:gap-0 items-center justify-between">
         <Title text="Филиалы" className="font-semibold" />
         <Link href="/admin/branches/add">
           <Button variant="white_accent" className="flex items-center gap-2">

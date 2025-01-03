@@ -12,7 +12,7 @@ export const CookieMessage: React.FC<Props> = ({ className }) => {
   return (
     <div
       className={cn(
-        "fixed bottom-8 sm:right-8 bg-popover w-96 z-50 rounded-2xl p-5 shadow-xl",
+        "fixed bottom-8 sm:right-8 bg-popover w-96 z-50 rounded-2xl p-5 shadow-xl border-1 ",
         className,
       )}
     >

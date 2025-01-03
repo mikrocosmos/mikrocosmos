@@ -80,7 +80,8 @@ export const AddToCartButton: React.FC<Props> = ({
       loading={loading}
       disabled={
         (currentQuantity !== undefined && currentQuantity >= maxQuantity) ||
-        maxQuantity <= 0
+        maxQuantity <= 0 ||
+        !session.data?.user
       }
       onClick={() => onSubmit?.(productId, userId, branchId)}
       className={className}

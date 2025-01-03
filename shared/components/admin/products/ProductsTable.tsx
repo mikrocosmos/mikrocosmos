@@ -102,7 +102,7 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="adaptive items-center justify-between">
         <Select
           onValueChange={(value) => {
             onChangeCategoryFilter(value);

@@ -73,10 +73,10 @@ export const Filters: React.FC<Props> = ({ className, maxPrice, minPrice }) => {
               className="my-5"
               onClickCheckbox={filters.setBranches}
               selected={filters.selectedBranches}
-              items={[
-                { text: branch[0].address, value: `${branch[0].id}` },
-                { text: branch[1].address, value: `${branch[1].id}` },
-              ]}
+              items={branch.map((item) => ({
+                text: item.address,
+                value: `${item.id}`,
+              }))}
             />
           )}
 

@@ -1,7 +1,5 @@
 import { Container, Title } from "@/shared/components";
 import { Orders } from "@/shared/components/admin";
-import { getUserSession } from "@/shared/lib/getUserSession";
-import { redirect } from "next/navigation";
 import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminOrdersPage() {

@@ -8,8 +8,11 @@ export default async function AdminPage() {
 
   return (
     <Container className="admin-page">
-      <Title text="Панель управления" className="font-semibold" />
-      <div className="flex flex-wrap gap-5 mt-5">
+      <Title
+        text="Панель управления"
+        className="font-semibold text-center md:text-left"
+      />
+      <div className="flex flex-wrap justify-center md:justify-start gap-5 mt-5">
         {sidebarItems(session?.role).map((item) => (
           <Card
             key={item.name}

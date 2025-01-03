@@ -40,7 +40,7 @@ export default async function Home() {
             >
               <Link
                 href={`/category/${category.id}`}
-                className="w-full h-[450px] font-bold text-2xl flex justify-center items-center text-center bg-popover p-5 rounded-2xl shadow-xl cursor-pointer transition-all ease-in-out group hover:shadow-lg hover:bg-secondary origin-top-left"
+                className="w-full sm:h-[450px] font-bold text-2xl flex justify-center items-center text-center bg-popover p-5 rounded-2xl shadow-xl cursor-pointer transition-all ease-in-out group hover:shadow-lg hover:bg-secondary origin-top-left"
               >
                 Ещё
                 <ArrowRight className="group-hover:translate-x-1 transition ease-in-out" />

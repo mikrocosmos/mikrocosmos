@@ -28,7 +28,7 @@ export const SlideForm: React.FC<Props> = ({ onSubmit, slide, className }) => {
       encType="multipart/form-data"
     >
       <div className="flex gap-10">
-        <div className="w-[700px] mt-5 flex flex-col gap-5">
+        <div className="mt-5 flex flex-col gap-5">
           <FormField
             name="heading"
             control={form.control}

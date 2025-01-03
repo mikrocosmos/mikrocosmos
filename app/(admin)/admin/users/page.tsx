@@ -14,9 +14,9 @@ export default async function AdminUsersPage() {
     },
   });
   return (
-    <Container className="admin-page w-[75vw]">
-      <div className="flex flex-col md:flex-row items-center justify-between w-full">
-        <Title text="Товары" className="font-semibold" />
+    <Container className="admin-page max-w-[100vw]">
+      <div className="adaptive gap-4 md:gap-0 items-center justify-between w-full">
+        <Title text="Пользователи" className="font-semibold" />
         <Link href="/admin/users/add">
           <Button variant="white_accent" className="flex items-center gap-2">
             <UserPlus2 strokeWidth={1.5} />
@@ -24,7 +24,7 @@ export default async function AdminUsersPage() {
           </Button>
         </Link>
       </div>
-      <Users users={users} />
+      <Users className="mt-4" users={users} />
     </Container>
   );
 }

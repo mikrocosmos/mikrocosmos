@@ -55,9 +55,6 @@ html {
   }
 }
 
-.page {
-  min-height: 72.6vh;
-}
 
 /* Hide arrows in number input */
 input::-webkit-outer-spin-button,
@@ -156,8 +153,12 @@ input[type="number"] {
   @apply border-t-primary border-l-primary !important;
 }
 
+.page {
+  width: 100%;
+  flex: 1;
+}
 .admin-page {
-  @apply absolute sm:left-56 top-[70px] py-3 !px-4 ;
+  @apply absolute sm:left-56 top-[70px] p-0 md:py-3 md:px-4 ;
 }
 
 .admin-card {
@@ -183,4 +184,30 @@ input[type="number"] {
   padding: 20px;
   border-radius: 1rem;
   overflow-y: auto;
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+
+  ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+  }
+
+  blockquote {
+    border-left: 2px solid #ccc;
+    padding-left: 10px;
+    margin-left: 0;
+  }
+}
+
+
+
+.gradient-overlay {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(in oklab, #aa96d8, #6b2ff1);
+}
+
+.adaptive {
+  @apply flex flex-col md:flex-row;
 }

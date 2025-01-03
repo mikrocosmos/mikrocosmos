@@ -1,4 +1,3 @@
-import { Branch, Order } from "@prisma/client";
 import React from "react";
 import { Api } from "../services/api-client";
 import { branchStore } from "@/shared/store";

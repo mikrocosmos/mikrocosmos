@@ -29,7 +29,7 @@ export const EditArticleForm: React.FC<Props> = ({ article }) => {
   };
 
   return (
-    <div className="w-[500px]">
+    <div className="max-w-screen">
       <h3>{article.name}</h3>
       <ArticleEditor content={value} onchange={setValue} />
       <div className="mt-4 flex items-center gap-5">

@@ -9,8 +9,11 @@ export default async function AdminProductsAddPage() {
   await checkAdmin();
   const branches = await prisma.branch.findMany();
   return (
-    <Container className="admin-page">
-      <Title text="Добавить товар" className="font-semibold mt-2" />
+    <Container className="admin-page w-full">
+      <Title
+        text="Добавить товар"
+        className="font-semibold mt-2 text-center md:text-left"
+      />
       <AddProductForm branch={branches} />
     </Container>
   );

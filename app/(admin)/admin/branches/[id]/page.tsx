@@ -24,7 +24,7 @@ export default async function AdminBranchPage(props: {
 
   return (
     <Container className="admin-page">
-      <Title text="Редактировать категорию" className="font-semibold" />
+      <Title text="Редактировать филиал" className="font-semibold" />
       <EditBranchForm branch={branch} className="mt-4 w-[80vw]" />
     </Container>
   );

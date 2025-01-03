@@ -36,7 +36,7 @@ export default async function ProfilePage() {
     "w-px h-6 bg-neutral-400 transition group-hover:bg-white hidden md:block";
 
   return (
-    <Container className="page">
+    <Container className="page pb-5">
       <div className="flex flex-col lg:flex-row gap-10 justify-between">
         <div>
           <Title text="Профиль" size="lg" className="font-bold mt-4" />
@@ -44,7 +44,7 @@ export default async function ProfilePage() {
         </div>
 
         {orders.length > 0 && (
-          <div className="bg-popover my-4 p-4 scrollable-container h-[500px] !rounded-2xl">
+          <div className="bg-popover my-4 p-4 scrollable-container h-[600px] !rounded-2xl">
             <Title text="Заказы" size="md" className="font-bold" />
             {orders.map((order) => (
               <Link

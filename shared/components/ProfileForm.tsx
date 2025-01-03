@@ -26,6 +26,7 @@ export const ProfileForm: React.FC<Props> = ({ className, user }) => {
     defaultValues: {
       name: user.name,
       email: user.email,
+      phone: user.phone || "",
       password: "",
       confirmPassword: "",
     },
@@ -36,6 +37,7 @@ export const ProfileForm: React.FC<Props> = ({ className, user }) => {
       await updateUserInfo({
         email: data.email,
         name: data.name,
+        phone: data.phone,
         password: data.password,
       });
       toast("Данные обновлены", toastSuccess);
@@ -57,19 +59,29 @@ export const ProfileForm: React.FC<Props> = ({ className, user }) => {
         onSubmit={form.handleSubmit(onSubmit)}
         autoComplete="off"
       >
-        <FormInput label="Имя" name="name" required />
-        <FormInput label="E-Mail" name="email" required />
+        <FormInput label="Имя" name="name" required placeholder={user.name} />
+        <FormInput
+          label="E-Mail"
+          name="email"
+          required
+          placeholder={user.email}
+        />
+        <FormInput
+          label="Телефон"
+          name="phone"
+          placeholder={user.phone || "Телефон"}
+        />
         <FormInput
           label="Сменить пароль"
           name="password"
           type="password"
-          required
+          placeholder="Пароль"
         />
         <FormInput
           type="password"
           name="confirmPassword"
           label="Повторите пароль"
-          required
+          placeholder="Повторите пароль"
         />
 
         <Button

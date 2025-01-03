@@ -8,10 +8,10 @@ export default async function AdminSliderPage() {
   await checkAdmin();
   return (
     <Container className="admin-page">
-      <div className="flex justify-between">
+      <div className="adaptive items-center text-center md:text-left md:items-start gap-2 justify-between">
         <div>
           <Title text="Слайдер" className="font-semibold" />
-          <p>Вместе с категориями он выглядит так:</p>
+          <p>На главной странице он выглядит так:</p>
         </div>
         <div>
           <Button variant="white_accent">

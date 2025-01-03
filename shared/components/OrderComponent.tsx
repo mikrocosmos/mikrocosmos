@@ -33,7 +33,8 @@ export const OrderComponent: React.FC<Props> = ({ className, order }) => {
   return (
     <>
       <div className="flex items-center">
-        <Title text={`Заказ #${order.id}`} size="lg" className="font-bold" />
+        <Title text="Заказ оформлен" size="lg" className="font-bold" />
+
         <div
           className={cn(
             "ml-4 text-lg px-4 py-2 rounded-lg font-medium shadow-md",
@@ -43,17 +44,30 @@ export const OrderComponent: React.FC<Props> = ({ className, order }) => {
           {orderStatusMap.get(order.status)}
         </div>
       </div>
-      <div className="flex w-[360px] text-lg mt-4">
-        <div>Заказ на {order.totalPrice} ₽</div>
-        <Separator
-          orientation="vertical"
-          className="mx-2 w-px h-6 bg-neutral-200"
-        />
-        <div>{order.branch.address}</div>
+      <Title
+        text={`Ваш номер заказа: ${order.id}`}
+        size="md"
+        className="font-bold mt-2"
+      />
+      <div className="mt-2 text-lg">
+        <p>Заказ на {order.totalPrice} ₽</p>
+        <p>
+          Вы сможете забрать заказ в магазине по адресу:&nbsp;
+          <b>{order.branch.address}</b>
+        </p>
+        <p>
+          Если у вас есть вопросы по заказу, можете связаться с нами по
+          телефону:&nbsp;
+          <b>{order.branch.phone}</b>
+        </p>
+        <p>
+          При получении заказа при себе обязательно иметь документ,
+          удостоверяющий личность. Без него Вы не сможете оплатить свой заказ.
+        </p>
       </div>
       {items.map((item: CartItem & { product: Product }) => (
         <div key={item.id}>
-          <div className="flex flex-col md:flex-row mt-5">
+          <div className="adaptive mt-5">
             <Link href={`/product/${item.product.id}`}>
               <Image
                 className="rounded-3xl shadow-lg border-2 border-gray-200 object-cover md:w-[200px] w-full h-[200px] bg-white transition hover:border-primary"

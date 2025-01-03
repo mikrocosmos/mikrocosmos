@@ -8,7 +8,9 @@ import { Title } from "@/shared/components/";
 import { AddToCartButton } from "@/shared/components/";
 import { useBranches } from "../hooks";
 import { Skeleton } from "./ui";
-import { branchToProduct } from "@/prisma/constants";
+import { useSession } from "next-auth/react";
+import { HiddenPhoto } from "@/shared/components/HiddenPhoto";
+import { HiddenText } from "@/shared/components/HiddenText";
 
 interface Props {
   product: Product;
@@ -17,6 +19,7 @@ interface Props {
 
 export const ProductForm: React.FC<Props> = ({ product, branchToProduct }) => {
   const { branch, loading } = useBranches();
+  const session = useSession();
   return (
     <div
       className={cn(
@@ -24,13 +27,17 @@ export const ProductForm: React.FC<Props> = ({ product, branchToProduct }) => {
         className,
       )}
     >
-      <Image
-        src={product.imageUrl}
-        alt={product.name}
-        width={500}
-        height={500}
-        className="rounded-3xl object-cover w-[500px] h-[500px] bg-white"
-      />
+      {session.data?.user ? (
+        <Image
+          src={product.imageUrl}
+          alt={product.name}
+          width={500}
+          height={500}
+          className="rounded-3xl object-cover w-[500px] h-[500px] bg-white"
+        />
+      ) : (
+        <HiddenPhoto className="w-[500px] h-[500px]" />
+      )}
       <div>
         <Title text={product.name} size="lg" className="font-bold mb-1" />
         {loading ? (
@@ -56,7 +63,15 @@ export const ProductForm: React.FC<Props> = ({ product, branchToProduct }) => {
         )}
 
         <div className="flex items-center justify-between md:justify-normal gap-5 mt-5">
-          <p className="text-3xl text-primary font-bold">{product.price} ₽</p>
+          <p className="text-3xl text-primary font-bold">
+            {session.data?.user ? (
+              `${product.price} ₽`
+            ) : (
+              <div className="flex items-center gap-2">
+                <HiddenText /> ₽
+              </div>
+            )}
+          </p>
           <AddToCartButton
             btps={branchToProduct}
             variant={"white_accent"}

@@ -8,6 +8,7 @@ import { CircleX } from "lucide-react";
 import { getBtp } from "@/app/actions/btp.actions";
 import { branchStore } from "@/shared/store";
 import { BranchToProduct } from "@prisma/client";
+import { useMaxQuantity } from "@/shared/hooks/useMaxQuantity";
 interface Props extends CartItemProps {
   onClickCountButton?: (type: "plus" | "minus") => void;
   onClickRemove?: () => void;
@@ -26,22 +27,7 @@ export const CheckoutCartItem: React.FC<Props> = ({
   onClickCountButton,
   className,
 }) => {
-  const branchId = branchStore((state) => state.branchId);
-  const [btp, setBtp] = React.useState<BranchToProduct[]>([]);
-
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const data = await getBtp(productId, branchId);
-        setBtp(data);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  }, [branchId, productId]);
-
-  const maxQuantity = btp[branchId - 1]?.totalQuantity;
-
+  const maxQuantity = useMaxQuantity(productId);
   return (
     <div
       className={cn(

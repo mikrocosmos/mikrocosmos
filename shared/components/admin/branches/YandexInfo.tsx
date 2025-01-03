@@ -14,7 +14,7 @@ export const YandexInfo: React.FC<PropsWithChildren<Props>> = ({
   return (
     <Popover>
       <PopoverTrigger className={className}>{children}</PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent className="p-4">
         Нужна для отображения во время оформления заказа пользователем. Чтобы её
         сформировать, воспользуйтесь конструктором карт Яндекса:{" "}
         <a

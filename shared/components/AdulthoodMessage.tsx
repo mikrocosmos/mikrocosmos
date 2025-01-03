@@ -17,27 +17,34 @@ export const AdulthoodMessage: React.FC<Props> = ({ className }) => {
         className,
       )}
     >
-      <Title
-        text="Вам действительно есть 18?"
-        size="lg"
-        className="font-bold"
-      />
-      <p>
-        На данном сайте размещена продукция, которая согласно федеральному
-        закону Российской Федерации от 23 февраля 2013 года №15-ФЗ ограничена к
-        продаже лицам, не достигшим 18-летнего возраста, а так же к онлайн
-        продаже. Продукция, размещенная на сайте, несёт ознакомительный
-        характер. Приобрести товары можно только в наших магазинах. Для доступа
-        к информации на сайте Вы должны подтвердить, что Вам есть 18 лет.
-      </p>
-      <div className="flex flex-col sm:flex-row items-center gap-2 justify-between mt-4">
-        <Button
-          onClick={() => setCookie("adult", "true")}
-          variant="white_accent"
-        >
-          Да, есть
-        </Button>
-        <Button variant="outline_red">Нет, мне нет 18</Button>
+      <div className="max-w-[500px] flex flex-col gap-4">
+        <Title
+          text="Вам действительно есть 18?"
+          size="lg"
+          className="font-bold"
+        />
+        <p>
+          На данном сайте размещена продукция, которая согласно федеральному
+          закону Российской Федерации от 23 февраля 2013 года №15-ФЗ ограничена
+          к продаже лицам, не достигшим 18-летнего возраста, а так же к онлайн
+          продаже. Продукция, размещенная на сайте, несёт ознакомительный
+          характер. Приобрести товары можно только в наших магазинах. Для
+          доступа к информации на сайте Вы должны подтвердить, что Вам есть 18
+          лет.
+        </p>
+        <div className="flex flex-col sm:flex-row items-center gap-2 justify-between">
+          <Button
+            onClick={() => setCookie("adult", "true")}
+            variant="white_accent"
+          >
+            Да, есть
+          </Button>
+          <Button variant="outline_red">
+            <a href="" target="_blank">
+              Нет, мне нет 18
+            </a>
+          </Button>
+        </div>
       </div>
     </div>
   );

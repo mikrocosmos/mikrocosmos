@@ -14,9 +14,9 @@ export default async function AdminCategoriesPage() {
     },
   });
   return (
-    <Container className="admin-page">
+    <Container className="admin-page w-full flex flex-col items-center md:block">
       <Title text="Категории" className="font-semibold" />
-      <div className="flex flex-col gap-5 text-lg bg-popover py-4 px-8 rounded-md shadow-lg mt-5">
+      <div className="max-w-[350px] flex flex-col gap-5 text-lg bg-popover py-4 px-8 rounded-md shadow-lg mt-5">
         <Link
           className="flex items-center gap-2 transition hover:text-primary"
           href="/admin/categories/add"

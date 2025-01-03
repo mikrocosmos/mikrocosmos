@@ -1,9 +1,12 @@
 "use server";
 import { prisma } from "@/prisma/prisma-client";
 
-export async function getOrders(searchValue?: string) {
+export async function getOrders(branchId: number, searchValue?: string) {
   if (!searchValue) {
     return prisma.order.findMany({
+      where: {
+        branchId,
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -12,6 +15,7 @@ export async function getOrders(searchValue?: string) {
 
   return prisma.order.findMany({
     where: {
+      branchId,
       OR: [
         {
           fullName: {

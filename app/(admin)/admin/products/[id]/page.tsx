@@ -34,7 +34,10 @@ export default async function AdminProductPage(props: {
 
   return (
     <Container className="admin-page">
-      <Title text={product.name} className="font-semibold" />
+      <Title
+        text={product.name}
+        className="font-semibold text-center md:text-left"
+      />
 
       <EditProductForm product={product} />
     </Container>

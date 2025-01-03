@@ -10,6 +10,7 @@ import { useAdminOrderSearchState } from "@/shared/store/adminOrderSearch";
 import { Order } from "@prisma/client";
 import { getOrders } from "@/app/actions/admin.orders.actions";
 import { OrdersSearch } from "@/shared/components/admin/orders/OrdersSearch";
+import { branchStore } from "@/shared/store";
 
 interface Props {
   className?: string;
@@ -17,6 +18,7 @@ interface Props {
 
 export const Orders: React.FC<Props> = ({ className }) => {
   const [orders, setOrders] = React.useState<Order[]>([]);
+  const { branchId } = branchStore((state) => state);
   const [loading, setLoading] = React.useState(true);
   const [search, updateSearch] = useAdminOrderSearchState((state) => [
     state.search,
@@ -25,12 +27,12 @@ export const Orders: React.FC<Props> = ({ className }) => {
 
   React.useEffect(() => {
     const fetchProducts = async () => {
-      const data = await getOrders(search ? search : undefined);
+      const data = await getOrders(branchId, search ? search : undefined);
       setOrders(data);
       setLoading(false);
     };
     fetchProducts();
-  }, [search]);
+  }, [branchId, search]);
 
   React.useEffect(() => {
     updateSearch("");
@@ -45,7 +47,7 @@ export const Orders: React.FC<Props> = ({ className }) => {
           <Link
             href={`/admin/orders/${order.id}`}
             key={order.id}
-            className="mb-5 flex border-2 border-white rounded-3xl p-5 justify-between items-center gap-5 shadow-lg hover:border-primary hover:shadow-md transition hover:bg-primary group"
+            className="mb-5 adaptive items-start md:items-center border-2 border-white rounded-3xl p-5 justify-between  gap-5 shadow-lg hover:border-primary hover:shadow-md transition hover:bg-primary group"
           >
             <div className="text-lg font-bold">{order.id}</div>
             <div className="text-lg font-medium">{order.totalPrice} ₽</div>
