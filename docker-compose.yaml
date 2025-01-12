@@ -22,7 +22,7 @@ services:
     container_name: smoky-moon
     tty: true
     command: npm run start
-    restart: always
+    restart: unless-stopped
     build:
       context: .
       dockerfile: Dockerfile

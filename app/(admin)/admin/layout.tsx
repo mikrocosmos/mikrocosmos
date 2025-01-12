@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   manifest: "../../icons/site.webmanifest",
 };
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

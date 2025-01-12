@@ -1,13 +1,14 @@
 import { Container, Title } from "@/shared/components";
-import { checkAdmin } from "@/shared/lib/checkAdmin";
+
 import { prisma } from "@/prisma/prisma-client";
 import { Users } from "@/shared/components/admin/users/Users";
 import Link from "next/link";
 import { Button } from "@/shared/components/ui";
 import { UserPlus2 } from "lucide-react";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminUsersPage() {
-  await checkAdmin(true);
+  await checkAdmin();
   const users = await prisma.user.findMany({
     orderBy: {
       id: "asc",

@@ -33,10 +33,10 @@ export const ProductForm: React.FC<Props> = ({ product, branchToProduct }) => {
           alt={product.name}
           width={500}
           height={500}
-          className="rounded-3xl object-cover w-[500px] h-[500px] bg-white"
+          className="rounded-3xl object-cover sm:w-[500px] h-[500px] bg-white"
         />
       ) : (
-        <HiddenPhoto className="w-[500px] h-[500px]" />
+        <HiddenPhoto className="sm:w-[500px] h-[500px]" />
       )}
       <div>
         <Title text={product.name} size="lg" className="font-bold mb-1" />
@@ -74,7 +74,7 @@ export const ProductForm: React.FC<Props> = ({ product, branchToProduct }) => {
           </p>
           <AddToCartButton
             btps={branchToProduct}
-            variant={"white_accent"}
+            variant="white_accent"
             productId={product.id}
           />
         </div>

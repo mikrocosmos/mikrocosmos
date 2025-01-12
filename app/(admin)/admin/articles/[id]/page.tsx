@@ -1,8 +1,8 @@
-import { checkAdmin } from "@/shared/lib/checkAdmin";
 import { prisma } from "@/prisma/prisma-client";
 import { redirect } from "next/navigation";
 import { Container, Title } from "@/shared/components";
 import { EditArticleForm } from "@/shared/components/admin/article/EditArticleForm";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function ArticlePage(props: {
   params: Promise<{ id: string }>;

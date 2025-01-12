@@ -21,7 +21,7 @@ import {
   SelectValue,
 } from "@/shared/components/ui/select";
 import { cn } from "@/shared/lib/utils";
-import { ProductWithCategory } from "@/@types/prisma";
+import { ProductWithSubCategory } from "@/@types/prisma";
 import { getProducts } from "@/app/actions/admin.products.actions";
 import { Skeleton } from "@/shared/components/ui";
 import { ProductsSearch } from "@/shared/components/admin/products/ProductsSearch";
@@ -35,7 +35,7 @@ type SortArgument = string | boolean | number | Date | null;
 
 export const ProductsTable: React.FC<Props> = ({ className }) => {
   const { search, updateSearch } = useAdminProductSearchStore((state) => state);
-  const [products, setProducts] = React.useState<ProductWithCategory[]>([]);
+  const [products, setProducts] = React.useState<ProductWithSubCategory[]>([]);
   const [loading, setLoading] = React.useState(true);
   const { categories } = useCategories();
   const [filteredProducts, setFilteredProducts] = React.useState(products);
@@ -60,7 +60,7 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
         if (value === "Все") {
           return true;
         }
-        return product.category.name === value;
+        return product.subCategory.category.name === value;
       }),
     );
   };
@@ -70,7 +70,9 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
       case "name":
         return sortProducts(a.name, b.name, order);
       case "category":
-        return sortProducts(a.category.name, b.category.name, order);
+        return sortProducts(a.subCategory.name, b.subCategory.name, order);
+      case "subcategory":
+        return sortProducts(a.subCategory.name, b.subCategory.name, order);
       case "price":
         return sortProducts(a.price, b.price, order);
       case "id":
@@ -167,6 +169,16 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
                   setOrder={setOrder}
                   sortBy={sortBy}
                   setSortBy={setSortBy}
+                  text="Подкатегория"
+                  sortByValue="subCategory"
+                />
+              </TableHead>
+              <TableHead className="text-white">
+                <SortTableHead
+                  order={order}
+                  setOrder={setOrder}
+                  sortBy={sortBy}
+                  setSortBy={setSortBy}
                   text="Цена"
                   sortByValue="price"
                 />
@@ -193,9 +205,17 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
                 <TableCell>
                   <Link
                     className="transition hover:text-primary"
-                    href={`/admin/categories/${product.category.id}`}
+                    href={`/admin/category/${product.subCategory.category.id}`}
                   >
-                    {product.category.name}
+                    {product.subCategory.category.name}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <Link
+                    className="transition hover:text-primary"
+                    href={`/admin/subcategory/${product.subCategory.id}`}
+                  >
+                    {product.subCategory.name}
                   </Link>
                 </TableCell>
                 <TableCell>{product.price} ₽</TableCell>

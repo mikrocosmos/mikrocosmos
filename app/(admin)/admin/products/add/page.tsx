@@ -1,8 +1,6 @@
 import { AddProductForm } from "@/shared/components/admin/products/AddProductForm";
 import { Container, Title } from "@/shared/components";
 import { prisma } from "@/prisma/prisma-client";
-import { getUserSession } from "@/shared/lib/getUserSession";
-import { redirect } from "next/navigation";
 import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminProductsAddPage() {

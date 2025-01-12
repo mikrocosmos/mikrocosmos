@@ -1,9 +1,10 @@
 import { Container, Title } from "@/shared/components";
-import { checkAdmin } from "@/shared/lib/checkAdmin";
+
 import { prisma } from "@/prisma/prisma-client";
 import { Pencil } from "lucide-react";
 import { Button } from "@/shared/components/ui";
 import Link from "next/link";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminArticlesPage() {
   await checkAdmin();

@@ -1,8 +1,15 @@
-import { Branch, BranchToProduct, Category, Product } from "@prisma/client";
+import {
+  BranchToProduct,
+  Category,
+  Product,
+  SubCategory,
+} from "@prisma/client";
 
-export type ProductWithCategory = Product & { category: Category };
+export type ProductWithSubCategory = Product & {
+  subCategory: SubCategory & { category: Category };
+};
 
-export type ProductWithCategoryAndBranch = Product & {
-  category: Category;
+export type ProductWithSubCategoryAndBranch = Product & {
+  subCategory: SubCategory & { category: Category };
   branchIds: BranchToProduct[];
 };

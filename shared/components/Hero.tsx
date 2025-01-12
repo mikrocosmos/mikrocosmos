@@ -32,7 +32,7 @@ export const Hero: React.FC<Props> = ({ className, inAdmin }) => {
   return (
     <div className={className}>
       {isLoading ? (
-        <Skeleton className="w-[65vw] min-w-[300px] max-w-[1100px] mx-auto rounded-3xl h-[500px]" />
+        <Skeleton className="w-[65vw] min-w-[300px] max-w-[1100px] mx-auto rounded-3xl h-[600px]" />
       ) : (
         <Carousel
           className="shadow-2xl"

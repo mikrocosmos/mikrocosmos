@@ -1,9 +1,6 @@
 "use client";
 import React from "react";
-import {
-  ProductWithCategory,
-  ProductWithCategoryAndBranch,
-} from "@/@types/prisma";
+import { ProductWithSubCategoryAndBranch } from "@/@types/prisma";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +14,7 @@ import {
 import { useBranches } from "@/shared/hooks";
 
 interface Props {
-  product: ProductWithCategoryAndBranch;
+  product: ProductWithSubCategoryAndBranch;
   className?: string;
 }
 
@@ -39,7 +36,7 @@ export const EditProductForm: React.FC<Props> = ({ className, product }) => {
       price: product.price,
       branches: defaultBranches,
       image: product.imageUrl,
-      category: product.category.name,
+      subCategory: product.subCategory.name,
     },
   });
 
@@ -52,7 +49,10 @@ export const EditProductForm: React.FC<Props> = ({ className, product }) => {
       formData.append("price", String(data.price) || String(product.price));
       formData.append("image", data.image || product.imageUrl);
       formData.append("branches", JSON.stringify(data.branches));
-      formData.append("category", data.category || product.category.name);
+      formData.append(
+        "subCategory",
+        data.subCategory || product.subCategory.name,
+      );
 
       await updateProduct(product.id, formData);
       router.push("/admin/products");

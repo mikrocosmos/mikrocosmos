@@ -13,9 +13,16 @@ export async function updateCategory(id: number, name: string) {
   });
 }
 export async function deleteCategory(id: number) {
-  const products = await prisma.product.findMany({
+  const subCategories = await prisma.subCategory.findMany({
     where: {
       categoryId: id,
+    },
+  });
+  const products = await prisma.product.findMany({
+    where: {
+      subCategoryId: {
+        in: subCategories.map((subCategory) => subCategory.id),
+      },
     },
   });
 
@@ -29,6 +36,14 @@ export async function deleteCategory(id: number) {
 
   await prisma.product.deleteMany({
     where: {
+      subCategoryId: {
+        in: subCategories.map((subCategory) => subCategory.id),
+      },
+    },
+  });
+
+  await prisma.subCategory.deleteMany({
+    where: {
       categoryId: id,
     },
   });
@@ -40,7 +55,8 @@ export async function deleteCategory(id: number) {
   });
 }
 export async function createCategory(name: string, order?: number) {
-  const lastIndex = await getCategoryLastIndex();
+  const categories = await prisma.category.findMany();
+  const lastIndex = getCategoryLastIndex(categories);
 
   await prisma.category.create({
     data: {

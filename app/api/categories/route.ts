@@ -1,5 +1,6 @@
 import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
+import { getCategoryLastIndex } from "@/shared/lib/getCategoryLastIndex";
 
 export async function GET() {
   const categories = await prisma.category.findMany({
@@ -31,9 +32,7 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  const lastIndex = allCategories.reduce((acc, curr) =>
-    acc.order > curr.order ? acc : curr,
-  ).order;
+  const lastIndex = getCategoryLastIndex(allCategories);
 
   const category = await prisma.category.create({
     data: {

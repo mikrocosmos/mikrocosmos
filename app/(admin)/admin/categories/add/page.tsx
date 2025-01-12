@@ -1,12 +1,14 @@
 import { Container, Title } from "@/shared/components";
 import { getCategoryLastIndex } from "@/shared/lib/getCategoryLastIndex";
 import { AddCategoryForm } from "@/shared/components/admin/categories/AddCategoryForm";
+
+import { prisma } from "@/prisma/prisma-client";
 import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminCategoryAddPage() {
   await checkAdmin();
-
-  const lastIndex = await getCategoryLastIndex();
+  const categories = await prisma.category.findMany();
+  const lastIndex = getCategoryLastIndex(categories);
 
   return (
     <Container className="admin-page">

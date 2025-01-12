@@ -10,6 +10,7 @@ const nextConfig = {
       },
     ],
   },
+  distDir: "build",
   reactStrictMode: false,
   webpack: (config, { webpack }) => {
     config.experiments = { ...config.experiments, topLevelAwait: true };
@@ -19,17 +20,13 @@ const nextConfig = {
       fs: false,
     };
     config.plugins.push(
-
-      new webpack.NormalModuleReplacementPlugin(
-        /^node:/,
-        (resource) => {
-          resource.request = resource.request.replace(/^node:/, '');
-        },
-      ),
+      new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
+        resource.request = resource.request.replace(/^node:/, "");
+      }),
     );
 
     return config;
-  }
+  },
 };
 
 export default nextConfig;

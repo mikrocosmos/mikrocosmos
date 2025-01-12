@@ -10,6 +10,7 @@ import { Button, Input } from "@/shared/components/ui";
 import { useFormContext } from "react-hook-form";
 import { HeroSlide } from "@prisma/client";
 import { TFormSlideValues } from "@/shared/components/admin/slider/schema";
+import { ImageInput } from "@/shared/components/admin/ImageInput";
 
 interface Props {
   onSubmit: (data: TFormSlideValues) => void;
@@ -83,26 +84,7 @@ export const SlideForm: React.FC<Props> = ({ onSubmit, slide, className }) => {
             )}
           />
 
-          <FormField
-            name="image"
-            control={form.control}
-            render={({ field: { value, onChange, ...fieldProps } }) => (
-              <FormItem>
-                <FormLabel>Изображение</FormLabel>
-                <FormControl>
-                  <Input
-                    className="my-4 cursor-pointer"
-                    {...fieldProps}
-                    type="file"
-                    accept="image/*"
-                    onChange={(event) =>
-                      onChange(event.target.files && event.target.files[0])
-                    }
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+          <ImageInput />
         </div>
       </div>
       <Button className="mt-4" type="submit" variant="white_accent">

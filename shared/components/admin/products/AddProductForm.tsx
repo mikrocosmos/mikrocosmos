@@ -46,7 +46,7 @@ export const AddProductForm: React.FC<Props> = ({ className, branch }) => {
       formData.append("price", String(data.price));
       formData.append("image", data.image);
       formData.append("branches", JSON.stringify(data.branches));
-      formData.append("category", data.category);
+      formData.append("subCategory", data.subCategory);
 
       await createProduct(formData);
       router.push("/admin/products");

@@ -1,5 +1,11 @@
 import { prisma } from "./prisma-client";
-import { branches, branchToProduct, categories, products } from "./constants";
+import {
+  branches,
+  branchToProduct,
+  categories,
+  products,
+  subCategories,
+} from "./constants";
 import { hashSync } from "bcryptjs";
 
 async function up() {
@@ -28,8 +34,13 @@ async function up() {
       },
     ],
   });
+
   await prisma.category.createMany({
     data: categories,
+  });
+
+  await prisma.subCategory.createMany({
+    data: subCategories,
   });
 
   await prisma.branch.createMany({
@@ -94,7 +105,7 @@ async function up() {
       },
       {
         name: "Политика конфиденциальности",
-        text: `lorem ipsum dolor sit amet consectetur adipiscing elit iriure non eleifend proident feugait option dolor hendrerit zzril cupiditat excepteur lobortis dignissim magna aliquam sed dignissim euismod praesent et accusam nonummy eleifend exerci feugait fugiat tincidunt odio sed wisi ad adipiscing aliquid ullamco fugiat velit mollit est luptatum nam cupiditat sadipscing sit te soluta eleifend justo adipiscing euismod sed veniam excepteur hendrerit nonumy stet nisi possim duo ea culpa vulputate mollit exerci velit tation nihil at aliquam delenit adipiscing consectetur incidunt`,
+        text: "<p><strong>bold text</strong></p><p><em>italic text</em></p><p><s>strike text</s></p><p></p><p>unordered list</p><ul><li><p>hey sg</p></li><li><p>sg</p></li><li><p>sgsgsg</p></li><li><p>hshs</p></li></ul><p></p><p>ordered list</p><ol><li><p>first</p></li><li><p>second</p></li><li><p>third</p></li><li><p>fourth</p></li></ol><p></p><blockquote><p>this is a quote probably</p></blockquote>",
       },
       {
         name: "Пользовательское соглашение",
@@ -106,6 +117,7 @@ async function up() {
 
 async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "Category" RESTART IDENTITY CASCADE;`;
+  await prisma.$executeRaw`TRUNCATE TABLE "SubCategory" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "Branch" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE;`;
   await prisma.$executeRaw`TRUNCATE TABLE "BranchToProduct" RESTART IDENTITY CASCADE;`;

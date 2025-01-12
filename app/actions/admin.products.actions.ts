@@ -3,12 +3,17 @@
 import { prisma } from "@/prisma/prisma-client";
 import { ImageUploader } from "@/shared/lib/imageUploader";
 import { getProductFormData } from "@/shared/lib/getProductFormData";
+import { StorageFacade } from "@/storage/storageFacade";
 
 export async function getProducts(searchValue?: string) {
   if (!searchValue) {
     return prisma.product.findMany({
       include: {
-        category: true,
+        subCategory: {
+          include: {
+            category: true,
+          },
+        },
       },
       orderBy: {
         id: "desc",
@@ -21,7 +26,11 @@ export async function getProducts(searchValue?: string) {
       name: { contains: searchValue, mode: "insensitive" },
     },
     include: {
-      category: true,
+      subCategory: {
+        include: {
+          category: true,
+        },
+      },
     },
     orderBy: {
       id: "desc",
@@ -33,7 +42,7 @@ export async function updateProduct(id: number, formData: FormData) {
   const data = getProductFormData(formData);
   const category = await prisma.category.findFirst({
     where: {
-      name: data.categoryName,
+      name: data.subCategoryName,
     },
   });
 
@@ -57,7 +66,7 @@ export async function updateProduct(id: number, formData: FormData) {
       description: data.description,
       price: Number(data.price),
       imageUrl,
-      categoryId: category.id,
+      subCategoryId: category.id,
     },
   });
 
@@ -111,22 +120,24 @@ export async function deleteProduct(id: number) {
 export async function createProduct(formData: FormData) {
   const data = getProductFormData(formData);
 
-  const category = await prisma.category.findFirst({
+  const subCategory = await prisma.subCategory.findFirst({
     where: {
-      name: data.categoryName,
+      name: data.subCategoryName,
     },
   });
 
-  if (!category) {
-    throw new Error("Category not found");
+  if (!subCategory) {
+    throw new Error("subCategory not found");
   }
 
   if (!data.image) {
     throw new Error("Image is required");
   }
 
-  const uploader = new ImageUploader(data.image);
-  const imageUrl = await uploader.upload();
+  const storage = new StorageFacade();
+  const imageUrl = await storage.uploadItem(data.image);
+
+  console.log(imageUrl);
 
   const product = await prisma.product.create({
     data: {
@@ -134,7 +145,7 @@ export async function createProduct(formData: FormData) {
       description: data.description,
       price: Number(data.price),
       imageUrl,
-      categoryId: category.id,
+      subCategoryId: subCategory.id,
     },
   });
 

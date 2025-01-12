@@ -1,7 +1,7 @@
 FROM node:20.17.0-alpine
 
-WORKDIR ./smokymoon
-COPY ./ ./smokymoon
+WORKDIR ./
+COPY ./ ./
 
 RUN npm install
 

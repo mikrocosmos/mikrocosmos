@@ -1,8 +1,9 @@
 import { prisma } from "@/prisma/prisma-client";
 import { redirect } from "next/navigation";
 import { Container, Title } from "@/shared/components";
-import { checkAdmin } from "@/shared/lib/checkAdmin";
+
 import { EditBranchForm } from "@/shared/components/admin/branches/EditBranchForm";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminBranchPage(props: {
   params: Promise<{ id: string }>;

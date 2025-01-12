@@ -1,8 +1,8 @@
-import { checkAdmin } from "@/shared/lib/checkAdmin";
 import { Container, Title } from "@/shared/components";
 import { prisma } from "@/prisma/prisma-client";
 import { redirect } from "next/navigation";
 import { EditSlideForm } from "@/shared/components/admin/slider/EditSlideForm";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminSlidePage({
   params,
@@ -10,7 +10,6 @@ export default async function AdminSlidePage({
   params: { id: string };
 }) {
   await checkAdmin();
-
   const slide = await prisma.heroSlide.findFirst({
     where: { id: Number(params.id) },
   });

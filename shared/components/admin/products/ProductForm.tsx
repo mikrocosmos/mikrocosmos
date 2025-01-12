@@ -1,12 +1,16 @@
+"use client";
 import React from "react";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/shared/components/ui/form";
+import { FormField } from "@/shared/components/ui/form";
 import { FormInput, FormTextarea } from "@/shared/components/form";
-import { Button, Input, Skeleton, Textarea } from "@/shared/components/ui";
+import { Button, Skeleton } from "@/shared/components/ui";
+import { BranchIdsFormField } from "@/shared/components/admin/products/BranchIdsFormField";
+import { useFormContext } from "react-hook-form";
+import { ProductWithSubCategoryAndBranch } from "@/@types/prisma";
+import { TFormProductValues } from "@/shared/components/admin/products/schemas";
+import { useBranches, useCategories } from "@/shared/hooks";
+import { DeleteProductBtn } from "@/shared/components/admin/products/DeleteProductBtn";
+import { CategorySelect } from "@/shared/components/admin/CategorySelect";
+import { ImageInput } from "@/shared/components/admin/ImageInput";
 import {
   Select,
   SelectContent,
@@ -15,19 +19,11 @@ import {
   SelectValue,
 } from "@/shared/components/ui/select";
 import { cn } from "@/shared/lib/utils";
-import { BranchIdsFormField } from "@/shared/components/admin/products/BranchIdsFormField";
-import { useFormContext } from "react-hook-form";
-import { ProductWithCategoryAndBranch } from "@/@types/prisma";
-import { TFormProductValues } from "@/shared/components/admin/products/schemas";
-import { useBranches, useCategories } from "@/shared/hooks";
-import { DeleteProductBtn } from "@/shared/components/admin/products/DeleteProductBtn";
-import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
-import { router } from "next/client";
-import { deleteProduct } from "@/app/actions/admin.products.actions";
+import { useSubCategories } from "@/shared/hooks/useSubCategories";
 
 interface Props {
   onSubmit: (data: TFormProductValues) => void;
-  product?: ProductWithCategoryAndBranch;
+  product?: ProductWithSubCategoryAndBranch;
   className?: string;
 }
 
@@ -37,8 +33,25 @@ export const ProductForm: React.FC<Props> = ({
   className,
 }) => {
   const { branch, loading } = useBranches();
-  const { categories } = useCategories();
   const form = useFormContext<TFormProductValues>();
+
+  const { categories } = useCategories();
+  const { subCategories: subCategoriesData } = useSubCategories();
+  const [categoryName, setCategoryName] = React.useState(
+    product?.subCategory.category.name || "",
+  );
+
+  const category = categories.find((item) => item.name === categoryName);
+
+  const [subCategories, setSubCategories] = React.useState(
+    subCategoriesData.filter((item) => item.categoryId === category?.id),
+  );
+
+  React.useEffect(() => {
+    setSubCategories(
+      subCategoriesData.filter((item) => item.categoryId === category?.id),
+    );
+  }, [category?.id, categoryName, subCategoriesData]);
 
   return (
     <form
@@ -84,26 +97,47 @@ export const ProductForm: React.FC<Props> = ({
               />
             )}
           />
-          <FormField
-            name="category"
-            control={form.control}
-            render={({ field }) => (
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <SelectTrigger className={cn("w-full text-base", className)}>
-                  <SelectValue placeholder="Выберите категорию" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Array.from(
-                    categories.map((category) => (
-                      <SelectItem key={category.id} value={category.name}>
-                        {category.name}
+          <Select
+            onValueChange={(e) => setCategoryName(e)}
+            defaultValue={categoryName}
+          >
+            <SelectTrigger className={cn("w-full text-base", className)}>
+              <SelectValue placeholder="Выберите категорию" />
+            </SelectTrigger>
+            <SelectContent>
+              {Array.from(
+                categories.map((category) => (
+                  <SelectItem key={category.id} value={category.name}>
+                    {category.name}
+                  </SelectItem>
+                )),
+              )}
+            </SelectContent>
+          </Select>
+          {Array.isArray(subCategories) && !!subCategories.length && (
+            <FormField
+              name="subCategory"
+              control={form.control}
+              render={({ field }) => (
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger className={cn("w-full text-base", className)}>
+                    <SelectValue placeholder="Выберите подкатегорию" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {subCategories?.map((subCategory) => (
+                      <SelectItem key={subCategory.id} value={subCategory.name}>
+                        {subCategory.name}
                       </SelectItem>
-                    )),
-                  )}
-                </SelectContent>
-              </Select>
-            )}
-          />
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
+          )}
+
           {loading ? (
             <Skeleton className="w-40 h-10" />
           ) : (
@@ -112,26 +146,7 @@ export const ProductForm: React.FC<Props> = ({
               branchToProducts={product?.branchIds}
             />
           )}
-          <FormField
-            name="image"
-            control={form.control}
-            render={({ field: { value, onChange, ...fieldProps } }) => (
-              <FormItem>
-                <FormLabel>Изображение</FormLabel>
-                <FormControl>
-                  <Input
-                    className="my-4 cursor-pointer"
-                    {...fieldProps}
-                    type="file"
-                    accept="image/*"
-                    onChange={(event) =>
-                      onChange(event.target.files && event.target.files[0])
-                    }
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+          <ImageInput />
         </div>
       </div>
       <Button className="mt-4" type="submit" variant="white_accent">

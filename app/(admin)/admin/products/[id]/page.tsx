@@ -1,27 +1,27 @@
 import { Container, Title } from "@/shared/components";
-import { getUserSession } from "@/shared/lib/getUserSession";
 import { redirect } from "next/navigation";
 import { EditProductForm } from "@/shared/components/admin/products/EditProductForm";
 import { prisma } from "@/prisma/prisma-client";
-import { deleteProduct } from "@/app/actions/admin.products.actions";
-import { DeleteProductBtn } from "@/shared/components/admin/products/DeleteProductBtn";
 import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminProductPage(props: {
   params: Promise<{ id: string }>;
 }) {
+  await checkAdmin();
   const params = await props.params;
 
   const { id } = params;
-
-  await checkAdmin();
 
   const product = await prisma.product.findFirst({
     where: {
       id: Number(id),
     },
     include: {
-      category: true,
+      subCategory: {
+        include: {
+          category: true,
+        },
+      },
       branchIds: {
         include: {
           branch: true,

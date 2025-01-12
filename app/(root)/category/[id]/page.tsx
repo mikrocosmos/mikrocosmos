@@ -3,6 +3,9 @@ import { Container, ItemCard, Title, Filters } from "@/shared/components";
 import { findItems } from "@/shared/lib";
 import { GetSearchParams } from "@/shared/lib/findItems";
 import { prisma } from "@/prisma/prisma-client";
+import Link from "next/link";
+import Image from "next/image";
+import { SubCategoryCard } from "@/shared/components/SubCategoryCard";
 
 export default async function CategoryPage(props: {
   params: Promise<{ id: number }>;
@@ -14,36 +17,27 @@ export default async function CategoryPage(props: {
 
   const { id } = params;
 
-  const category = await findItems(id, searchParams);
-  const categoryStatic = await findItems(id);
+  const category = await prisma.category.findFirst({
+    where: { id: Number(id) },
+    include: {
+      subCategories: true,
+    },
+  });
+
   if (!category) return notFound();
-  const maxPrice = Math.max(
-    ...categoryStatic!.products.map((product) => product.price),
-  );
-  const minPrice = Math.min(
-    ...categoryStatic!.products.map((product) => product.price),
-  );
 
   return (
-    <Container className="page">
+    <Container className="page pb-5">
       <Title text={category.name} size="lg" className="font-bold my-5" />
-      <div className="flex flex-col lg:flex-row gap-5">
-        <aside className="min-w-[300px] bg-popover p-5 rounded-xl mb-5">
-          <Filters minPrice={minPrice} maxPrice={maxPrice} />
-        </aside>
-
-        <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center content-center gap-5 mb-5">
-          {category.products.map((product) => (
-            <ItemCard
-              key={product.id}
-              id={product.id}
-              btps={btps}
-              name={product.name}
-              imageUrl={product.imageUrl}
-              price={product.price}
-            />
-          ))}
-        </div>
+      <div className="flex flex-wrap gap-5 justify-between">
+        {category.subCategories.map((subCategory) => (
+          <SubCategoryCard
+            id={subCategory.id}
+            name={subCategory.name}
+            imageUrl={subCategory.imageUrl}
+            key={subCategory.id}
+          />
+        ))}
       </div>
     </Container>
   );

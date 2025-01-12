@@ -49,7 +49,9 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
     if (session) {
       fetchUserInfo();
     }
-  }, [session]);
+
+    form.setValue("branch", branchId);
+  }, [session, branchId]);
 
   const onSubmit = async (data: TCheckoutForm) => {
     try {

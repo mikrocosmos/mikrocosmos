@@ -7,7 +7,6 @@ import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminCategoriesPage() {
   await checkAdmin();
-
   const categories = await prisma.category.findMany({
     orderBy: {
       order: "asc",

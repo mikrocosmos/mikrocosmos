@@ -6,7 +6,6 @@ import { CartItem, Product } from "@prisma/client";
 import Link from "next/link";
 import Image from "next/image";
 import { OrderStatusSelect } from "@/shared/components/admin/orders/OrderStatusSelect";
-import { getUserSession } from "@/shared/lib/getUserSession";
 import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminOrderPage(props: {

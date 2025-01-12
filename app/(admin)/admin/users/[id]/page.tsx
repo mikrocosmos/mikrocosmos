@@ -1,8 +1,9 @@
 import { Container, Title } from "@/shared/components";
-import { checkAdmin } from "@/shared/lib/checkAdmin";
+
 import { EditUserForm } from "@/shared/components/admin/users/EditUserForm";
 import { prisma } from "@/prisma/prisma-client";
 import { redirect } from "next/navigation";
+import { checkAdmin } from "@/shared/lib/checkAdmin";
 
 export default async function AdminUserPage({
   params,

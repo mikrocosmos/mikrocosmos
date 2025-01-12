@@ -5,6 +5,7 @@ import * as cart from "./cart";
 import * as auth from "./auth";
 import * as orders from "./orders";
 import * as adminProducts from "./admin-products";
+import * as subCategories from "./sub-categories";
 
 export const Api = {
   products,
@@ -14,4 +15,5 @@ export const Api = {
   auth,
   orders,
   adminProducts,
+  subCategories,
 };

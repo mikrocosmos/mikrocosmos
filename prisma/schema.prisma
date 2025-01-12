@@ -24,12 +24,38 @@ model User {
 }
 
 model Category {
-  id        Int       @id @default(autoincrement())
-  name      String
-  order     Int
-  products  Product[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id            Int           @id @default(autoincrement())
+  name          String
+  order         Int
+  subCategories SubCategory[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model SubCategory {
+  id         Int       @id @default(autoincrement())
+  name       String
+  order      Int
+  category   Category  @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  imageUrl   String
+  products   Product[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Product {
+  id            Int               @id @default(autoincrement())
+  name          String
+  subCategory   SubCategory       @relation(fields: [subCategoryId], references: [id])
+  subCategoryId Int
+  price         Float
+  description   String
+  imageUrl      String
+  cartItems     CartItem[]
+  branchIds     BranchToProduct[]
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
 }
 
 model Branch {
@@ -44,20 +70,6 @@ model Branch {
   yandexMapLink String
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
-}
-
-model Product {
-  id          Int               @id @default(autoincrement())
-  name        String
-  categoryId  Int
-  category    Category          @relation(fields: [categoryId], references: [id])
-  price       Float
-  description String
-  imageUrl    String
-  cartItems   CartItem[]
-  branchIds   BranchToProduct[]
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
 }
 
 model BranchToProduct {

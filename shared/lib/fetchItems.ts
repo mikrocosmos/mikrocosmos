@@ -12,7 +12,7 @@ const DEFAULT_MIN_PRICE = 0;
 const DEFAULT_MAX_PRICE = 10000;
 
 export const fetchItems = async () => {
-  return prisma.category.findMany({
+  return prisma.subCategory.findMany({
     include: {
       products: {
         orderBy: {
