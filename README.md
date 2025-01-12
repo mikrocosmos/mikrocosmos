@@ -4,12 +4,7 @@
 
  **<h3 align="left">GitHub Stats</h3>**
 
-<p align="left">
+<div style="display: flex; gap: 4px">
   <img width="48%" src="https://github-readme-stats.vercel.app/api?username=mikrocosmos&theme=react&hide_title=false&hide_rank=false&show_icons=false&include_all_commits=false&count_private=true&line_height=23" alt="GitHub stats Card" />
-
-</p>
-
-<p align="left">
   <img width="48%" src="https://github-readme-stats.vercel.app/api/top-langs?username=mikrocosmos&theme=react&hide_title=false&layout=compact&langs_count=6&hide_progress=false&card_width=400" alt="GitHub top-langs Card" />
-</p>
-
+</div>
