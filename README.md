@@ -4,13 +4,11 @@
   <ul align="center" style="list-style: none">
     <summary>
       <h1>
-        👋 Hi, my name is Timur
+        Привет
       </h1>
     </summary>
   </ul>
 </div>
-
- **<h3 align="left">Nothing is impossible, the word itself says “I’m possible!”</h3>**
 
  **<h3 align="left">Skills</h3>**
 
