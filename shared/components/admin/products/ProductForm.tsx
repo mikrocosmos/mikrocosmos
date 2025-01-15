@@ -139,7 +139,10 @@ export const ProductForm: React.FC<Props> = ({
           )}
 
           {loading ? (
-            <Skeleton className="w-40 h-10" />
+            <>
+              <Skeleton className="w-[354px] h-12" />
+              <Skeleton className="w-[354px] h-12" />
+            </>
           ) : (
             <BranchIdsFormField
               branch={branch}

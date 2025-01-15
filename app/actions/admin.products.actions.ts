@@ -3,7 +3,7 @@
 import { prisma } from "@/prisma/prisma-client";
 import { ImageUploader } from "@/shared/lib/imageUploader";
 import { getProductFormData } from "@/shared/lib/getProductFormData";
-import { StorageFacade } from "@/storage/storageFacade";
+import { Storage } from "@/storage/storage";
 
 export async function getProducts(searchValue?: string) {
   if (!searchValue) {
@@ -134,10 +134,8 @@ export async function createProduct(formData: FormData) {
     throw new Error("Image is required");
   }
 
-  const storage = new StorageFacade();
+  const storage = new Storage();
   const imageUrl = await storage.uploadItem(data.image);
-
-  console.log(imageUrl);
 
   const product = await prisma.product.create({
     data: {
