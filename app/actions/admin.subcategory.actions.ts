@@ -2,6 +2,9 @@
 
 import { prisma } from "@/prisma/prisma-client";
 import { ImageUploader } from "@/shared/lib/imageUploader";
+import s3Storage from "@/storage/storage";
+
+const BUCKET_NAME = "sub-categories";
 
 export async function deleteSubCategory(id: number) {
   const subCategory = await prisma.subCategory.findFirst({
@@ -13,6 +16,9 @@ export async function deleteSubCategory(id: number) {
   if (!subCategory) {
     throw new Error("SubCategory not found");
   }
+  const image = subCategory.imageUrl;
+
+  await s3Storage.deleteObject(image, BUCKET_NAME);
 
   const products = await prisma.product.findMany({
     where: {
@@ -64,8 +70,13 @@ export async function updateSubCategory(id: number, data: FormData) {
   let imageUrl;
 
   if (image.name) {
-    const uploader = new ImageUploader(image);
-    imageUrl = await uploader.upload();
+    const imageData = Buffer.from(await image.arrayBuffer());
+
+    imageUrl = await s3Storage.putObject(imageData, image.name, BUCKET_NAME);
+
+    if (!imageUrl) {
+      throw new Error("Image upload failed");
+    }
   }
 
   await prisma.subCategory.update({
@@ -95,8 +106,17 @@ export async function createSubCategory(data: FormData) {
     throw new Error("Category not found");
   }
 
-  const uploader = new ImageUploader(image);
-  const imageUrl = await uploader.upload();
+  const imageData = Buffer.from(await image.arrayBuffer());
+
+  const imageUrl = await s3Storage.putObject(
+    imageData,
+    image.name,
+    BUCKET_NAME,
+  );
+
+  if (!imageUrl) {
+    throw new Error("Image upload failed");
+  }
 
   await prisma.subCategory.create({
     data: {

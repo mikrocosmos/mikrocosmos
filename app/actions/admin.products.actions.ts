@@ -1,9 +1,10 @@
 "use server";
 
 import { prisma } from "@/prisma/prisma-client";
-import { ImageUploader } from "@/shared/lib/imageUploader";
 import { getProductFormData } from "@/shared/lib/getProductFormData";
-import { Storage } from "@/storage/storage";
+import s3Storage from "@/storage/storage";
+
+const BUCKET_NAME = "products";
 
 export async function getProducts(searchValue?: string) {
   if (!searchValue) {
@@ -40,22 +41,44 @@ export async function getProducts(searchValue?: string) {
 
 export async function updateProduct(id: number, formData: FormData) {
   const data = getProductFormData(formData);
+
   const category = await prisma.category.findFirst({
     where: {
-      name: data.subCategoryName,
+      name: data.categoryName,
     },
   });
 
   if (!category) {
-    throw new Error("Category not found");
+    throw new Error("category not found");
   }
 
-  let imageUrl;
+  const subCategory = await prisma.subCategory.findFirst({
+    where: {
+      name: data.subCategoryName,
+      categoryId: category.id,
+    },
+  });
 
+  if (!subCategory) {
+    throw new Error("subCategory not found");
+  }
+
+  let imageUpload;
   if (data.image.name) {
-    const uploader = new ImageUploader(data.image);
-    imageUrl = await uploader.upload();
+    const image = Buffer.from(await data.image.arrayBuffer());
+
+    imageUpload = await s3Storage.putObject(
+      image,
+      data.image.name,
+      BUCKET_NAME,
+    );
+
+    if (!imageUpload) {
+      throw new Error("Image upload failed");
+    }
   }
+
+  const imageUrl = imageUpload ?? data.image.name;
 
   await prisma.product.update({
     where: {
@@ -66,7 +89,7 @@ export async function updateProduct(id: number, formData: FormData) {
       description: data.description,
       price: Number(data.price),
       imageUrl,
-      subCategoryId: category.id,
+      subCategoryId: subCategory.id,
     },
   });
 
@@ -104,6 +127,18 @@ export async function updateProduct(id: number, formData: FormData) {
 }
 
 export async function deleteProduct(id: number) {
+  const product = await prisma.product.findFirst({
+    where: { id },
+  });
+
+  if (!product) {
+    throw new Error("Product not found");
+  }
+
+  const image = product.imageUrl;
+
+  await s3Storage.deleteObject(image, BUCKET_NAME);
+
   await prisma.branchToProduct.deleteMany({
     where: {
       productId: id,
@@ -134,8 +169,17 @@ export async function createProduct(formData: FormData) {
     throw new Error("Image is required");
   }
 
-  const storage = new Storage();
-  const imageUrl = await storage.uploadItem(data.image);
+  const image = Buffer.from(await data.image.arrayBuffer());
+
+  const imageUrl = await s3Storage.putObject(
+    image,
+    data.image.name,
+    BUCKET_NAME,
+  );
+
+  if (!imageUrl) {
+    throw new Error("Image upload failed");
+  }
 
   const product = await prisma.product.create({
     data: {

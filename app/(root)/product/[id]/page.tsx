@@ -3,28 +3,24 @@ import { prisma } from "@/prisma/prisma-client";
 import { redirect } from "next/navigation";
 import { ProductForm } from "@/shared/components/";
 
-export default async function ProductPage(
-  props: {
-    params: Promise<{ id: string }>;
-  }
-) {
+export default async function ProductPage(props: {
+  params: Promise<{ id: string }>;
+}) {
   const params = await props.params;
 
-  const {
-    id
-  } = params;
+  const { id } = params;
 
   const product = await prisma.product.findFirst({
     where: { id: Number(id) },
   });
+
+  if (!product) return redirect("/404");
 
   const branchToProduct = await prisma.branchToProduct.findMany({
     where: {
       productId: Number(id),
     },
   });
-
-  if (!product) return redirect("/404");
 
   return (
     <Container className="page">

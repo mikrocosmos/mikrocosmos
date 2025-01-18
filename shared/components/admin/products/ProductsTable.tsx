@@ -195,8 +195,8 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
                       className="rounded-3xl shadow-lg border-2 border-gray-200 object-cover md:w-[150px] w-full h-[150px] bg-white transition hover:border-primary"
                       src={product.imageUrl}
                       alt={product.name}
-                      width={100}
-                      height={100}
+                      width={150}
+                      height={150}
                     />
                   </Link>
                 </TableCell>

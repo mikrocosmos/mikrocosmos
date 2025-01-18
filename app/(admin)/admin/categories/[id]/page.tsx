@@ -23,7 +23,11 @@ export default async function AdminCategoryPage(props: {
       id: Number(id),
     },
     include: {
-      subCategories: true,
+      subCategories: {
+        orderBy: {
+          order: "asc",
+        },
+      },
     },
   });
 

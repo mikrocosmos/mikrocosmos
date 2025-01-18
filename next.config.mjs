@@ -8,6 +8,12 @@ const nextConfig = {
         port: "",
         pathname: "**",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "9000",
+        pathname: "**",
+      },
     ],
   },
   distDir: "build",

@@ -4,6 +4,7 @@ export const getProductFormData = (formData: FormData) => {
   const price = formData.get("price") as string;
   const image = formData.get("image") as File;
   const branches = formData.get("branches") as string;
+  const categoryName = formData.get("category") as string;
   const subCategoryName = formData.get("subCategory") as string;
 
   const branchesArray = JSON.parse(branches);
@@ -14,6 +15,7 @@ export const getProductFormData = (formData: FormData) => {
     price,
     image,
     branches: branchesArray,
+    categoryName,
     subCategoryName,
   };
 };

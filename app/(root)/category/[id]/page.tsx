@@ -1,18 +1,12 @@
 import { notFound } from "next/navigation";
-import { Container, ItemCard, Title, Filters } from "@/shared/components";
-import { findItems } from "@/shared/lib";
+import { Container, Title } from "@/shared/components";
 import { GetSearchParams } from "@/shared/lib/findItems";
 import { prisma } from "@/prisma/prisma-client";
-import Link from "next/link";
-import Image from "next/image";
 import { SubCategoryCard } from "@/shared/components/SubCategoryCard";
 
 export default async function CategoryPage(props: {
   params: Promise<{ id: number }>;
-  searchParams: Promise<GetSearchParams>;
 }) {
-  const btps = await prisma.branchToProduct.findMany();
-  const searchParams = await props.searchParams;
   const params = await props.params;
 
   const { id } = params;
@@ -20,7 +14,11 @@ export default async function CategoryPage(props: {
   const category = await prisma.category.findFirst({
     where: { id: Number(id) },
     include: {
-      subCategories: true,
+      subCategories: {
+        orderBy: {
+          order: "asc",
+        },
+      },
     },
   });
 

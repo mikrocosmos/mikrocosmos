@@ -36,6 +36,7 @@ export const EditProductForm: React.FC<Props> = ({ className, product }) => {
       price: product.price,
       branches: defaultBranches,
       image: product.imageUrl,
+      category: product.subCategory.category.name,
       subCategory: product.subCategory.name,
     },
   });
@@ -49,6 +50,10 @@ export const EditProductForm: React.FC<Props> = ({ className, product }) => {
       formData.append("price", String(data.price) || String(product.price));
       formData.append("image", data.image || product.imageUrl);
       formData.append("branches", JSON.stringify(data.branches));
+      formData.append(
+        "category",
+        data.category || product.subCategory.category.name,
+      );
       formData.append(
         "subCategory",
         data.subCategory || product.subCategory.name,

@@ -97,23 +97,34 @@ export const ProductForm: React.FC<Props> = ({
               />
             )}
           />
-          <Select
-            onValueChange={(e) => setCategoryName(e)}
-            defaultValue={categoryName}
-          >
-            <SelectTrigger className={cn("w-full text-base", className)}>
-              <SelectValue placeholder="Выберите категорию" />
-            </SelectTrigger>
-            <SelectContent>
-              {Array.from(
-                categories.map((category) => (
-                  <SelectItem key={category.id} value={category.name}>
-                    {category.name}
-                  </SelectItem>
-                )),
+          {Array.isArray(categories) && !!categories.length && (
+            <FormField
+              name="category"
+              control={form.control}
+              render={({ field }) => (
+                <Select
+                  onValueChange={(e) => {
+                    setCategoryName(e);
+                    field.onChange(e);
+                  }}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger className={cn("w-full text-base", className)}>
+                    <SelectValue placeholder="Выберите категорию" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Array.from(
+                      categories.map((category) => (
+                        <SelectItem key={category.id} value={category.name}>
+                          {category.name}
+                        </SelectItem>
+                      )),
+                    )}
+                  </SelectContent>
+                </Select>
               )}
-            </SelectContent>
-          </Select>
+            />
+          )}
           {Array.isArray(subCategories) && !!subCategories.length && (
             <FormField
               name="subCategory"
