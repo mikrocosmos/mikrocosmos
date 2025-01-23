@@ -1,7 +1,6 @@
 import { EditCategoryForm } from "@/shared/components/admin/categories/EditCategoryForm";
 import { prisma } from "@/prisma/prisma-client";
 import { redirect } from "next/navigation";
-import { getUserSession } from "@/shared/lib/getUserSession";
 import { Container, Title } from "@/shared/components";
 
 import { SubCategoryCard } from "@/shared/components/SubCategoryCard";

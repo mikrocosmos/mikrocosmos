@@ -6,7 +6,6 @@ import Link from "next/link";
 import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
 import { CircleX } from "lucide-react";
 import { deleteSlide } from "@/app/actions/admin.slider.actions";
-import { useRouter } from "next/navigation";
 
 interface Props {
   id: number;

@@ -2,7 +2,6 @@
 
 import { prisma } from "@/prisma/prisma-client";
 import { getSlideFormData } from "@/shared/lib/getSlideFormData";
-import { ImageUploader } from "@/shared/lib/imageUploader";
 import s3Storage from "@/storage/storage";
 
 const BUCKET_NAME = "slider";

@@ -11,7 +11,7 @@ import {
 } from "@/shared/components/ui/sheet";
 import Link from "next/link";
 import { Button } from "@/shared/components/ui";
-import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 import { CartDrawerItem } from "@/shared/components/CartDrawerItem";
 import Image from "next/image";
 import { Title } from "@/shared/components/Title";
@@ -22,7 +22,6 @@ interface Props {
 }
 
 export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
-  className,
   children,
 }) => {
   const { totalPrice, updateItemQuantity, removeCartItem, items, cleanCart } =

@@ -10,8 +10,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/shared/components/ui/form";
 import { createProduct } from "@/app/actions/admin.products.actions";
 import { ProductForm } from "@/shared/components/admin/products/ProductForm";
-import { useBranches } from "@/shared/hooks";
 import { Branch } from "@prisma/client";
+import toast from "react-hot-toast";
+import { toastError, toastSuccess } from "@/shared/constants";
 
 interface Props {
   branch: Branch[];
@@ -51,8 +52,10 @@ export const AddProductForm: React.FC<Props> = ({ className, branch }) => {
 
       await createProduct(formData);
       router.push("/admin/products");
+      toast("Товар добавлен", toastSuccess);
     } catch (error) {
       console.error(error);
+      toast("Не удалось добавить товар", toastError);
     }
   };
 

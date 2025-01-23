@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useOrders } from "@/shared/hooks";
 import { Skeleton } from "@/shared/components/ui";
 import { cn } from "@/shared/lib/utils";
 import { orderStatusMap } from "@/shared/constants";

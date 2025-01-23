@@ -9,11 +9,7 @@ import { days } from "@/shared/constants/days";
 import { Checkbox } from "@/shared/components/ui/checkbox";
 import { useFormContext } from "react-hook-form";
 
-interface Props {
-  className?: string;
-}
-
-export const DaysCheckboxes: React.FC<Props> = ({ className }) => {
+export const DaysCheckboxes: React.FC = () => {
   const form = useFormContext();
   return (
     <FormField

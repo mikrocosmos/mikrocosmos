@@ -1,3 +1,4 @@
+import React from "react";
 import { cn } from "@/shared/lib/utils";
 import Image from "next/image";
 
@@ -13,7 +14,7 @@ export const CartItemDetailsImage: React.FC<Props> = ({ src, className }) => {
       height={80}
       className={cn(
         "rounded transition-all duration-100 bg-white outline-primary outline outline-0 hover:outline-1 hover:shadow-lg",
-        className
+        className,
       )}
       src={src}
       alt="товар"

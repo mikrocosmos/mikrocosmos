@@ -2,13 +2,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/shared/components/ui/form";
+import { Form, FormField } from "@/shared/components/ui/form";
 import { Branch } from "@prisma/client";
 import { FormInput } from "@/shared/components/form";
 import { Button } from "@/shared/components/ui";
@@ -20,8 +14,6 @@ import {
   TFormBranchValues,
 } from "@/shared/components/admin/branches/schema";
 import { YandexInfo } from "@/shared/components/admin/branches/YandexInfo";
-import { Checkbox } from "@/shared/components/ui/checkbox";
-import { days } from "@/shared/constants/days";
 import { Info } from "lucide-react";
 import { DaysCheckboxes } from "@/shared/components/admin/branches/DaysCheckboxes";
 

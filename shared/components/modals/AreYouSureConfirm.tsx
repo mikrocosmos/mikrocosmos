@@ -11,9 +11,6 @@ import {
   DialogTrigger,
 } from "@/shared/components/ui";
 import { Title } from "@/shared/components";
-import { cn } from "@/shared/lib/utils";
-import { Api } from "@/shared/services/api-client";
-import { useRouter } from "next/navigation";
 
 interface Props {
   onConfirm: () => Promise<void>;

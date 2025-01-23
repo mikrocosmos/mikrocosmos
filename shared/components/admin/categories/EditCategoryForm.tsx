@@ -13,6 +13,8 @@ import {
 } from "@/app/actions/admin.category.actions";
 import { useRouter } from "next/navigation";
 import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
+import toast from "react-hot-toast";
+import { toastError, toastSuccess } from "@/shared/constants";
 
 interface Props {
   category: Category;
@@ -39,8 +41,10 @@ export const EditCategoryForm: React.FC<Props> = ({ className, category }) => {
     try {
       await updateCategory(category.id, data.name);
       router.push("/admin/categories");
+      toast("Категория обновлена", toastSuccess);
     } catch (error) {
       console.error(error);
+      toast("Не удалось обновить категорию", toastError);
     }
   };
 
@@ -88,7 +92,11 @@ export const EditCategoryForm: React.FC<Props> = ({ className, category }) => {
             text="Вы уверены, что хотите удалить категорию? Все товары, связанные с ней, будут удалены"
             onConfirm={onDelete}
           >
-            <Button type="button" variant="outline_red">
+            <Button
+              loading={form.formState.isSubmitting}
+              type="button"
+              variant="outline_red"
+            >
               Удалить
             </Button>
           </AreYouSureConfirm>

@@ -1,7 +1,6 @@
 "use server";
 
 import { prisma } from "@/prisma/prisma-client";
-import { ImageUploader } from "@/shared/lib/imageUploader";
 import s3Storage from "@/storage/storage";
 
 const BUCKET_NAME = "sub-categories";

@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 import { Button } from "@/shared/components/ui";
 import { toastError, toastSuccess } from "@/shared/constants";
 import { useSession } from "next-auth/react";
-import { getBtp } from "@/app/actions/btp.actions";
 import { BranchToProduct } from "@prisma/client";
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {

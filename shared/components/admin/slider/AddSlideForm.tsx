@@ -10,12 +10,10 @@ import {
 } from "@/shared/components/admin/slider/schema";
 import { SlideForm } from "./SlideForm";
 import { createSlide } from "@/app/actions/admin.slider.actions";
+import toast from "react-hot-toast";
+import { toastError, toastSuccess } from "@/shared/constants";
 
-interface Props {
-  className?: string;
-}
-
-export const AddSlideForm: React.FC<Props> = ({ className }) => {
+export const AddSlideForm: React.FC = () => {
   const router = useRouter();
 
   const form = useForm<TFormSlideValues>({
@@ -40,8 +38,10 @@ export const AddSlideForm: React.FC<Props> = ({ className }) => {
 
       await createSlide(formData);
       router.push("/admin/slider");
+      toast("Слайд добавлен", toastSuccess);
     } catch (error) {
       console.error(error);
+      toast("Не удалось добавить слайд", toastError);
     }
   };
 

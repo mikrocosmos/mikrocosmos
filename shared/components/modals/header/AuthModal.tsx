@@ -2,15 +2,12 @@ import React, { PropsWithChildren } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogTrigger,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@/shared/components/ui";
-import { HeaderIcon } from "@/shared/components";
-import { CircleUserRound } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 import { LoginForm, RegisterForm } from "@/shared/components/modals/forms/";
 

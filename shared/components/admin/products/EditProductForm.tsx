@@ -11,7 +11,8 @@ import {
   formProductSchema,
   TFormProductValues,
 } from "@/shared/components/admin/products/schemas";
-import { useBranches } from "@/shared/hooks";
+import toast from "react-hot-toast";
+import { toastError, toastSuccess } from "@/shared/constants";
 
 interface Props {
   product: ProductWithSubCategoryAndBranch;
@@ -61,8 +62,10 @@ export const EditProductForm: React.FC<Props> = ({ className, product }) => {
 
       await updateProduct(product.id, formData);
       router.push("/admin/products");
+      toast("Товар обновлен", toastSuccess);
     } catch (error) {
       console.error(error);
+      toast("Не удалось обновить товар", toastError);
     }
   };
 

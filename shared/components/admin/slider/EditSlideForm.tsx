@@ -11,13 +11,14 @@ import {
 } from "@/shared/components/admin/slider/schema";
 import { SlideForm } from "./SlideForm";
 import { updateSlide } from "@/app/actions/admin.slider.actions";
+import toast from "react-hot-toast";
+import { toastError, toastSuccess } from "@/shared/constants";
 
 interface Props {
   slide: HeroSlide;
-  className?: string;
 }
 
-export const EditSlideForm: React.FC<Props> = ({ slide, className }) => {
+export const EditSlideForm: React.FC<Props> = ({ slide }) => {
   const router = useRouter();
 
   const form = useForm<TFormSlideValues>({
@@ -43,8 +44,10 @@ export const EditSlideForm: React.FC<Props> = ({ slide, className }) => {
 
       await updateSlide(slide.id, formData);
       router.push("/admin/slider");
+      toast("Слайд обновлён", toastSuccess);
     } catch (error) {
       console.error(error);
+      toast("Не удалось обновить слайд", toastError);
     }
   };
 

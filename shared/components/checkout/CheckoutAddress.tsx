@@ -2,7 +2,6 @@
 import React from "react";
 import * as Checkout from "./index";
 import { branchStore } from "@/shared/store";
-import { yandexMapsFrames } from "@/shared/constants";
 import {
   Label,
   RadioGroup,

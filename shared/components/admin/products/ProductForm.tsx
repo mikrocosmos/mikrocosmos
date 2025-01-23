@@ -9,7 +9,6 @@ import { ProductWithSubCategoryAndBranch } from "@/@types/prisma";
 import { TFormProductValues } from "@/shared/components/admin/products/schemas";
 import { useBranches, useCategories } from "@/shared/hooks";
 import { DeleteProductBtn } from "@/shared/components/admin/products/DeleteProductBtn";
-import { CategorySelect } from "@/shared/components/admin/CategorySelect";
 import { ImageInput } from "@/shared/components/admin/ImageInput";
 import {
   Select,
@@ -155,15 +154,17 @@ export const ProductForm: React.FC<Props> = ({
               <Skeleton className="w-[354px] h-12" />
             </>
           ) : (
-            <BranchIdsFormField
-              branch={branch}
-              branchToProducts={product?.branchIds}
-            />
+            <BranchIdsFormField branch={branch} />
           )}
           <ImageInput />
         </div>
       </div>
-      <Button className="mt-4" type="submit" variant="white_accent">
+      <Button
+        loading={form.formState.isSubmitting}
+        className="mt-4"
+        type="submit"
+        variant="white_accent"
+      >
         Сохранить
       </Button>
       {product && <DeleteProductBtn className="ml-4" id={product.id} />}

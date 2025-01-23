@@ -4,7 +4,7 @@ import { Title } from "@/shared/components/Title";
 import { cn } from "@/shared/lib/utils";
 import { getOrderStatusClass } from "@/shared/lib";
 import { orderStatusMap } from "@/shared/constants";
-import { Button, Separator } from "@/shared/components/ui";
+import { Button } from "@/shared/components/ui";
 import { Branch, CartItem, Order, Product } from "@prisma/client";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,10 +14,9 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   order: Order & { branch: Branch };
-  className?: string;
 }
 
-export const OrderComponent: React.FC<Props> = ({ className, order }) => {
+export const OrderComponent: React.FC<Props> = ({ order }) => {
   const router = useRouter();
   // @ts-ignore
   const items = JSON.parse(order.items);

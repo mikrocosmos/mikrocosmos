@@ -46,7 +46,7 @@ export const ProductForm: React.FC<Props> = ({ product, branchToProduct }) => {
             <Skeleton className="w-32 h-5 mt-5" />
           </>
         ) : (
-          branchToProduct.map((item, index) => (
+          branchToProduct.map((item) => (
             <p
               key={item.branchId}
               className={cn(

@@ -17,7 +17,7 @@ export interface CartState {
   cleanCart: () => Promise<void>;
 }
 
-export const useCartStore = create<CartState>((set, get) => ({
+export const useCartStore = create<CartState>((set) => ({
   loading: false,
   error: false,
   totalPrice: 0,

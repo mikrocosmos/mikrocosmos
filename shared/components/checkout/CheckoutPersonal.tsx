@@ -4,7 +4,6 @@ import { FormInput } from "@/shared/components/form";
 import { CheckoutBlock } from "@/shared/components/checkout/CheckoutBlock";
 import { Textarea } from "@/shared/components/ui";
 import { RequiredSymbol } from "@/shared/components";
-import { useSession } from "next-auth/react";
 
 interface Props {
   className?: string;

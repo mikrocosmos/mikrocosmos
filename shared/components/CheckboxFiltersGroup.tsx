@@ -30,7 +30,6 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
   loading,
   searchInputPlaceholder = "Поиск...",
   onClickCheckbox,
-  defaultValue,
   selected,
   name,
   className,
@@ -44,7 +43,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 
   const list = showAll
     ? items.filter((item) =>
-        item.text.toLowerCase().includes(searchValue.toLowerCase())
+        item.text.toLowerCase().includes(searchValue.toLowerCase()),
       )
     : (defaultItems || items).slice(0, limit);
 

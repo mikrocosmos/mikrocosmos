@@ -4,16 +4,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormField } from "@/shared/components/ui/form";
-import { Category } from "@prisma/client";
 import { FormInput } from "@/shared/components/form";
 import { Button } from "@/shared/components/ui";
-import {
-  createCategory,
-  deleteCategory,
-  updateCategory,
-} from "@/app/actions/admin.category.actions";
+import { createCategory } from "@/app/actions/admin.category.actions";
 import { useRouter } from "next/navigation";
-import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
+import { toastError, toastSuccess } from "@/shared/constants";
+import toast from "react-hot-toast";
 
 interface Props {
   lastIndex: number;
@@ -40,8 +36,10 @@ export const AddCategoryForm: React.FC<Props> = ({ className, lastIndex }) => {
     try {
       await createCategory(data.name, data?.order);
       router.push("/admin/categories");
+      toast("Категория добавлена", toastSuccess);
     } catch (error) {
       console.error(error);
+      toast("Не удалось добавить категорию", toastError);
     }
   };
 
@@ -77,7 +75,11 @@ export const AddCategoryForm: React.FC<Props> = ({ className, lastIndex }) => {
           )}
         />
         <div className="mt-4 flex items-center gap-5">
-          <Button type="submit" variant="white_accent">
+          <Button
+            loading={form.formState.isSubmitting}
+            type="submit"
+            variant="white_accent"
+          >
             Сохранить
           </Button>
         </div>

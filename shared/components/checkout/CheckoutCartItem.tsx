@@ -5,9 +5,6 @@ import { cn } from "@/shared/lib/utils";
 import * as CartItem from "@/shared/components/cart-item-details/";
 import Link from "next/link";
 import { CircleX } from "lucide-react";
-import { getBtp } from "@/app/actions/btp.actions";
-import { branchStore } from "@/shared/store";
-import { BranchToProduct } from "@prisma/client";
 import { useMaxQuantity } from "@/shared/hooks/useMaxQuantity";
 interface Props extends CartItemProps {
   onClickCountButton?: (type: "plus" | "minus") => void;

@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/shared/components/ui/form";
+import { FormField } from "@/shared/components/ui/form";
 import { FormInput } from "@/shared/components/form";
-import { Button, Input } from "@/shared/components/ui";
+import { Button } from "@/shared/components/ui";
 import { useFormContext } from "react-hook-form";
 import { HeroSlide } from "@prisma/client";
 import { TFormSlideValues } from "@/shared/components/admin/slider/schema";
@@ -87,7 +82,12 @@ export const SlideForm: React.FC<Props> = ({ onSubmit, slide, className }) => {
           <ImageInput />
         </div>
       </div>
-      <Button className="mt-4" type="submit" variant="white_accent">
+      <Button
+        loading={form.formState.isSubmitting}
+        className="mt-4"
+        type="submit"
+        variant="white_accent"
+      >
         Сохранить
       </Button>
     </form>

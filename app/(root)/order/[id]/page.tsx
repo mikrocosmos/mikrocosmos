@@ -1,6 +1,6 @@
-import { Container, Title } from "@/shared/components";
+import { Container } from "@/shared/components";
 import { prisma } from "@/prisma/prisma-client";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { OrderComponent } from "@/shared/components/OrderComponent";
 
 export default async function OrderPage(props: {

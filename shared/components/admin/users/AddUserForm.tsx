@@ -1,19 +1,10 @@
 "use client";
 import React from "react";
 import { useForm } from "react-hook-form";
-import {
-  formAddUserSchema,
-  formEditUserSchema,
-  TFormAddUserValues,
-  TFormEditUserValues,
-} from "./schemas";
+import { formAddUserSchema, TFormAddUserValues } from "./schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  createUser,
-  deleteUser,
-  updateUserInfo,
-} from "@/app/actions/admin.users.actions";
-import { User, UserRole } from "@prisma/client";
+import { createUser } from "@/app/actions/admin.users.actions";
+import { UserRole } from "@prisma/client";
 import { FormInput } from "@/shared/components/form/FormInput";
 import { cn } from "@/shared/lib/utils";
 import { useRouter } from "next/navigation";
@@ -21,7 +12,8 @@ import { useSession } from "next-auth/react";
 import { Form, FormField } from "../../ui/form";
 import { Button, Label, RadioGroup } from "../../ui";
 import { RadioGroupItem } from "@/shared/components/ui";
-import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
+import toast from "react-hot-toast";
+import { toastError, toastSuccess } from "@/shared/constants";
 
 interface Props {
   className?: string;
@@ -53,8 +45,10 @@ export const AddUserForm: React.FC<Props> = ({ className }) => {
         currentBranchId: session?.user.currentBranchId || 1,
       });
       router.push("/admin/users");
+      toast("Пользователь добавлен", toastSuccess);
     } catch (error) {
       console.log(error);
+      toast("Не удалось добавить пользователя", toastError);
     }
   };
 
@@ -155,7 +149,11 @@ export const AddUserForm: React.FC<Props> = ({ className }) => {
           </div>
         </RadioGroup>
         <div className="lg:flex items-center lg:space-x-4">
-          <Button variant="white_accent" type="submit">
+          <Button
+            loading={form.formState.isSubmitting}
+            variant="white_accent"
+            type="submit"
+          >
             Сохранить изменения
           </Button>
         </div>

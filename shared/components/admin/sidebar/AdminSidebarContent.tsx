@@ -1,23 +1,11 @@
 import React from "react";
 import { AdminSidebarItem } from "@/shared/components/admin";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  Box,
-  ChartBarStacked,
-  RectangleEllipsis,
-  Rows4,
-  Store,
-  Users,
-} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { sidebarItems } from "@/shared/constants";
 import { getUserSession } from "@/shared/lib/getUserSession";
 
-interface Props {
-  className?: string;
-}
-
-export const AdminSidebarContent: React.FC<Props> = async ({ className }) => {
+export const AdminSidebarContent: React.FC = async () => {
   const session = await getUserSession();
   return (
     <>

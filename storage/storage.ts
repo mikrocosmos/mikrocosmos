@@ -1,9 +1,11 @@
 import * as Minio from "minio";
 
 const minioClient = new Minio.Client({
-  endPoint: "localhost",
-  port: 9000,
-  useSSL: false,
+  endPoint: process.env.MINIO_ADDRESS ?? "cdn.smokymoon.ru",
+  port: Number(process.env.MINIO_PORT),
+  useSSL: true,
+  region: "us-east-1",
+  pathStyle: true,
   accessKey: process.env.S3_ACCESS_KEY,
   secretKey: process.env.S3_SECRET_KEY,
 });
@@ -97,7 +99,7 @@ class StorageSingleton {
       }
 
       await minioClient.putObject(bucketName, objectName, file);
-      return `http://localhost:9000/${bucketName}/${objectName}`;
+      return `https://cdn.smokymoon.ru/${bucketName}/${objectName}`;
     } catch (error) {
       console.error("[StorageSingleton.putObject] Server error", error);
     }

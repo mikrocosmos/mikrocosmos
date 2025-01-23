@@ -6,7 +6,6 @@ import { getHeroSlider } from "@/shared/lib";
 import { HeroSlide } from "@prisma/client";
 import { HeroSliderItem } from "@/shared/components/";
 import { Skeleton } from "@/shared/components/ui/";
-import { deleteSlide } from "@/app/actions/admin.slider.actions";
 
 interface Props {
   inAdmin?: boolean;

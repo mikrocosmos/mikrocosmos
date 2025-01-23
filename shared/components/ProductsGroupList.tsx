@@ -2,7 +2,7 @@
 import React, { PropsWithChildren } from "react";
 import { useIntersection } from "react-use";
 import { ItemCard, Title } from "./";
-import { branchStore, useCategoryStore } from "@/shared/store/";
+import { useCategoryStore } from "@/shared/store/";
 import { BranchToProduct, Product } from "@prisma/client";
 
 interface Props {

@@ -14,6 +14,8 @@ import {
 import { CategorySelect } from "@/shared/components/admin/CategorySelect";
 import { ImageInput } from "@/shared/components/admin/ImageInput";
 import { cn } from "@/shared/lib/utils";
+import toast from "react-hot-toast";
+import { toastError, toastSuccess } from "@/shared/constants";
 
 interface Props {
   className?: string;
@@ -42,8 +44,10 @@ export const AddSubCategoryForm: React.FC<Props> = ({ className }) => {
 
       await createSubCategory(formData);
       router.push("/admin/categories");
+      toast("Подкатегория добавлена", toastSuccess);
     } catch (error) {
       console.error(error);
+      toast("Не удалось добавить подкатегорию", toastError);
     }
   };
 
@@ -77,7 +81,11 @@ export const AddSubCategoryForm: React.FC<Props> = ({ className }) => {
         <ImageInput />
 
         <div className="flex items-center gap-5">
-          <Button type="submit" variant="white_accent">
+          <Button
+            loading={form.formState.isSubmitting}
+            type="submit"
+            variant="white_accent"
+          >
             Сохранить
           </Button>
         </div>

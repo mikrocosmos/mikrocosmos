@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Title, RangeSlider, CheckboxFiltersGroup } from "./";
+import { RangeSlider, CheckboxFiltersGroup } from "./";
 import {
   AccordionContent,
   AccordionItem,

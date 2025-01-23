@@ -7,7 +7,6 @@ import {
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { TopBar } from "@/shared/components/TopBar";
-import { fetchItems } from "@/shared/lib";
 import React from "react";
 import { prisma } from "@/prisma/prisma-client";
 

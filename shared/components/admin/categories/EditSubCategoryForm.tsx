@@ -19,6 +19,8 @@ import {
 import { CategorySelect } from "@/shared/components/admin/CategorySelect";
 import { ImageInput } from "@/shared/components/admin/ImageInput";
 import { cn } from "@/shared/lib/utils";
+import toast from "react-hot-toast";
+import { toastError, toastSuccess } from "@/shared/constants";
 
 interface Props {
   subcategory: SubCategory & { category: Category };
@@ -52,8 +54,10 @@ export const EditSubCategoryForm: React.FC<Props> = ({
 
       await updateSubCategory(subcategory.id, formData);
       router.push("/admin/categories");
+      toast("Подкатегория обновлена", toastSuccess);
     } catch (error) {
       console.error(error);
+      toast("Не удалось обновить подкатегорию", toastError);
     }
   };
 
@@ -103,7 +107,11 @@ export const EditSubCategoryForm: React.FC<Props> = ({
             text="Вы уверены, что хотите удалить подкатегорию? Все товары, связанные с ней, будут удалены"
             onConfirm={onDelete}
           >
-            <Button type="button" variant="outline_red">
+            <Button
+              loading={form.formState.isSubmitting}
+              type="button"
+              variant="outline_red"
+            >
               Удалить
             </Button>
           </AreYouSureConfirm>

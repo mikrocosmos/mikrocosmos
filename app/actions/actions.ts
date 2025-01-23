@@ -6,7 +6,6 @@ import { prisma } from "@/prisma/prisma-client";
 import { OrderStatus, Prisma } from "@prisma/client";
 import { hashSync } from "bcryptjs";
 import { getUserSession } from "@/shared/lib/getUserSession";
-import { undefined } from "zod";
 
 export async function createOrder(data: TCheckoutForm) {
   try {

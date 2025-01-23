@@ -7,9 +7,7 @@ import { deleteUser, updateUserInfo } from "@/app/actions/admin.users.actions";
 import { User, UserRole } from "@prisma/client";
 import { FormInput } from "@/shared/components/form/FormInput";
 import { cn } from "@/shared/lib/utils";
-import { FileX2, Save } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { Form, FormField } from "../../ui/form";
 import { Button, Label, RadioGroup } from "../../ui";
 import { RadioGroupItem } from "@/shared/components/ui";
@@ -22,7 +20,6 @@ interface Props {
 
 export const EditUserForm: React.FC<Props> = ({ className, user }) => {
   const router = useRouter();
-  const session = useSession().data;
   const [role, setRole] = React.useState<UserRole>(user.role);
   const form = useForm<TFormEditUserValues>({
     resolver: zodResolver(formEditUserSchema),

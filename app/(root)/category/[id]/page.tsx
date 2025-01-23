@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import { Container, Title } from "@/shared/components";
-import { GetSearchParams } from "@/shared/lib/findItems";
 import { prisma } from "@/prisma/prisma-client";
 import { SubCategoryCard } from "@/shared/components/SubCategoryCard";
 

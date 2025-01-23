@@ -6,20 +6,14 @@ import {
   FormLabel,
 } from "@/shared/components/ui/form";
 import { useFormContext } from "react-hook-form";
-import { Branch, BranchToProduct } from "@prisma/client";
+import { Branch } from "@prisma/client";
 import { Input } from "@/shared/components/ui";
 
 interface Props {
-  className?: string;
   branch: Branch[];
-  branchToProducts?: BranchToProduct[];
 }
 
-export const BranchIdsFormField: React.FC<Props> = ({
-  className,
-  branch,
-  branchToProducts,
-}) => {
+export const BranchIdsFormField: React.FC<Props> = ({ branch }) => {
   const form = useFormContext();
 
   return (

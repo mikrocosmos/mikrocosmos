@@ -10,8 +10,7 @@ interface Props {
 }
 
 export const CheckoutCart: React.FC<Props> = ({ className }) => {
-  const { items, updateItemQuantity, removeCartItem, cleanCart, loading } =
-    useCart();
+  const { items, updateItemQuantity, removeCartItem, cleanCart } = useCart();
   const onClickCountButton = (
     id: number,
     quantity: number,
