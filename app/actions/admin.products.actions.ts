@@ -2,9 +2,7 @@
 
 import { prisma } from "@/prisma/prisma-client";
 import { getProductFormData } from "@/shared/lib/getProductFormData";
-import s3Storage from "@/storage/storage";
-
-const BUCKET_NAME = "products";
+import { ImageUploader } from "@/shared/lib/imageUploader";
 
 export async function getProducts(searchValue?: string) {
   if (!searchValue) {
@@ -65,13 +63,9 @@ export async function updateProduct(id: number, formData: FormData) {
 
   let imageUpload;
   if (data.image.name) {
-    const image = Buffer.from(await data.image.arrayBuffer());
+    const uploader = new ImageUploader(data.image);
 
-    imageUpload = await s3Storage.putObject(
-      image,
-      data.image.name,
-      BUCKET_NAME,
-    );
+    imageUpload = await uploader.upload();
 
     if (!imageUpload) {
       throw new Error("Image upload failed");
@@ -137,7 +131,8 @@ export async function deleteProduct(id: number) {
 
   const image = product.imageUrl;
 
-  await s3Storage.deleteObject(image, BUCKET_NAME);
+  const uploader = new ImageUploader();
+  await uploader.delete(image);
 
   await prisma.branchToProduct.deleteMany({
     where: {
@@ -169,13 +164,9 @@ export async function createProduct(formData: FormData) {
     throw new Error("Image is required");
   }
 
-  const image = Buffer.from(await data.image.arrayBuffer());
+  const uploader = new ImageUploader(data.image);
 
-  const imageUrl = await s3Storage.putObject(
-    image,
-    data.image.name,
-    BUCKET_NAME,
-  );
+  const imageUrl = await uploader.upload();
 
   if (!imageUrl) {
     throw new Error("Image upload failed");

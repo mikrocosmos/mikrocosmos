@@ -147,9 +147,8 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 }
 
 export async function setCookie(key: string, value: string) {
-  const cookieStore = await cookies();
+  const cookieStore = cookies();
   cookieStore.set(key, value);
-  return cookieStore;
 }
 
 export async function changeBranch(currentBranchId: number) {

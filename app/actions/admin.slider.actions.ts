@@ -2,20 +2,14 @@
 
 import { prisma } from "@/prisma/prisma-client";
 import { getSlideFormData } from "@/shared/lib/getSlideFormData";
-import s3Storage from "@/storage/storage";
-
-const BUCKET_NAME = "slider";
+import { ImageUploader } from "@/shared/lib/imageUploader";
 
 export async function createSlide(formData: FormData) {
   const data = getSlideFormData(formData);
 
-  const image = Buffer.from(await data.image.arrayBuffer());
+  const uploader = new ImageUploader(data.image);
 
-  const imageUrl = await s3Storage.putObject(
-    image,
-    data.image.name,
-    BUCKET_NAME,
-  );
+  const imageUrl = await uploader.upload();
 
   if (!imageUrl) {
     throw new Error("Image upload failed");
@@ -37,9 +31,9 @@ export async function updateSlide(id: number, formData: FormData) {
   let imageUrl;
 
   if (data.image.name) {
-    const image = Buffer.from(await data.image.arrayBuffer());
+    const uploader = new ImageUploader(data.image);
 
-    imageUrl = await s3Storage.putObject(image, data.image.name, BUCKET_NAME);
+    imageUrl = await uploader.upload();
 
     if (!imageUrl) {
       throw new Error("Image upload failed");
@@ -69,11 +63,12 @@ export async function deleteSlide(id: number) {
 
   const image = slide.imageUrl;
 
-  await s3Storage.deleteObject(image, BUCKET_NAME);
-
   await prisma.heroSlide.delete({
     where: {
       id,
     },
   });
+
+  const uploader = new ImageUploader();
+  await uploader.delete(image);
 }

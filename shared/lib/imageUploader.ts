@@ -1,31 +1,34 @@
-import { promises as fs } from "fs";
+import axios from "axios";
 
 export class ImageUploader {
-  private image: File;
-
-  private generateId() {
-    const id = Array(18)
-      .fill(null)
-      .map(() => Math.round(Math.random() * 16).toString(16))
-      .join("");
-
-    const extension = this.image.name.split(".").pop();
-
-    return `${id}.${extension}`;
-  }
+  private readonly _image?: File;
+  private readonly _storageAddress =
+    process.env.STORAGE_ADDRESS || "https://cdn.smokymoon.ru";
 
   public async upload() {
-    const imageData = await this.image.arrayBuffer();
-    const filePath = `${process.cwd()}/public/uploads/${this.generateId()}`;
-    console.log(`Writing image to: ${filePath}`);
-    await fs.writeFile(filePath, Buffer.from(imageData));
+    if (!this._image) throw new Error("No image provided");
 
-    const imageUrl = filePath.split("public")[1];
-    console.log(`Image URL: ${imageUrl}`);
-    return imageUrl;
+    const formData = new FormData();
+    formData.append("file", this._image);
+
+    const { data } = await axios.post(
+      `${this._storageAddress}/upload`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    );
+
+    return `${this._storageAddress}/file/${data.imageUrl}`;
   }
 
-  constructor(image: File) {
-    this.image = image;
+  public async delete(image: string) {
+    await axios.delete(image);
+  }
+
+  constructor(image?: File) {
+    this._image = image;
   }
 }

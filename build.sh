@@ -1,5 +1,4 @@
-docker compose down smoky-moon
-docker compose down minio
+docker compose down medn-disp
 npm run build
 docker compose build
 docker compose up -d

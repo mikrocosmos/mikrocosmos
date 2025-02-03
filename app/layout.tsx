@@ -3,7 +3,7 @@ import { Jost } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/shared/components";
 
-const jost = Jost({ subsets: ["latin", "cyrillic"] });
+const jost = Jost({ subsets: ["latin", "cyrillic"], display: 'swap', adjustFontFallback: false});
 
 export default function RootLayout({
   children,
