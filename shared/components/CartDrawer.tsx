@@ -86,15 +86,17 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({
                 >
                   Очистить корзину
                 </Button>
-                <Link href="/checkout">
-                  <Button
-                    variant="white_accent"
-                    type="submit"
-                    className="w-full h-12 text-base"
-                  >
-                    Оформить заказ
-                  </Button>
-                </Link>
+                <SheetClose asChild>
+                  <Link href="/checkout">
+                    <Button
+                      variant="white_accent"
+                      type="submit"
+                      className="w-full h-12 text-base"
+                    >
+                      Оформить заказ
+                    </Button>
+                  </Link>
+                </SheetClose>
               </div>
             </SheetFooter>
           </>

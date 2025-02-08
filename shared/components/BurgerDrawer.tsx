@@ -27,7 +27,7 @@ export const BurgerDrawer: React.FC<PropsWithChildren> = ({ children }) => {
         </div>
         <div className="flex-1 text-xl">
           <p>Категории</p>
-          <Categories className="pl-4" />
+          <Categories inBurger className="pl-4" />
         </div>
         <SheetFooter>
           <HeaderFilial className="mb-8 text-xl" />

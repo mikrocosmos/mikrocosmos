@@ -56,7 +56,7 @@ export const AddUserForm: React.FC<Props> = ({ className }) => {
     <Form {...form}>
       <form
         className={cn(
-          "space-y-4 flex flex-col items-center w-screen sm:block md:w-full",
+          "space-y-4 flex flex-col items-center sm:block md:w-full",
           className,
         )}
         onSubmit={form.handleSubmit(onSubmit)}

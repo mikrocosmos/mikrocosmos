@@ -13,15 +13,22 @@ import { prisma } from "@/prisma/prisma-client";
 export default async function Home() {
   const categories = await prisma.category.findMany({
     include: {
-      subCategories: {
-        include: {
-          products: {
-            take: 3,
+      subCategories: true,
+    },
+  });
+
+  const findProductBySubCategory = async (subCategoryId: number) => {
+    return prisma.product.findMany({
+      where: {
+        vary: {
+          subCategory: {
+            id: subCategoryId,
           },
         },
       },
-    },
-  });
+      take: 3,
+    });
+  };
 
   const btps = await prisma.branchToProduct.findMany();
   return (
@@ -41,23 +48,26 @@ export default async function Home() {
         />
         {categories.map((category) => (
           <div key={category.id} id={category.name}>
-            {category.subCategories.map((subcategory) => (
-              <ProductsGroupList
-                key={subcategory.id}
-                title={subcategory.name}
-                btps={btps}
-                items={subcategory.products}
-                categoryId={subcategory.categoryId}
-              >
-                <Link
-                  href={`/category/${subcategory.categoryId}`}
-                  className="w-full sm:h-[450px] font-bold text-2xl flex justify-center items-center text-center bg-popover p-5 rounded-2xl shadow-xl cursor-pointer transition-all ease-in-out group hover:shadow-lg hover:bg-secondary origin-top-left"
+            {category.subCategories.map(async (subcategory) => {
+              const items = await findProductBySubCategory(subcategory.id);
+              return (
+                <ProductsGroupList
+                  key={subcategory.id}
+                  title={subcategory.name}
+                  btps={btps}
+                  items={items}
+                  categoryId={subcategory.categoryId}
                 >
-                  Ещё
-                  <ArrowRight className="group-hover:translate-x-1 transition ease-in-out" />
-                </Link>
-              </ProductsGroupList>
-            ))}
+                  <Link
+                    href={`/category/${subcategory.categoryId}`}
+                    className="w-full sm:h-[450px] font-bold text-2xl flex justify-center items-center text-center bg-popover p-5 rounded-2xl shadow-xl cursor-pointer transition-all ease-in-out group hover:shadow-lg hover:bg-secondary origin-top-left"
+                  >
+                    Ещё
+                    <ArrowRight className="group-hover:translate-x-1 transition ease-in-out" />
+                  </Link>
+                </ProductsGroupList>
+              );
+            })}
           </div>
         ))}
       </section>

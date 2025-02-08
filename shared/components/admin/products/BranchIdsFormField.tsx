@@ -44,8 +44,11 @@ export const BranchIdsFormField: React.FC<Props> = ({ branch }) => {
                     control={form.control}
                     name={`branches[${index}].quantity`}
                     render={({ field }) => (
-                      <FormItem key={item.id} className="flex items-center">
-                        <FormLabel className="font-normal text-base w-full">
+                      <FormItem
+                        key={item.id}
+                        className="flex gap-10 items-center"
+                      >
+                        <FormLabel className="font-normal text-base text-nowrap w-full flex-grow">
                           {item.address}
                         </FormLabel>
                         <FormControl>

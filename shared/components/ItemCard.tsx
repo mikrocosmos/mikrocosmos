@@ -34,7 +34,7 @@ export const ItemCard: React.FC<Props> = ({
         className,
       )}
     >
-      <Link href={`/product/${id}`} className="flex-1">
+      <Link href={session.data?.user ? `/product/${id}` : ""} className="flex-1">
         <div className="flex justify-center items-center relative h-[250px]">
           {session.data?.user ? (
             <Image

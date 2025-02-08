@@ -6,6 +6,6 @@ export const formSubCategoryValues = z.object({
   image: z
     .any()
     .refine((file: File) => file !== undefined, "Выберите картинку"),
-  category: z.string(),
+  category: z.string().min(1, "Выберите категорию"),
 });
 export type TFormSubCategoryValues = z.infer<typeof formSubCategoryValues>;

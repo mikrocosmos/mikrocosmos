@@ -2,14 +2,19 @@ import {
   BranchToProduct,
   Category,
   Product,
+  ProductVary,
   SubCategory,
 } from "@prisma/client";
 
 export type ProductWithSubCategory = Product & {
-  subCategory: SubCategory & { category: Category };
+  vary: ProductVary & {
+    subCategory: SubCategory & { category: Category };
+  };
 };
 
 export type ProductWithSubCategoryAndBranch = Product & {
-  subCategory: SubCategory & { category: Category };
+  vary: ProductVary & {
+    subCategory: SubCategory & { category: Category };
+  };
   branchIds: BranchToProduct[];
 };

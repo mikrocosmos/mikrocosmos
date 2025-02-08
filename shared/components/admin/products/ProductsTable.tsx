@@ -26,6 +26,8 @@ import { getProducts } from "@/app/actions/admin.products.actions";
 import { Skeleton } from "@/shared/components/ui";
 import { ProductsSearch } from "@/shared/components/admin/products/ProductsSearch";
 import { useAdminProductSearchStore } from "@/shared/store";
+import { CategoryFilter } from "@/shared/components/admin/products/CategoryFilter";
+import { ProductsTableRow } from "@/shared/components/admin/products/ProductsTableRow";
 
 interface Props {
   className?: string;
@@ -37,7 +39,6 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
   const { search, updateSearch } = useAdminProductSearchStore((state) => state);
   const [products, setProducts] = React.useState<ProductWithSubCategory[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const { categories } = useCategories();
   const [filteredProducts, setFilteredProducts] = React.useState(products);
   const [order, setOrder] = React.useState<"asc" | "desc">("desc");
   const [sortBy, setSortBy] = React.useState("date");
@@ -60,7 +61,18 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
         if (value === "Все") {
           return true;
         }
-        return product.subCategory.category.name === value;
+        return product.vary.subCategory.category.name === value;
+      }),
+    );
+  };
+
+  const onChangeSubCategoryFilter = (value: string) => {
+    setFilteredProducts(
+      products.filter((product) => {
+        if (value === "Все") {
+          return true;
+        }
+        return product.vary.subCategory.name === value;
       }),
     );
   };
@@ -70,9 +82,19 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
       case "name":
         return sortProducts(a.name, b.name, order);
       case "category":
-        return sortProducts(a.subCategory.name, b.subCategory.name, order);
-      case "subcategory":
-        return sortProducts(a.subCategory.name, b.subCategory.name, order);
+        return sortProducts(
+          a.vary.subCategory.category.name,
+          b.vary.subCategory.category.name,
+          order,
+        );
+      case "subCategory":
+        return sortProducts(
+          a.vary.subCategory.name,
+          b.vary.subCategory.name,
+          order,
+        );
+      case "vary":
+        return sortProducts(a.vary.name, b.vary.name, order);
       case "price":
         return sortProducts(a.price, b.price, order);
       case "id":
@@ -105,25 +127,7 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
   return (
     <>
       <div className="adaptive items-center justify-between">
-        <Select
-          onValueChange={(value) => {
-            onChangeCategoryFilter(value);
-          }}
-        >
-          <SelectTrigger className={cn("my-4 w-[250px]", className)}>
-            <SelectValue placeholder="Фильтр по категории" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="Все">Все</SelectItem>
-            {Array.from(
-              categories.map((category) => (
-                <SelectItem key={category.id} value={category.name}>
-                  {category.name}
-                </SelectItem>
-              )),
-            )}
-          </SelectContent>
-        </Select>
+        <CategoryFilter onChangeCategoryFilter={onChangeCategoryFilter} />
         <ProductsSearch />
       </div>
       {loading ? (
@@ -179,6 +183,16 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
                   setOrder={setOrder}
                   sortBy={sortBy}
                   setSortBy={setSortBy}
+                  text="Вариация"
+                  sortByValue="vary"
+                />
+              </TableHead>
+              <TableHead className="text-white">
+                <SortTableHead
+                  order={order}
+                  setOrder={setOrder}
+                  sortBy={sortBy}
+                  setSortBy={setSortBy}
                   text="Цена"
                   sortByValue="price"
                 />
@@ -188,47 +202,7 @@ export const ProductsTable: React.FC<Props> = ({ className }) => {
           </TableHeader>
           <TableBody>
             {sortedProducts.map((product) => (
-              <TableRow key={product.id}>
-                <TableCell>
-                  <Link href={`/product/${product.id}`}>
-                    <Image
-                      className="rounded-3xl shadow-lg border-2 border-gray-200 object-cover md:w-[150px] w-full h-[150px] bg-white transition hover:border-primary"
-                      src={product.imageUrl}
-                      alt={product.name}
-                      width={150}
-                      height={150}
-                    />
-                  </Link>
-                </TableCell>
-                <TableCell>{product.id}</TableCell>
-                <TableCell>{product.name}</TableCell>
-                <TableCell>
-                  <Link
-                    className="transition hover:text-primary"
-                    href={`/admin/category/${product.subCategory.category.id}`}
-                  >
-                    {product.subCategory.category.name}
-                  </Link>
-                </TableCell>
-                <TableCell>
-                  <Link
-                    className="transition hover:text-primary"
-                    href={`/admin/subcategory/${product.subCategory.id}`}
-                  >
-                    {product.subCategory.name}
-                  </Link>
-                </TableCell>
-                <TableCell>{product.price} ₽</TableCell>
-                <TableCell>
-                  <Link
-                    className="transition hover:text-primary flex items-center gap-1"
-                    href={`/admin/products/${product.id}`}
-                  >
-                    <Pencil size={16} />
-                    Редактировать
-                  </Link>
-                </TableCell>
-              </TableRow>
+              <ProductsTableRow product={product} key={product.id} />
             ))}
           </TableBody>
         </Table>

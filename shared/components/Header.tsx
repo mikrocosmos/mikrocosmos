@@ -55,7 +55,7 @@ export const Header: React.FC<Props> = async ({ className }) => {
           <ContactModal text={contactArticle?.text} />
           <ProfileButton />
           <BurgerDrawer>
-            <HeaderIcon className="p-3 pr-0 lg:hidden">
+            <HeaderIcon className="p-3 lg:hidden">
               <Menu size={40} />
             </HeaderIcon>
           </BurgerDrawer>

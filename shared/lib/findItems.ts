@@ -17,7 +17,7 @@ export const findItems = async (id: number, params?: GetSearchParams) => {
   const minPrice = Number(params?.min) || DEFAULT_MIN_PRICE;
   const maxPrice = Number(params?.max) || DEFAULT_MAX_PRICE;
 
-  return prisma.subCategory.findFirst({
+  return prisma.productVary.findFirst({
     where: { id: Number(id) },
     include: {
       products: {

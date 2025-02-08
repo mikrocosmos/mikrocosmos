@@ -12,7 +12,7 @@ export const useSubCategories = () => {
         const subCategories = await Api.subCategories.getAll();
         setSubCategories(subCategories);
       } catch (error) {
-        console.error("[useCategories]", error);
+        console.error("[useSubCategories]", error);
       } finally {
         setLoading(false);
       }

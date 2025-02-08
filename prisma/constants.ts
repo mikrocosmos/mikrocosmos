@@ -213,6 +213,99 @@ export const subCategories = [
   },
 ];
 
+export const productVaries = [
+  {
+    name: "Color Variants",
+    order: 1,
+    subCategoryId: 1,
+    imageUrl: "https://example.com/images/color-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 2,
+    subCategoryId: 1,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+  {
+    name: "Material Variants",
+    order: 3,
+    subCategoryId: 2,
+    imageUrl: "https://example.com/images/material-variants.jpg",
+  },
+  {
+    name: "Style Variants",
+    order: 4,
+    subCategoryId: 2,
+    imageUrl: "https://example.com/images/style-variants.jpg",
+  },
+  {
+    name: "Pattern Variants",
+    order: 5,
+    subCategoryId: 3,
+    imageUrl: "https://example.com/images/pattern-variants.jpg",
+  },
+  {
+    name: "Flavor Variants",
+    order: 6,
+    subCategoryId: 3,
+    imageUrl: "https://example.com/images/flavor-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 7,
+    subCategoryId: 4,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 8,
+    subCategoryId: 5,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 9,
+    subCategoryId: 6,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 10,
+    subCategoryId: 7,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 11,
+    subCategoryId: 8,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 12,
+    subCategoryId: 9,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 13,
+    subCategoryId: 10,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 14,
+    subCategoryId: 11,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+  {
+    name: "Size Variants",
+    order: 15,
+    subCategoryId: 12,
+    imageUrl: "https://example.com/images/size-variants.jpg",
+  },
+];
+
 export const branches = [
   {
     address: "Стройотрядовская, 6",
@@ -237,7 +330,7 @@ export const branches = [
 export const products = [
   {
     name: "ОЭС HQD CUVIE PLUS - Lychee Ice (Личи) До 1200 затяжек 20мг",
-    subCategoryId: 1,
+    varyId: 1,
     price: 950,
     description: "Вкус: Личи",
     imageUrl:
@@ -245,7 +338,7 @@ export const products = [
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Melon (Дыня) До 1200 затяжек 20мг ",
-    subCategoryId: 1,
+    varyId: 1,
     price: 950,
     description: "Вкус: Дыня",
     imageUrl:
@@ -253,7 +346,7 @@ export const products = [
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Vanilla Ice Cream (Ванильное Мороженое) До 1200 затяжек 20мг  ",
-    subCategoryId: 1,
+    varyId: 1,
     price: 950,
     description: "Вкус: Ванильное Мороженое",
     imageUrl:
@@ -261,7 +354,7 @@ export const products = [
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Strawberry (Клубника) До 1200 затяжек 20мг",
-    subCategoryId: 1,
+    varyId: 1,
     price: 950,
     description: "Вкус: Клубника",
     imageUrl:
@@ -269,7 +362,7 @@ export const products = [
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Blueberry (Черника) До 1200 затяжек 20мг",
-    subCategoryId: 1,
+    varyId: 1,
     price: 950,
     description: "Вкус: Черника",
     imageUrl:
@@ -277,7 +370,7 @@ export const products = [
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Mango (Манго) До 1200 затяжек 20мг",
-    subCategoryId: 1,
+    varyId: 1,
     price: 950,
     description: "Вкус: Манго",
     imageUrl:
@@ -285,7 +378,7 @@ export const products = [
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Grape (Виноград) До 1200 затяжек 20мг",
-    subCategoryId: 1,
+    varyId: 1,
     price: 950,
     description: "Вкус: Виноград",
     imageUrl:
@@ -293,7 +386,7 @@ export const products = [
   },
   {
     name: "ОЭС HQD CUVIE PLUS - Peach (Персик) До 1200 затяжек 20мг",
-    subCategoryId: 1,
+    varyId: 1,
     price: 950,
     description: "Вкус: Персик",
     imageUrl:
@@ -301,7 +394,7 @@ export const products = [
   },
   {
     name: "Кальян Khalil Mamoon - Phunnel Bowl",
-    subCategoryId: 2,
+    varyId: 2,
     price: 4500,
     description: "Классический кальян с фановым чаша",
     imageUrl:
@@ -309,7 +402,7 @@ export const products = [
   },
   {
     name: "Кальян Amy Deluxe - Mini",
-    subCategoryId: 2,
+    varyId: 2,
     price: 3500,
     description: "Компактный кальян для дома и улицы",
     imageUrl:
@@ -317,7 +410,7 @@ export const products = [
   },
   {
     name: "Кальян Starbuzz - Vintage",
-    subCategoryId: 2,
+    varyId: 2,
     price: 6000,
     description: "Элегантный кальян для настоящих ценителей",
     imageUrl:
@@ -325,7 +418,7 @@ export const products = [
   },
   {
     name: "Кальян Mya Saray - Hookah",
-    subCategoryId: 2,
+    varyId: 2,
     price: 5200,
     description: "Кальян с уникальным дизайном и качественным дымом",
     imageUrl:
@@ -333,7 +426,7 @@ export const products = [
   },
   {
     name: "Кальян Oduman - N2",
-    subCategoryId: 2,
+    varyId: 2,
     price: 4800,
     description: "Современный кальян с инновационными решениями",
     imageUrl:
@@ -341,7 +434,7 @@ export const products = [
   },
   {
     name: "Кальян Sahara Smoke - Classic",
-    subCategoryId: 2,
+    varyId: 2,
     price: 4000,
     description: "Традиционный кальян с глубоким вкусом",
     imageUrl:
@@ -349,7 +442,7 @@ export const products = [
   },
   {
     name: "Кальян Aladin - T-Design",
-    subCategoryId: 2,
+    varyId: 2,
     price: 5500,
     description: "Стильный кальян с высококачественными материалами",
     imageUrl:
@@ -357,7 +450,7 @@ export const products = [
   },
   {
     name: "Кальян Fumari - Glass Base",
-    subCategoryId: 2,
+    varyId: 2,
     price: 6200,
     description: "Изящный кальян с стеклянной основой и ярким дизайном",
     imageUrl:
@@ -365,7 +458,7 @@ export const products = [
   },
   {
     name: "Табак Al Fakher - Mint (Мята)",
-    subCategoryId: 3,
+    varyId: 3,
     price: 500,
     description: "",
     imageUrl:
@@ -373,7 +466,7 @@ export const products = [
   },
   {
     name: "Табак Starbuzz - Strawberry Margarita",
-    subCategoryId: 3,
+    varyId: 3,
     price: 600,
     description: "",
     imageUrl:
@@ -381,7 +474,7 @@ export const products = [
   },
   {
     name: "Табак Nakhla - Double Apple",
-    subCategoryId: 3,
+    varyId: 3,
     price: 450,
     description: "",
     imageUrl:
@@ -389,7 +482,7 @@ export const products = [
   },
   {
     name: "Табак Fumari - Watermelon",
-    subCategoryId: 3,
+    varyId: 3,
     price: 550,
     description: "",
     imageUrl:
@@ -397,7 +490,7 @@ export const products = [
   },
   {
     name: "Табак Adalya - Blueberry",
-    subCategoryId: 3,
+    varyId: 3,
     price: 520,
     description: "",
     imageUrl:
@@ -405,7 +498,7 @@ export const products = [
   },
   {
     name: "Табак Social Smoke - Vanilla",
-    subCategoryId: 3,
+    varyId: 3,
     price: 580,
     description: "",
     imageUrl:
@@ -413,7 +506,7 @@ export const products = [
   },
   {
     name: "Табак Tangiers - Kashmir Peach",
-    subCategoryId: 3,
+    varyId: 3,
     price: 700,
     description: "",
     imageUrl:
@@ -421,7 +514,7 @@ export const products = [
   },
   {
     name: "Табак Hookafina - Pineapple",
-    subCategoryId: 3,
+    varyId: 3,
     price: 600,
     description: "",
     imageUrl:
@@ -429,7 +522,7 @@ export const products = [
   },
   {
     name: "Чайный лист Green Tea - Sencha",
-    subCategoryId: 4,
+    varyId: 4,
     price: 300,
     description: "Японский зеленый чай",
     imageUrl:
@@ -437,7 +530,7 @@ export const products = [
   },
   {
     name: "Чайный лист Black Tea - Earl Grey",
-    subCategoryId: 4,
+    varyId: 4,
     price: 350,
     description: "Английский черный чай с бергамотом",
     imageUrl:
@@ -445,7 +538,7 @@ export const products = [
   },
   {
     name: "Чайный лист Herbal Tea - Chamomile",
-    subCategoryId: 4,
+    varyId: 4,
     price: 250,
     description: "Ромашковый чай для расслабления",
     imageUrl:
@@ -453,7 +546,7 @@ export const products = [
   },
   {
     name: "Чайный лист Oolong Tea - Tie Guan Yin",
-    subCategoryId: 4,
+    varyId: 4,
     price: 400,
     description: "Улун из Китая с цветочным ароматом",
     imageUrl:
@@ -461,7 +554,7 @@ export const products = [
   },
   {
     name: "Чайный лист White Tea - Silver Needle",
-    subCategoryId: 4,
+    varyId: 4,
     price: 500,
     description: "Белый чай с нежным вкусом",
     imageUrl:
@@ -469,7 +562,7 @@ export const products = [
   },
   {
     name: "Чайный лист Rooibos Tea - Vanilla",
-    subCategoryId: 4,
+    varyId: 4,
     price: 300,
     description: "Ройбуш с ванильным ароматом",
     imageUrl:
@@ -477,7 +570,7 @@ export const products = [
   },
   {
     name: "Чайный лист Pu-erh Tea - Aged",
-    subCategoryId: 4,
+    varyId: 4,
     price: 600,
     description: "Старый пуэр с глубоким вкусом",
     imageUrl:
@@ -485,7 +578,7 @@ export const products = [
   },
   {
     name: "Чайный лист Matcha Tea",
-    subCategoryId: 4,
+    varyId: 4,
     price: 700,
     description: "Японский матча для приготовления напитков",
     imageUrl:
@@ -493,7 +586,7 @@ export const products = [
   },
   {
     name: "Уголь Coco Nara - Natural Coconut Charcoal",
-    subCategoryId: 5,
+    varyId: 5,
     price: 400,
     description: "100% кокосовый уголь для кальяна",
     imageUrl:
@@ -501,7 +594,7 @@ export const products = [
   },
   {
     name: "Уголь Fumari - Quick Light Charcoal",
-    subCategoryId: 5,
+    varyId: 5,
     price: 350,
     description: "Быстрозажигающий уголь для удобства",
     imageUrl:
@@ -509,7 +602,7 @@ export const products = [
   },
   {
     name: "Уголь Three Kings - Natural Charcoal",
-    subCategoryId: 5,
+    varyId: 5,
     price: 450,
     description: "Естественный уголь без добавок",
     imageUrl:
@@ -517,7 +610,7 @@ export const products = [
   },
   {
     name: "Уголь Aladin - Coconut Charcoal",
-    subCategoryId: 5,
+    varyId: 5,
     price: 500,
     description: "Кокосовый уголь с длительным горением",
     imageUrl:
@@ -525,7 +618,7 @@ export const products = [
   },
   {
     name: "Уголь Starbuzz - Quick Light Charcoal",
-    subCategoryId: 5,
+    varyId: 5,
     price: 400,
     description: "Быстрозажигающий уголь для быстрого использования",
     imageUrl:
@@ -533,7 +626,7 @@ export const products = [
   },
   {
     name: "Уголь Shisha Charcoal - Natural Coconut Coals",
-    subCategoryId: 5,
+    varyId: 5,
     price: 450,
     description: "Естественные кокосовые угли для кальяна",
     imageUrl:
@@ -541,7 +634,7 @@ export const products = [
   },
   {
     name: "Уголь Nakhla - Charcoal Cubes",
-    subCategoryId: 5,
+    varyId: 5,
     price: 300,
     description: "Прямоугольные угли для удобного использования",
     imageUrl:
@@ -549,7 +642,7 @@ export const products = [
   },
   {
     name: "Уголь Othmani - Premium Coconut Charcoal",
-    subCategoryId: 5,
+    varyId: 5,
     price: 600,
     description: "Премиум угли из кокоса для настоящих ценителей",
     imageUrl:
@@ -557,7 +650,7 @@ export const products = [
   },
   {
     name: "POD-система Juul - Starter Kit",
-    subCategoryId: 6,
+    varyId: 6,
     price: 2000,
     description: "Комплект с зарядным устройством и картриджами",
     imageUrl:
@@ -565,7 +658,7 @@ export const products = [
   },
   {
     name: "POD-система Vaporesso XROS",
-    subCategoryId: 6,
+    varyId: 6,
     price: 2500,
     description: "Компактная POD-система с регулируемой мощностью",
     imageUrl:
@@ -573,7 +666,7 @@ export const products = [
   },
   {
     name: "POD-система SMOK Nord X",
-    subCategoryId: 6,
+    varyId: 6,
     price: 3000,
     description: "Мощная POD-система с сменными картриджами",
     imageUrl:
@@ -581,7 +674,7 @@ export const products = [
   },
   {
     name: "POD-система Voopoo Vinci Air",
-    subCategoryId: 6,
+    varyId: 6,
     price: 2800,
     description: "Эргономичная POD-система с возможностью настройки",
     imageUrl:
@@ -589,7 +682,7 @@ export const products = [
   },
   {
     name: "POD-система GeekVape Aegis Pod",
-    subCategoryId: 6,
+    varyId: 6,
     price: 3200,
     description: "Прочная POD-система с защитой от воды и пыли",
     imageUrl:
@@ -597,7 +690,7 @@ export const products = [
   },
   {
     name: "POD-система Vapefly Optima",
-    subCategoryId: 6,
+    varyId: 6,
     price: 2700,
     description: "Легкая и удобная POD-система для повседневного использования",
     imageUrl:
@@ -605,7 +698,7 @@ export const products = [
   },
   {
     name: "POD-система Innokin Sceptre",
-    subCategoryId: 6,
+    varyId: 6,
     price: 2400,
     description: "POD-система с отличной передачей вкуса",
     imageUrl:
@@ -613,7 +706,7 @@ export const products = [
   },
   {
     name: "POD-система Uwell Caliburn G",
-    subCategoryId: 6,
+    varyId: 6,
     price: 2600,
     description: "Известная POD-система с высокой производительностью",
     imageUrl:
@@ -621,7 +714,7 @@ export const products = [
   },
   {
     name: "Жидкость Naked100 - Lava Flow",
-    subCategoryId: 7,
+    varyId: 7,
     price: 800,
     description: "Смешение ананаса и клубники с кремом",
     imageUrl:
@@ -629,7 +722,7 @@ export const products = [
   },
   {
     name: "Жидкость Ruthless - Swamp Thang",
-    subCategoryId: 7,
+    varyId: 7,
     price: 850,
     description: "Яркий вкус яблока и лимона",
     imageUrl:
@@ -637,7 +730,7 @@ export const products = [
   },
   {
     name: "Жидкость Dinner Lady - Lemon Tart",
-    subCategoryId: 7,
+    varyId: 7,
     price: 900,
     description: "Лимонный пирог с кремом и корочкой",
     imageUrl:
@@ -645,7 +738,7 @@ export const products = [
   },
   {
     name: "Жидкость Vapetasia - Killer Kustard",
-    subCategoryId: 7,
+    varyId: 7,
     price: 950,
     description: "Кремовый вкус ванильного пудинга",
     imageUrl:
@@ -653,7 +746,7 @@ export const products = [
   },
   {
     name: "Жидкость Charlie's Chalk Dust - Mustache Milk",
-    subCategoryId: 7,
+    varyId: 7,
     price: 800,
     description: "Молочный коктейль с бананом и клубникой",
     imageUrl:
@@ -661,7 +754,7 @@ export const products = [
   },
   {
     name: "Жидкость One Hit Wonder - Muffin Man",
-    subCategoryId: 7,
+    varyId: 7,
     price: 850,
     description: "Мафин с яблоком и корицей",
     imageUrl:
@@ -669,7 +762,7 @@ export const products = [
   },
   {
     name: "Жидкость Bad Drip Labs - Bad Blood",
-    subCategoryId: 7,
+    varyId: 7,
     price: 900,
     description: "Смешение черной смородины и граната",
     imageUrl:
@@ -677,7 +770,7 @@ export const products = [
   },
   {
     name: "Жидкость Cloud Nurdz - Watermelon Apple",
-    subCategoryId: 7,
+    varyId: 7,
     price: 800,
     description: "Сладкий арбуз и яблоко в одном флаконе",
     imageUrl:
@@ -685,14 +778,14 @@ export const products = [
   },
   {
     name: "Самокурка Raw Organic Hemp Wraps",
-    subCategoryId: 8,
+    varyId: 8,
     price: 300,
     description: "Органические обертки из конопли без добавок",
     imageUrl: "https://example.com/image49.jpg",
   },
   {
     name: "Самокурка Zig-Zag Rolling Papers",
-    subCategoryId: 8,
+    varyId: 8,
     price: 150,
     description: "Классические бумажные обертки для самокурения",
     imageUrl:
@@ -700,7 +793,7 @@ export const products = [
   },
   {
     name: "Самокурка Elements Rice Papers",
-    subCategoryId: 8,
+    varyId: 8,
     price: 200,
     description: "Рисовые бумаги для чистого курения",
     imageUrl:
@@ -708,7 +801,7 @@ export const products = [
   },
   {
     name: "Самокурка OCB Premium Rolling Papers",
-    subCategoryId: 8,
+    varyId: 8,
     price: 180,
     description: "Премиум бумага для самокурения без добавок",
     imageUrl:
@@ -716,7 +809,7 @@ export const products = [
   },
   {
     name: "Самокурка King Palm Leaf Wraps",
-    subCategoryId: 8,
+    varyId: 8,
     price: 350,
     description: "Обертки из пальмовых листьев для натурального курения",
     imageUrl:
@@ -724,7 +817,7 @@ export const products = [
   },
   {
     name: "Самокурка Juicy Jays Flavored Papers",
-    subCategoryId: 8,
+    varyId: 8,
     price: 220,
     description: "Ароматизированные бумаги для курения с разными вкусами",
     imageUrl:
@@ -732,7 +825,7 @@ export const products = [
   },
   {
     name: "Самокурка Blazy Susan Pink Rolling Papers",
-    subCategoryId: 8,
+    varyId: 8,
     price: 250,
     description: "Розовые бумаги для стильного курения",
     imageUrl:
@@ -740,7 +833,7 @@ export const products = [
   },
   {
     name: "Самокурка RAW Cones Classic Size",
-    subCategoryId: 8,
+    varyId: 8,
     price: 300,
     description: "Конусы для легкого заполнения табаком или травами",
     imageUrl:
@@ -748,28 +841,28 @@ export const products = [
   },
   {
     name: "Аксессуар Grinder - Herb Crusher",
-    subCategoryId: 9,
+    varyId: 9,
     price: 700,
     description: "Ручной измельчитель трав и табака",
     imageUrl: "https://m.media-amazon.com/images/I/61UEglFVZ6L.jpg",
   },
   {
     name: "Аксессуар Rolling Tray - Metal Tray",
-    subCategoryId: 9,
+    varyId: 9,
     price: 500,
     description: "Металлическая поднос для самокурения",
     imageUrl: "https://m.media-amazon.com/images/I/51xEJT9qj9L.jpg",
   },
   {
     name: "Аксессуар Lighter - Torch Lighter",
-    subCategoryId: 9,
+    varyId: 9,
     price: 300,
     description: "Газовая зажигалка с регулировкой пламени",
     imageUrl: "https://m.media-amazon.com/images/I/61PndOAXhDL.jpg",
   },
   {
     name: "Аксессуар Storage Container - Airtight Jar",
-    subCategoryId: 9,
+    varyId: 9,
     price: 400,
     description: "Контейнер для хранения трав и табака",
     imageUrl:
@@ -777,7 +870,7 @@ export const products = [
   },
   {
     name: "Аксессуар Pipe Tool Set",
-    subCategoryId: 9,
+    varyId: 9,
     price: 600,
     description: "Набор инструментов для трубки и самокурки",
     imageUrl:
@@ -785,14 +878,14 @@ export const products = [
   },
   {
     name: "Аксессуар Ashtray - Glass Ashtray",
-    subCategoryId: 9,
+    varyId: 9,
     price: 250,
     description: "Стеклянная пепельница для кальяна и сигарет",
     imageUrl: "https://m.media-amazon.com/images/I/71gJVmrykzL.jpg",
   },
   {
     name: "Аксессуар Filter Tips - Pre-Rolled Tips",
-    subCategoryId: 9,
+    varyId: 9,
     price: 150,
     description: "Фильтры для самокурки и сигарет",
     imageUrl:
@@ -800,7 +893,7 @@ export const products = [
   },
   {
     name: "Аксессуар Hookah Hose Holder",
-    subCategoryId: 9,
+    varyId: 9,
     price: 200,
     description: "Держатель для шланга кальяна",
     imageUrl:
@@ -808,7 +901,7 @@ export const products = [
   },
   {
     name: "Картридж Vaporesso XROS Replacement Pods",
-    subCategoryId: 10,
+    varyId: 10,
     price: 600,
     description: "Замена картриджа для Vaporesso XROS",
     imageUrl:
@@ -816,7 +909,7 @@ export const products = [
   },
   {
     name: "Картридж Smok Nord Replacement Pods",
-    subCategoryId: 10,
+    varyId: 10,
     price: 650,
     description: "Замена картриджа для Smok Nord",
     imageUrl:
@@ -824,7 +917,7 @@ export const products = [
   },
   {
     name: "Испаритель GeekVape P Coil",
-    subCategoryId: 10,
+    varyId: 10,
     price: 700,
     description: "Испаритель для GeekVape",
     imageUrl:
@@ -832,7 +925,7 @@ export const products = [
   },
   {
     name: "Испаритель Voopoo PnP Coils",
-    subCategoryId: 10,
+    varyId: 10,
     price: 750,
     description: "Испаритель для Voopoo PnP",
     imageUrl:
@@ -840,14 +933,14 @@ export const products = [
   },
   {
     name: "Картридж Uwell Caliburn Replacement Pods",
-    subCategoryId: 10,
+    varyId: 10,
     price: 600,
     description: "Замена картриджа для Uwell Caliburn",
     imageUrl: "https://example.com/image69.jpg",
   },
   {
     name: "Испаритель HorizonTech Falcon Coils",
-    subCategoryId: 10,
+    varyId: 10,
     price: 800,
     description: "Испаритель для HorizonTech Falcon",
     imageUrl:
@@ -855,7 +948,7 @@ export const products = [
   },
   {
     name: "Картридж Innokin Zenith Replacement Pods",
-    subCategoryId: 10,
+    varyId: 10,
     price: 650,
     description: "Замена картриджа для Innokin Zenith",
     imageUrl:
@@ -863,7 +956,7 @@ export const products = [
   },
   {
     name: "Испаритель Smok TFV12 Coils",
-    subCategoryId: 10,
+    varyId: 10,
     price: 850,
     description: "Испаритель для Smok TFV12",
     imageUrl:
@@ -871,7 +964,7 @@ export const products = [
   },
   {
     name: "Жевательный табак Grizzly Wintergreen",
-    subCategoryId: 11,
+    varyId: 11,
     price: 200,
     description: "Жевательный табак со вкусом зимней зелени",
     imageUrl:
@@ -879,7 +972,7 @@ export const products = [
   },
   {
     name: "Жевательный табак Copenhagen Original",
-    subCategoryId: 11,
+    varyId: 11,
     price: 250,
     description: "Классический жевательный табак Copenhagen",
     imageUrl:
@@ -887,7 +980,7 @@ export const products = [
   },
   {
     name: "Жевательный табак Skoal Mint",
-    subCategoryId: 11,
+    varyId: 11,
     price: 230,
     description: "Жевательный табак со вкусом мяты",
     imageUrl:
@@ -895,7 +988,7 @@ export const products = [
   },
   {
     name: "Жевательный табак Red Man Original",
-    subCategoryId: 11,
+    varyId: 11,
     price: 220,
     description: "Классический жевательный табак Red Man",
     imageUrl:
@@ -903,7 +996,7 @@ export const products = [
   },
   {
     name: "Жевательный табак Timber Wolf Peach",
-    subCategoryId: 11,
+    varyId: 11,
     price: 210,
     description: "Жевательный табак со вкусом персика",
     imageUrl:
@@ -911,7 +1004,7 @@ export const products = [
   },
   {
     name: "Жевательный табак Longhorn Wintergreen",
-    subCategoryId: 11,
+    varyId: 11,
     price: 200,
     description: "Жевательный табак со вкусом зимней зелени Longhorn",
     imageUrl:
@@ -919,7 +1012,7 @@ export const products = [
   },
   {
     name: "Жевательный табак Stoker's Straight Cut",
-    subCategoryId: 11,
+    varyId: 11,
     price: 240,
     description: "Прямой резанный жевательный табак Stoker's",
     imageUrl:
@@ -927,7 +1020,7 @@ export const products = [
   },
   {
     name: "Жевательный табак Kayak Mint",
-    subCategoryId: 11,
+    varyId: 11,
     price: 230,
     description: "Жевательный табак со вкусом мяты Kayak",
     imageUrl:

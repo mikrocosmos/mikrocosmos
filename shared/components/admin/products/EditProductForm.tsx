@@ -37,8 +37,8 @@ export const EditProductForm: React.FC<Props> = ({ className, product }) => {
       price: product.price,
       branches: defaultBranches,
       image: product.imageUrl,
-      category: product.subCategory.category.name,
-      subCategory: product.subCategory.name,
+      category: product.vary.subCategory.category.name,
+      subCategory: product.vary.subCategory.name,
     },
   });
 
@@ -53,12 +53,13 @@ export const EditProductForm: React.FC<Props> = ({ className, product }) => {
       formData.append("branches", JSON.stringify(data.branches));
       formData.append(
         "category",
-        data.category || product.subCategory.category.name,
+        data.category || product.vary.subCategory.category.name,
       );
       formData.append(
         "subCategory",
-        data.subCategory || product.subCategory.name,
+        data.subCategory || product.vary.subCategory.name,
       );
+      formData.append("productVary", data.productVary || product.vary.name);
 
       await updateProduct(product.id, formData);
       router.push("/admin/products");

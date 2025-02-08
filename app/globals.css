@@ -14,6 +14,32 @@ html {
   }
 }
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #444;
+}
+
+.scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #666 #333; /* Firefox */
+}
+
 @layer base {
   :root {
     --background: 0, 0%, 29%;
@@ -54,7 +80,6 @@ html {
     @apply bg-background text-foreground;
   }
 }
-
 
 /* Hide arrows in number input */
 input::-webkit-outer-spin-button,
@@ -115,32 +140,6 @@ input[type="number"] {
   display: none;
 }
 
-.scrollbar {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #666 #333; /* Firefox */
-}
-
-/** Chrome, Edge **/
-.scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.scrollbar::-webkit-scrollbar-track {
-  border-radius: 6px;
-  background: #333;
-}
-
-.scrollbar::-webkit-scrollbar-thumb {
-  background: #666;
-  border-radius: 6px;
-}
-
-.scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #eee;
-}
-
-/** **/
-
 #nprogress .bar {
   @apply bg-primary !important;
 }
@@ -158,7 +157,7 @@ input[type="number"] {
   flex: 1;
 }
 .admin-page {
-  @apply absolute sm:left-56 top-[70px] p-0 md:py-3 md:px-4 ;
+  @apply absolute sm:left-56 top-[70px] py-3 px-4 !w-auto;
 }
 
 .admin-card {
@@ -219,12 +218,11 @@ article {
   }
 }
 
-
 .gradient-overlay {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
   background: linear-gradient(in oklab, #aa96d8, #6b2ff1);
 }
 
 .adaptive {
-  @apply flex flex-col md:flex-row;
+  @apply flex flex-col md:flex-row gap-5;
 }

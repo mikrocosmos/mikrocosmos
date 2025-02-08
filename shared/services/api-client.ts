@@ -6,6 +6,7 @@ import * as auth from "./auth";
 import * as orders from "./orders";
 import * as adminProducts from "./admin-products";
 import * as subCategories from "./sub-categories";
+import * as productVaries from "./product-varies";
 
 export const Api = {
   products,
@@ -16,4 +17,5 @@ export const Api = {
   orders,
   adminProducts,
   subCategories,
+  productVaries,
 };

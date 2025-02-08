@@ -20,6 +20,7 @@ export default async function AdminOrderPage(props: {
     },
     include: {
       branch: true,
+      user: true,
     },
   });
   if (!order) return redirect("/404");
@@ -28,7 +29,7 @@ export default async function AdminOrderPage(props: {
   const items = JSON.parse(order.items);
 
   return (
-    <Container className="admin-page">
+    <Container className="admin-page w-full">
       <div className="adaptive md:gap-10 items-center">
         <Title text={`Заказ #${params.id}`} size="lg" className="font-bold" />
         <OrderStatusSelect
@@ -40,13 +41,32 @@ export default async function AdminOrderPage(props: {
       <div className="mt-4 text-lg">
         Дата: {order.createdAt.toLocaleString("ru")}
       </div>
-      <div className="adaptive w-[350px] text-lg mt-4">
+      <div className="adaptive h-6 text-lg mt-4">
         <div>Заказ на {order.totalPrice} ₽</div>
         <Separator
           orientation="vertical"
-          className="mx-2 w-px h-6 bg-neutral-200 hidden md:block"
+          className="mx-2 w-[2px] h-6 bg-neutral-200 hidden md:block"
         />
         <div>{order.branch.address}</div>
+      </div>
+      <div className="mt-4">
+        <Title text="Покупатель" size="sm" className="font-bold" />
+        <Link
+          href={`/admin/users/${order.user.id}`}
+          className="mt-2 flex flex-col gap-1 border-2 rounded-2xl p-4 shadow-lg transition hover:bg-primary hover:border-primary"
+        >
+          <p className="text-lg">
+            Имя: <b>{order.user.name}</b>
+          </p>
+          {order.user.phone && (
+            <p className="text-lg">
+              Телефон: <b>{order.user.phone}</b>
+            </p>
+          )}
+          <p className="text-lg">
+            Email: <b>{order.user.email}</b>
+          </p>
+        </Link>
       </div>
       {items.map((item: CartItem & { product: Product }) => (
         <div key={item.id}>

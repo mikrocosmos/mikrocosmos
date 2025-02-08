@@ -2,11 +2,15 @@
 
 import { prisma } from "@/prisma/prisma-client";
 import { ImageUploader } from "@/shared/lib/imageUploader";
+import { deleteProductVary } from "@/app/actions/admin.productvary.actions";
 
 export async function deleteSubCategory(id: number) {
   const subCategory = await prisma.subCategory.findFirst({
     where: {
       id,
+    },
+    include: {
+      productVaries: true,
     },
   });
 
@@ -15,27 +19,8 @@ export async function deleteSubCategory(id: number) {
   }
   const image = subCategory.imageUrl;
 
-  const uploader = new ImageUploader();
-  await uploader.delete(image);
-
-  const products = await prisma.product.findMany({
-    where: {
-      subCategoryId: subCategory.id,
-    },
-  });
-
-  await prisma.branchToProduct.deleteMany({
-    where: {
-      productId: {
-        in: products.map((product) => product.id),
-      },
-    },
-  });
-
-  await prisma.product.deleteMany({
-    where: {
-      subCategoryId: subCategory.id,
-    },
+  subCategory.productVaries.forEach((productVary) => {
+    deleteProductVary(productVary.id);
   });
 
   await prisma.subCategory.delete({
@@ -43,6 +28,9 @@ export async function deleteSubCategory(id: number) {
       id,
     },
   });
+
+  const uploader = new ImageUploader();
+  await uploader.delete(image);
 }
 
 export async function updateSubCategory(id: number, data: FormData) {

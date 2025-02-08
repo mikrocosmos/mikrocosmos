@@ -18,7 +18,7 @@ export default async function AdminProductsPage() {
           </Button>
         </Link>
       </div>
-      <div className="mt-4 max-w-[100vw]">
+      <div className="mt-4 max-w-[90vw]">
         <ProductsTable />
       </div>
     </Container>

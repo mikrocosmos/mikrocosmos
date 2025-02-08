@@ -1,7 +1,9 @@
+"use client";
 import React, { PropsWithChildren } from "react";
 import { Popover } from "@/shared/components/ui";
 import { PopoverContent, PopoverTrigger } from "@/shared/components/ui/popover";
 import toast from "react-hot-toast";
+import { toastError, toastSuccess } from "@/shared/constants";
 
 interface Props {
   className?: string;
@@ -11,6 +13,7 @@ export const YandexInfo: React.FC<PropsWithChildren<Props>> = ({
   className,
   children,
 }) => {
+  const [click, setClick] = React.useState(false);
   return (
     <Popover>
       <PopoverTrigger className={className}>{children}</PopoverTrigger>
@@ -26,9 +29,14 @@ export const YandexInfo: React.FC<PropsWithChildren<Props>> = ({
         </a>
         <p>На нём нужно сформировать карту, затем нажать на кнопку</p>
         <button
-          onClick={() =>
-            toast("ну, если её здесь нажать, ничего не произойдёт")
-          }
+          onClick={() => {
+            setClick(!click);
+            if (click) {
+              toast("клик", toastSuccess);
+            } else {
+              toast("тук", toastError);
+            }
+          }}
           className="bg-[#ffd737] text-black text-center font-[Arial] py-1 px-3 cursor-pointer"
         >
           Получить код карты

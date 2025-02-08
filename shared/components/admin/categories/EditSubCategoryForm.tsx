@@ -10,20 +10,23 @@ import {
   deleteSubCategory,
   updateSubCategory,
 } from "@/app/actions/admin.subcategory.actions";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
 import {
   formSubCategoryValues,
   TFormSubCategoryValues,
 } from "@/shared/components/admin/categories/schema";
-import { CategorySelect } from "@/shared/components/admin/CategorySelect";
+import { CategorySelect } from "@/shared/components/admin/categories/CategorySelect";
 import { ImageInput } from "@/shared/components/admin/ImageInput";
 import { cn } from "@/shared/lib/utils";
 import toast from "react-hot-toast";
 import { toastError, toastSuccess } from "@/shared/constants";
+import { useCategories } from "@/shared/hooks";
 
 interface Props {
-  subcategory: SubCategory & { category: Category };
+  subcategory: SubCategory & {
+    category: Category & { subCategories: SubCategory[] };
+  };
   className?: string;
 }
 
@@ -53,7 +56,7 @@ export const EditSubCategoryForm: React.FC<Props> = ({
       formData.append("image", data.image || subcategory.imageUrl);
 
       await updateSubCategory(subcategory.id, formData);
-      router.push("/admin/categories");
+      router.push(`/admin/categories/${subcategory.category.id}`);
       toast("Подкатегория обновлена", toastSuccess);
     } catch (error) {
       console.error(error);
@@ -63,7 +66,7 @@ export const EditSubCategoryForm: React.FC<Props> = ({
 
   const onDelete = async () => {
     await deleteSubCategory(subcategory.id);
-    router.push("/admin/categories");
+    router.push(`/admin/categories/${subcategory.category.id}`);
   };
 
   return (

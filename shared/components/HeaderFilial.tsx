@@ -49,20 +49,24 @@ export const HeaderFilial: React.FC<Props> = ({ className }) => {
         </div>
       </PopoverTrigger>
       <PopoverContent>
-        <ul>
-          {branch.map((item) => (
-            <HeaderFilialItem
-              key={item.id}
-              id={item.id}
-              setCurrentBranch={setBranchId}
-              address={item.address}
-              phone={item.phone}
-              opensAt={item.opensAt}
-              closesAt={item.closesAt}
-              daysOpen={item.daysOpen}
-            />
-          ))}
-        </ul>
+        {branch.length > 0 ? (
+          <ul>
+            {branch.map((item) => (
+              <HeaderFilialItem
+                key={item.id}
+                id={item.id}
+                setCurrentBranch={setBranchId}
+                address={item.address}
+                phone={item.phone}
+                opensAt={item.opensAt}
+                closesAt={item.closesAt}
+                daysOpen={item.daysOpen}
+              />
+            ))}
+          </ul>
+        ) : (
+          <div className="p-4">Филиалов нет, но они скоро будут</div>
+        )}
       </PopoverContent>
     </Popover>
   );

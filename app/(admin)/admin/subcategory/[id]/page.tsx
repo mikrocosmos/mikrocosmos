@@ -4,6 +4,12 @@ import { prisma } from "@/prisma/prisma-client";
 import { redirect } from "next/navigation";
 import { EditSubCategoryForm } from "@/shared/components/admin/categories/EditSubCategoryForm";
 import { checkAdmin } from "@/shared/lib/checkAdmin";
+import { SubCategoryCard } from "@/shared/components/SubCategoryCard";
+import Link from "next/link";
+import { Button } from "@/shared/components/ui";
+import { CirclePlus } from "lucide-react";
+import { AddSubCategoryButton } from "@/shared/components/admin/categories/AddSubCategoryButton";
+import { AddProductVaryButton } from "@/shared/components/admin/categories/AddProductVaryButton";
 
 export default async function AdminSubcategoryPage(props: {
   params: Promise<{ id: string }>;
@@ -18,7 +24,12 @@ export default async function AdminSubcategoryPage(props: {
       id: Number(id),
     },
     include: {
-      category: true,
+      productVaries: true,
+      category: {
+        include: {
+          subCategories: true,
+        },
+      },
     },
   });
 
@@ -29,7 +40,24 @@ export default async function AdminSubcategoryPage(props: {
   return (
     <Container className="admin-page">
       <Title text="Редактировать подкатегорию" className="font-semibold" />
-      <EditSubCategoryForm subcategory={subcategory} className="mt-4" />
+      <EditSubCategoryForm subcategory={subcategory} className="my-4" />
+      <div className="adaptive gap-2 items-center justify-between mt-4">
+        <Title text="Вариации:" className="font-semibold" />
+        <AddProductVaryButton subCategoryId={id} />
+      </div>
+      <div className="flex flex-wrap gap-5 justify-between mt-4">
+        {subcategory.productVaries.map((vary) => (
+          <SubCategoryCard
+            id={vary.id}
+            name={vary.name}
+            imageUrl={vary.imageUrl}
+            key={vary.id}
+            subCategoryId={subcategory.id}
+            inAdmin
+            inSubCategory
+          />
+        ))}
+      </div>
     </Container>
   );
 }

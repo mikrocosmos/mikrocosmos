@@ -17,9 +17,13 @@ export default async function AdminProductPage(props: {
       id: Number(id),
     },
     include: {
-      subCategory: {
+      vary: {
         include: {
-          category: true,
+          subCategory: {
+            include: {
+              category: true,
+            },
+          },
         },
       },
       branchIds: {

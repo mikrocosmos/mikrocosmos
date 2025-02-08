@@ -16,6 +16,7 @@ export const formProductSchema = z.object({
     .refine((file: File) => file !== undefined, "Выберите картинку"),
   category: z.string(),
   subCategory: z.string(),
+  productVary: z.string(),
   branches: z
     .array(branchSchema)
     .min(1, "Укажите количество хотя бы одного филиала"),

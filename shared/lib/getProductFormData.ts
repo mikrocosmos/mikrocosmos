@@ -6,6 +6,7 @@ export const getProductFormData = (formData: FormData) => {
   const branches = formData.get("branches") as string;
   const categoryName = formData.get("category") as string;
   const subCategoryName = formData.get("subCategory") as string;
+  const varyName = formData.get("productVary") as string;
 
   const branchesArray = JSON.parse(branches);
 
@@ -17,5 +18,6 @@ export const getProductFormData = (formData: FormData) => {
     branches: branchesArray,
     categoryName,
     subCategoryName,
+    varyName,
   };
 };

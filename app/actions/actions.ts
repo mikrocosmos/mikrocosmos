@@ -32,6 +32,9 @@ export async function createOrder(data: TCheckoutForm) {
     if (userCart?.totalPrice === 0) {
       throw new Error("Cart is empty");
     }
+    if (!data.userId) {
+      throw new Error("[actions/createOrder] 401 Unauthorized");
+    }
 
     const order = await prisma.order.create({
       data: {

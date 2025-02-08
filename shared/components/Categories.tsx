@@ -5,12 +5,14 @@ import { useCategories } from "../hooks";
 import { cn } from "../lib/utils";
 import { AnimatedLink } from "./AnimatedLink";
 import { Skeleton } from "@/shared/components/ui";
+import { SheetClose } from "@/shared/components/ui/sheet";
 
 interface Props {
+  inBurger?: boolean;
   className?: string;
 }
 
-export const Categories: React.FC<Props> = ({ className }) => {
+export const Categories: React.FC<Props> = ({ className, inBurger }) => {
   const { loading, categories } = useCategories();
   return (
     <ul
@@ -27,9 +29,17 @@ export const Categories: React.FC<Props> = ({ className }) => {
             ))
         : categories.map((category) => (
             <li className="text-lg" key={category.id}>
-              <Link href={`/category/${category.id}`}>
-                <AnimatedLink text={category.name} />
-              </Link>
+              {inBurger ? (
+                <SheetClose asChild>
+                  <Link href={`/category/${category.id}`}>
+                    <AnimatedLink text={category.name} />
+                  </Link>
+                </SheetClose>
+              ) : (
+                <Link href={`/category/${category.id}`}>
+                  <AnimatedLink text={category.name} />
+                </Link>
+              )}
             </li>
           ))}
     </ul>

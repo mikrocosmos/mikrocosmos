@@ -8,9 +8,13 @@ export async function getProducts(searchValue?: string) {
   if (!searchValue) {
     return prisma.product.findMany({
       include: {
-        subCategory: {
+        vary: {
           include: {
-            category: true,
+            subCategory: {
+              include: {
+                category: true,
+              },
+            },
           },
         },
       },
@@ -25,9 +29,13 @@ export async function getProducts(searchValue?: string) {
       name: { contains: searchValue, mode: "insensitive" },
     },
     include: {
-      subCategory: {
+      vary: {
         include: {
-          category: true,
+          subCategory: {
+            include: {
+              category: true,
+            },
+          },
         },
       },
     },
@@ -61,6 +69,17 @@ export async function updateProduct(id: number, formData: FormData) {
     throw new Error("subCategory not found");
   }
 
+  const productVary = await prisma.productVary.findFirst({
+    where: {
+      name: data.varyName,
+      subCategoryId: subCategory.id,
+    },
+  });
+
+  if (!productVary) {
+    throw new Error("productVary not found");
+  }
+
   let imageUpload;
   if (data.image.name) {
     const uploader = new ImageUploader(data.image);
@@ -83,7 +102,7 @@ export async function updateProduct(id: number, formData: FormData) {
       description: data.description,
       price: Number(data.price),
       imageUrl,
-      subCategoryId: subCategory.id,
+      varyId: productVary.id,
     },
   });
 
@@ -149,15 +168,16 @@ export async function deleteProduct(id: number) {
 
 export async function createProduct(formData: FormData) {
   const data = getProductFormData(formData);
+  console.log(data);
 
-  const subCategory = await prisma.subCategory.findFirst({
+  const vary = await prisma.productVary.findFirst({
     where: {
-      name: data.subCategoryName,
+      name: data.varyName,
     },
   });
 
-  if (!subCategory) {
-    throw new Error("subCategory not found");
+  if (!vary) {
+    throw new Error("vary not found");
   }
 
   if (!data.image) {
@@ -178,7 +198,7 @@ export async function createProduct(formData: FormData) {
       description: data.description,
       price: Number(data.price),
       imageUrl,
-      subCategoryId: subCategory.id,
+      varyId: vary.id,
     },
   });
 

@@ -19,6 +19,7 @@ import {
 } from "@/shared/components/ui/select";
 import { cn } from "@/shared/lib/utils";
 import { useSubCategories } from "@/shared/hooks/useSubCategories";
+import { useProductVaries } from "@/shared/hooks/useProductVaries";
 
 interface Props {
   onSubmit: (data: TFormProductValues) => void;
@@ -36,21 +37,44 @@ export const ProductForm: React.FC<Props> = ({
 
   const { categories } = useCategories();
   const { subCategories: subCategoriesData } = useSubCategories();
+  const { varies: productVariesData } = useProductVaries();
+
   const [categoryName, setCategoryName] = React.useState(
-    product?.subCategory.category.name || "",
+    product?.vary.subCategory.category.name || "",
+  );
+  const [subCategoryName, setSubCategoryName] = React.useState(
+    product?.vary.subCategory.name || "",
   );
 
   const category = categories.find((item) => item.name === categoryName);
+  const subCategory = subCategoriesData.find(
+    (item) => item.name === subCategoryName,
+  );
 
   const [subCategories, setSubCategories] = React.useState(
     subCategoriesData.filter((item) => item.categoryId === category?.id),
+  );
+
+  const [productVaries, setProductVaries] = React.useState(
+    productVariesData.filter((item) => item.subCategoryId === subCategory?.id),
   );
 
   React.useEffect(() => {
     setSubCategories(
       subCategoriesData.filter((item) => item.categoryId === category?.id),
     );
-  }, [category?.id, categoryName, subCategoriesData]);
+    setProductVaries(
+      productVariesData.filter(
+        (item) => item.subCategoryId === subCategory?.id,
+      ),
+    );
+  }, [
+    category?.id,
+    categoryName,
+    subCategoriesData,
+    subCategory?.id,
+    subCategoryName,
+  ]);
 
   return (
     <form
@@ -96,7 +120,7 @@ export const ProductForm: React.FC<Props> = ({
               />
             )}
           />
-          {Array.isArray(categories) && !!categories.length && (
+          {categories.length > 0 && (
             <FormField
               name="category"
               control={form.control}
@@ -124,13 +148,21 @@ export const ProductForm: React.FC<Props> = ({
               )}
             />
           )}
-          {Array.isArray(subCategories) && !!subCategories.length && (
+
+          {form.formState.errors.category?.message && (
+            <p className="text-red-500">Категория обязательна</p>
+          )}
+
+          {subCategories.length > 0 && (
             <FormField
               name="subCategory"
               control={form.control}
               render={({ field }) => (
                 <Select
-                  onValueChange={field.onChange}
+                  onValueChange={(e) => {
+                    setSubCategoryName(e);
+                    field.onChange(e);
+                  }}
                   defaultValue={field.value}
                 >
                   <SelectTrigger className={cn("w-full text-base", className)}>
@@ -146,6 +178,37 @@ export const ProductForm: React.FC<Props> = ({
                 </Select>
               )}
             />
+          )}
+          {form.formState.errors.subCategory?.message && (
+            <p className="text-red-500">Подкатегория обязательна</p>
+          )}
+
+          {productVaries.length > 0 && (
+            <FormField
+              name="productVary"
+              control={form.control}
+              render={({ field }) => (
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger className={cn("w-full text-base", className)}>
+                    <SelectValue placeholder="Выберите вариацию" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {productVaries?.map((productVary) => (
+                      <SelectItem key={productVary.id} value={productVary.name}>
+                        {productVary.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
+          )}
+
+          {form.formState.errors.productVary?.message && (
+            <p className="text-red-500">Вариация обязательна</p>
           )}
 
           {loading ? (

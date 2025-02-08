@@ -9,10 +9,19 @@ import {
   SheetTrigger,
 } from "@/shared/components/ui/sheet";
 import { X } from "lucide-react";
-import { AdminSidebarContent, LogoutBtn } from "@/shared/components/admin";
+import {
+  AdminSidebarContent,
+  AdminSidebarItem,
+  LogoutBtn,
+} from "@/shared/components/admin";
 import { HeaderFilial } from "@/shared/components";
+import { sidebarItems } from "@/shared/constants";
+import { getUserSession } from "@/shared/lib/getUserSession";
 
-export const AdminBurger: React.FC<PropsWithChildren> = ({ children }) => {
+export const AdminBurger: React.FC<PropsWithChildren> = async ({
+  children,
+}) => {
+  const session = await getUserSession();
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
@@ -24,7 +33,16 @@ export const AdminBurger: React.FC<PropsWithChildren> = ({ children }) => {
           </SheetClose>
         </SheetHeader>
         <HeaderFilial />
-        <AdminSidebarContent />
+        <ul className="flex h-full flex-1 flex-col gap-5">
+          {sidebarItems(session?.role).map((item) => (
+            <AdminSidebarItem
+              key={item.name}
+              name={item.name}
+              link={item.link}
+              icon={item.icon}
+            />
+          ))}
+        </ul>
         <SheetFooter className="my-5">
           <LogoutBtn />
         </SheetFooter>

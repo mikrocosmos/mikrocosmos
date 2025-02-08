@@ -1,12 +1,47 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/prisma-client";
+import { CartItem, OrderStatus } from "@prisma/client";
 
-export async function PATCH(req: NextRequest, props: { params: Promise<{ id: string }> }) {
-  const params = await props.params;
+export async function PATCH(
+  req: NextRequest,
+  props: { params: Promise<{ id: string }> },
+) {
   try {
+    const params = await props.params;
     const id = Number(params.id);
     const data = await req.json();
-    const order = await prisma.order.update({
+
+    const status: OrderStatus = data.status;
+
+    const order = await prisma.order.findFirst({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    if (!order) return NextResponse.json("Order not found", { status: 404 });
+
+    const items = order.items as unknown as CartItem[];
+
+    if (items && status === "CANCELED") {
+      for (const item of items) {
+        await prisma.branchToProduct.update({
+          where: {
+            branchId_productId: {
+              branchId: order.branchId,
+              productId: item.productId,
+            },
+          },
+          data: {
+            totalQuantity: {
+              increment: item.quantity,
+            },
+          },
+        });
+      }
+    }
+
+    await prisma.order.update({
       where: {
         id,
       },

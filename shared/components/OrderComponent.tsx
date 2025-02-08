@@ -31,12 +31,12 @@ export const OrderComponent: React.FC<Props> = ({ order }) => {
   };
   return (
     <>
-      <div className="flex items-center">
+      <div className="adaptive">
         <Title text="Заказ оформлен" size="lg" className="font-bold" />
 
         <div
           className={cn(
-            "ml-4 text-lg px-4 py-2 rounded-lg font-medium shadow-md",
+            "md:ml-4 text-lg px-4 py-2 rounded-lg font-medium shadow-md flex items-center w-full md:w-auto",
             getOrderStatusClass(order.status),
           )}
         >
@@ -57,8 +57,12 @@ export const OrderComponent: React.FC<Props> = ({ order }) => {
         <p>
           Если у вас есть вопросы по заказу, можете связаться с нами по
           телефону:&nbsp;
-          <b>{order.branch.phone}</b>
         </p>
+        <div className="bg-success text-white p-4 my-2 rounded-lg w-48 text-center cursor-pointer transition hover:bg-primary">
+          <a href={`tel:${order.branch.phone}`} className="font-bold">
+            {order.branch.phone}
+          </a>
+        </div>
         <p>
           При получении заказа при себе обязательно иметь документ,
           удостоверяющий личность. Без него Вы не сможете оплатить свой заказ.

@@ -1,49 +1,41 @@
 import { notFound } from "next/navigation";
-import { Container, ItemCard, Title, Filters } from "@/shared/components";
-import { findItems } from "@/shared/lib";
-import { GetSearchParams } from "@/shared/lib/findItems";
+import { Container, Title } from "@/shared/components";
 import { prisma } from "@/prisma/prisma-client";
+import { SubCategoryCard } from "@/shared/components/SubCategoryCard";
 
 export default async function SubCategoryPage(props: {
   params: Promise<{ id: number }>;
-  searchParams: Promise<GetSearchParams>;
 }) {
-  const btps = await prisma.branchToProduct.findMany();
-  const searchParams = await props.searchParams;
   const params = await props.params;
 
   const { id } = params;
 
-  const subCategory = await findItems(id, searchParams);
-  const subCategoryStatic = await findItems(id);
+  const subCategory = await prisma.subCategory.findFirst({
+    where: { id: Number(id) },
+    include: {
+      productVaries: {
+        orderBy: {
+          order: "asc",
+        },
+      },
+    },
+  });
+
   if (!subCategory) return notFound();
-  const maxPrice = Math.max(
-    ...subCategoryStatic!.products.map((product) => product.price),
-  );
-  const minPrice = Math.min(
-    ...subCategoryStatic!.products.map((product) => product.price),
-  );
 
   return (
-    <Container className="page">
+    <Container className="page pb-5">
       <Title text={subCategory.name} size="lg" className="font-bold my-5" />
-      <div className="flex flex-col lg:flex-row gap-5">
-        <aside className="min-w-[300px] bg-popover p-5 rounded-xl mb-5">
-          <Filters minPrice={minPrice} maxPrice={maxPrice} />
-        </aside>
-
-        <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center content-center gap-5 mb-5">
-          {subCategory.products.map((product) => (
-            <ItemCard
-              key={product.id}
-              id={product.id}
-              btps={btps}
-              name={product.name}
-              imageUrl={product.imageUrl}
-              price={product.price}
-            />
-          ))}
-        </div>
+      <div className="flex flex-wrap gap-5 justify-between">
+        {subCategory.productVaries.map((vary) => (
+          <SubCategoryCard
+            id={vary.id}
+            name={vary.name}
+            imageUrl={vary.imageUrl}
+            key={vary.id}
+            inSubCategory
+          />
+        ))}
       </div>
     </Container>
   );

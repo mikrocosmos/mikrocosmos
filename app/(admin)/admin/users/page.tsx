@@ -15,7 +15,7 @@ export default async function AdminUsersPage() {
     },
   });
   return (
-    <Container className="admin-page max-w-[100vw]">
+    <Container className="admin-page">
       <div className="adaptive gap-4 md:gap-0 items-center justify-between w-full">
         <Title text="Пользователи" className="font-semibold" />
         <Link href="/admin/users/add">

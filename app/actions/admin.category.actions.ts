@@ -1,51 +1,58 @@
 "use server";
 import { prisma } from "@/prisma/prisma-client";
 import { getCategoryLastIndex } from "@/shared/lib/getCategoryLastIndex";
+import { deleteSubCategory } from "@/app/actions/admin.subcategory.actions";
 
-export async function updateCategory(id: number, name: string) {
-  await prisma.category.update({
+export async function updateCategory(id: number, name: string, order?: number) {
+  const currentCategory = await prisma.category.findFirst({
+    where: { id },
+  });
+
+  if (!currentCategory) {
+    throw new Error("Category not found");
+  }
+
+  const existingCategory = await prisma.category.findFirst({
     where: {
-      id,
+      order,
     },
+  });
+
+  if (existingCategory) {
+    await prisma.category.update({
+      where: {
+        id: existingCategory.id,
+      },
+      data: {
+        order: currentCategory.order,
+      },
+    });
+  }
+
+  await prisma.category.update({
+    where: { id },
     data: {
       name,
+      order,
     },
   });
 }
+
 export async function deleteCategory(id: number) {
-  const subCategories = await prisma.subCategory.findMany({
+  const category = await prisma.category.findFirst({
     where: {
-      categoryId: id,
+      id,
     },
-  });
-  const products = await prisma.product.findMany({
-    where: {
-      subCategoryId: {
-        in: subCategories.map((subCategory) => subCategory.id),
-      },
+    include: {
+      subCategories: true,
     },
   });
 
-  await prisma.branchToProduct.deleteMany({
-    where: {
-      productId: {
-        in: products.map((product) => product.id),
-      },
-    },
-  });
-
-  await prisma.product.deleteMany({
-    where: {
-      subCategoryId: {
-        in: subCategories.map((subCategory) => subCategory.id),
-      },
-    },
-  });
-
-  await prisma.subCategory.deleteMany({
-    where: {
-      categoryId: id,
-    },
+  if (!category) {
+    throw new Error("Category not found");
+  }
+  category.subCategories.forEach((subCategory) => {
+    deleteSubCategory(subCategory.id);
   });
 
   await prisma.category.delete({

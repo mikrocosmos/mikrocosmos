@@ -56,7 +56,7 @@ export const EditUserForm: React.FC<Props> = ({ className, user }) => {
     <Form {...form}>
       <form
         className={cn(
-          "space-y-4 flex flex-col items-center w-screen sm:block md:w-full",
+          "space-y-4 flex flex-col items-center sm:block",
           className,
         )}
         onSubmit={form.handleSubmit(onSubmit)}
@@ -140,7 +140,7 @@ export const EditUserForm: React.FC<Props> = ({ className, user }) => {
             </Label>
           </div>
         </RadioGroup>
-        <div className="lg:flex items-center lg:space-x-4">
+        <div className="adaptive gap-4">
           <Button variant="white_accent" type="submit">
             Сохранить изменения
           </Button>

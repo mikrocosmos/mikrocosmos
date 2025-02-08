@@ -34,29 +34,41 @@ model Category {
 }
 
 model SubCategory {
-  id         Int       @id @default(autoincrement())
-  name       String
-  order      Int
-  category   Category  @relation(fields: [categoryId], references: [id])
-  categoryId Int
-  imageUrl   String
-  products   Product[]
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
+  id            Int           @id @default(autoincrement())
+  name          String
+  order         Int
+  category      Category      @relation(fields: [categoryId], references: [id])
+  categoryId    Int
+  imageUrl      String
+  productVaries ProductVary[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model ProductVary {
+  id            Int         @id @default(autoincrement())
+  name          String
+  order         Int
+  subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
+  subCategoryId Int
+  imageUrl      String
+  products      Product[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
 model Product {
-  id            Int               @id @default(autoincrement())
-  name          String
-  subCategory   SubCategory       @relation(fields: [subCategoryId], references: [id])
-  subCategoryId Int
-  price         Float
-  description   String
-  imageUrl      String
-  cartItems     CartItem[]
-  branchIds     BranchToProduct[]
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
+  id          Int               @id @default(autoincrement())
+  name        String
+  vary        ProductVary       @relation(fields: [varyId], references: [id])
+  varyId      Int
+  price       Float
+  description String
+  imageUrl    String
+  cartItems   CartItem[]
+  branchIds   BranchToProduct[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
 }
 
 model Branch {
@@ -107,8 +119,8 @@ model CartItem {
 
 model Order {
   id         Int         @id @default(autoincrement())
-  user       User?       @relation(fields: [userId], references: [id])
-  userId     Int?
+  user       User        @relation(fields: [userId], references: [id])
+  userId     Int
   token      String
   totalPrice Int         @default(0)
   status     OrderStatus
