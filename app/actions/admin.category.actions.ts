@@ -51,19 +51,30 @@ export async function deleteCategory(id: number) {
   if (!category) {
     throw new Error("Category not found");
   }
-  category.subCategories.forEach((subCategory) => {
-    deleteSubCategory(subCategory.id);
-  });
 
   await prisma.category.delete({
     where: {
       id,
     },
   });
+
+  category.subCategories.forEach((subCategory) => {
+    deleteSubCategory(subCategory.id);
+  });
 }
 export async function createCategory(name: string, order?: number) {
   const categories = await prisma.category.findMany();
   const lastIndex = getCategoryLastIndex(categories);
+
+  const category = await prisma.category.findFirst({
+    where: {
+      name,
+    },
+  });
+
+  if (category) {
+    throw new Error("Category already exists");
+  }
 
   await prisma.category.create({
     data: {

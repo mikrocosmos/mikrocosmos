@@ -1,9 +1,13 @@
 import {
+  Branch,
   BranchToProduct,
   Category,
+  Order,
+  OrderedProducts,
   Product,
   ProductVary,
   SubCategory,
+  User,
 } from "@prisma/client";
 
 export type ProductWithSubCategory = Product & {
@@ -17,4 +21,12 @@ export type ProductWithSubCategoryAndBranch = Product & {
     subCategory: SubCategory & { category: Category };
   };
   branchIds: BranchToProduct[];
+};
+
+export type OrderDetails = Order & {
+  branch: Branch;
+  user: User;
+  items: (OrderedProducts & {
+    product: Product;
+  })[];
 };

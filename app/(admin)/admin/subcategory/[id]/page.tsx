@@ -5,10 +5,6 @@ import { redirect } from "next/navigation";
 import { EditSubCategoryForm } from "@/shared/components/admin/categories/EditSubCategoryForm";
 import { checkAdmin } from "@/shared/lib/checkAdmin";
 import { SubCategoryCard } from "@/shared/components/SubCategoryCard";
-import Link from "next/link";
-import { Button } from "@/shared/components/ui";
-import { CirclePlus } from "lucide-react";
-import { AddSubCategoryButton } from "@/shared/components/admin/categories/AddSubCategoryButton";
 import { AddProductVaryButton } from "@/shared/components/admin/categories/AddProductVaryButton";
 
 export default async function AdminSubcategoryPage(props: {

@@ -36,7 +36,7 @@ export default async function Home() {
       <div className="flex flex-col gap-5 lg:flex-row justify-between">
         <div className="bg-popover h-full py-5 px-7 text-base rounded-2xl hidden shadow lg:block lg:h-[600px]">
           <h2 className="text-xl font-medium">Категории</h2>
-          <Categories />
+          <Categories className="h-full" />
         </div>
         <Hero />
       </div>

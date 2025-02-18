@@ -6,6 +6,7 @@ import { prisma } from "@/prisma/prisma-client";
 import { OrderStatus, Prisma } from "@prisma/client";
 import { hashSync } from "bcryptjs";
 import { getUserSession } from "@/shared/lib/getUserSession";
+import axios from "axios";
 
 export async function createOrder(data: TCheckoutForm) {
   try {
@@ -19,13 +20,10 @@ export async function createOrder(data: TCheckoutForm) {
         token: cartToken,
       },
       include: {
-        items: {
-          include: {
-            product: true,
-          },
-        },
+        items: true,
       },
     });
+
     if (!userCart) {
       throw new Error("Cart not found");
     }
@@ -35,6 +33,9 @@ export async function createOrder(data: TCheckoutForm) {
     if (!data.userId) {
       throw new Error("[actions/createOrder] 401 Unauthorized");
     }
+
+    const date = new Date();
+    const createdAt = date.setHours(date.getHours() + 5);
 
     const order = await prisma.order.create({
       data: {
@@ -48,8 +49,16 @@ export async function createOrder(data: TCheckoutForm) {
         totalPrice: userCart.totalPrice,
         status: OrderStatus.PENDING,
         branchId: Number(data.branch),
-        items: JSON.stringify(userCart.items),
+        createdAt: new Date(createdAt),
       },
+    });
+
+    await prisma.orderedProducts.createMany({
+      data: userCart.items.map((item) => ({
+        orderId: order.id,
+        productId: item.productId,
+        quantity: item.quantity,
+      })),
     });
 
     await prisma.cart.update({
@@ -64,6 +73,58 @@ export async function createOrder(data: TCheckoutForm) {
     await prisma.cartItem.deleteMany({
       where: {
         cartId: userCart.id,
+      },
+    });
+
+    const orderWithProducts = await prisma.order.findFirst({
+      where: { id: order.id },
+      include: {
+        user: true,
+        branch: true,
+        items: {
+          include: {
+            product: true,
+          },
+        },
+      },
+    });
+
+    if (!orderWithProducts) {
+      throw new Error("Что-то пошло не так");
+    }
+    const botToken = process.env.TELEGRAM_TOKEN;
+    const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    const messageText = `Пришёл заказ на филиал ${orderWithProducts.branch.address}, на сумму ${orderWithProducts.totalPrice} руб.
+
+Покупатель:
+- Имя: ${orderWithProducts.user.name}
+- Телефон: ${orderWithProducts.user.phone}
+- Email: ${orderWithProducts.user.email}
+
+Товары:
+${orderWithProducts.items
+  .map(
+    (item) => ` 
+- Название: ${item.product.name}
+- Количество: ${item.quantity}
+- Цена: ${item.product.price} руб.
+`,
+  )
+  .join("")}
+`;
+
+    await axios.post(telegramUrl, {
+      chat_id: process.env.TELEGRAM_CHAT_ID,
+      text: messageText,
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {
+              text: "Заказ на сайте",
+              url: `https://smokymoon.ru/admin/orders/${order.id}`,
+            },
+          ],
+        ],
       },
     });
 

@@ -47,9 +47,12 @@ export const ProductForm: React.FC<Props> = ({
   );
 
   const category = categories.find((item) => item.name === categoryName);
-  const subCategory = subCategoriesData.find(
-    (item) => item.name === subCategoryName,
-  );
+
+  const subCategory = subCategoriesData.find((item) => {
+    if (item.name === subCategoryName && item.categoryId === category?.id) {
+      return item;
+    }
+  });
 
   const [subCategories, setSubCategories] = React.useState(
     subCategoriesData.filter((item) => item.categoryId === category?.id),

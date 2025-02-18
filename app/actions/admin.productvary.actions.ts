@@ -62,6 +62,14 @@ export async function deleteProductVary(id: number) {
     },
   });
 
+  await prisma.orderedProducts.deleteMany({
+    where: {
+      productId: {
+        in: products.map((product) => product.id),
+      },
+    },
+  });
+
   await prisma.product.deleteMany({
     where: {
       varyId: vary.id,

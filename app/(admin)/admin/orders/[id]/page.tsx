@@ -2,31 +2,36 @@ import { Container, Title } from "@/shared/components";
 import { prisma } from "@/prisma/prisma-client";
 import { redirect } from "next/navigation";
 import { Separator } from "@/shared/components/ui";
-import { CartItem, Product } from "@prisma/client";
 import Link from "next/link";
 import Image from "next/image";
 import { OrderStatusSelect } from "@/shared/components/admin/orders/OrderStatusSelect";
 import { checkAdmin } from "@/shared/lib/checkAdmin";
+import { OrderDetails } from "@/@types/prisma";
+import { BuyerCard } from "@/shared/components/admin/orders/BuyerCard";
+import React from "react";
 
 export default async function AdminOrderPage(props: {
   params: Promise<{ id: string }>;
 }) {
   const params = await props.params;
-  await checkAdmin(true);
+  const session = await checkAdmin(true);
 
-  const order = await prisma.order.findFirst({
+  const order: OrderDetails | null = await prisma.order.findFirst({
     where: {
       id: Number(params.id),
     },
     include: {
       branch: true,
       user: true,
+      items: {
+        include: {
+          product: true,
+        },
+      },
     },
   });
-  if (!order) return redirect("/404");
 
-  // @ts-ignore
-  const items = JSON.parse(order.items);
+  if (!order) return redirect("/404");
 
   return (
     <Container className="admin-page w-full">
@@ -41,34 +46,35 @@ export default async function AdminOrderPage(props: {
       <div className="mt-4 text-lg">
         Дата: {order.createdAt.toLocaleString("ru")}
       </div>
-      <div className="adaptive h-6 text-lg mt-4">
+      <div className="flex gap-2 items-center h-6 text-lg mt-4">
         <div>Заказ на {order.totalPrice} ₽</div>
         <Separator
           orientation="vertical"
-          className="mx-2 w-[2px] h-6 bg-neutral-200 hidden md:block"
+          className="mx-2 w-[2px] h-6 bg-neutral-200"
         />
         <div>{order.branch.address}</div>
       </div>
       <div className="mt-4">
         <Title text="Покупатель" size="sm" className="font-bold" />
-        <Link
-          href={`/admin/users/${order.user.id}`}
-          className="mt-2 flex flex-col gap-1 border-2 rounded-2xl p-4 shadow-lg transition hover:bg-primary hover:border-primary"
-        >
-          <p className="text-lg">
-            Имя: <b>{order.user.name}</b>
-          </p>
-          {order.user.phone && (
+        {session?.role === "ADMIN" ? (
+          <BuyerCard {...order.user} />
+        ) : (
+          <div>
             <p className="text-lg">
-              Телефон: <b>{order.user.phone}</b>
+              Имя: <b>{order.user.name}</b>
             </p>
-          )}
-          <p className="text-lg">
-            Email: <b>{order.user.email}</b>
-          </p>
-        </Link>
+            {order.user.phone && (
+              <p className="text-lg">
+                Телефон: <b>{order.user.phone}</b>
+              </p>
+            )}
+            <p className="text-lg">
+              Email: <b>{order.user.email}</b>
+            </p>
+          </div>
+        )}
       </div>
-      {items.map((item: CartItem & { product: Product }) => (
+      {order.items.map((item) => (
         <div key={item.id}>
           <div className="adaptive mt-5">
             <Link href={`/product/${item.product.id}`}>

@@ -159,6 +159,12 @@ export async function deleteProduct(id: number) {
     },
   });
 
+  await prisma.orderedProducts.deleteMany({
+    where: {
+      productId: id,
+    },
+  });
+
   await prisma.product.delete({
     where: {
       id,

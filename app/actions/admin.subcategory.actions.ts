@@ -19,9 +19,9 @@ export async function deleteSubCategory(id: number) {
   }
   const image = subCategory.imageUrl;
 
-  subCategory.productVaries.forEach((productVary) => {
-    deleteProductVary(productVary.id);
-  });
+  for (const productVary of subCategory.productVaries) {
+    await deleteProductVary(productVary.id);
+  }
 
   await prisma.subCategory.delete({
     where: {

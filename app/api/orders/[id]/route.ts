@@ -17,13 +17,16 @@ export async function PATCH(
       where: {
         id: Number(id),
       },
+      include: {
+        items: true,
+      },
     });
 
     if (!order) return NextResponse.json("Order not found", { status: 404 });
 
-    const items = order.items as unknown as CartItem[];
+    const items = order.items;
 
-    if (items && status === "CANCELED") {
+    if (items.length > 0 && status === "CANCELED") {
       for (const item of items) {
         await prisma.branchToProduct.update({
           where: {

@@ -5,21 +5,20 @@ import { cn } from "@/shared/lib/utils";
 import { getOrderStatusClass } from "@/shared/lib";
 import { orderStatusMap } from "@/shared/constants";
 import { Button } from "@/shared/components/ui";
-import { Branch, CartItem, Order, Product } from "@prisma/client";
 import Link from "next/link";
 import Image from "next/image";
 import { AreYouSureConfirm } from "@/shared/components/modals/AreYouSureConfirm";
 import { Api } from "@/shared/services/api-client";
 import { useRouter } from "next/navigation";
+import { Phone } from "lucide-react";
+import { OrderDetails } from "@/@types/prisma";
 
 interface Props {
-  order: Order & { branch: Branch };
+  order: OrderDetails;
 }
 
 export const OrderComponent: React.FC<Props> = ({ order }) => {
   const router = useRouter();
-  // @ts-ignore
-  const items = JSON.parse(order.items);
 
   const onCancelOrder = async () => {
     try {
@@ -58,20 +57,22 @@ export const OrderComponent: React.FC<Props> = ({ order }) => {
           Если у вас есть вопросы по заказу, можете связаться с нами по
           телефону:&nbsp;
         </p>
-        <div className="bg-success text-white p-4 my-2 rounded-lg w-48 text-center cursor-pointer transition hover:bg-primary">
+        <div className="bg-success text-white p-4 my-2 rounded-lg w-[250px] text-center cursor-pointer transition hover:bg-primary flex items-center gap-2 justify-center shadow-lg">
+          <Phone size={20} />
           <a href={`tel:${order.branch.phone}`} className="font-bold">
             {order.branch.phone}
           </a>
         </div>
-        <p>
+        <p className="font-medium">
           При получении заказа при себе обязательно иметь документ,
           удостоверяющий личность. Без него Вы не сможете оплатить свой заказ.
         </p>
+        <hr className="mt-2" />
       </div>
-      {items.map((item: CartItem & { product: Product }) => (
+      {order.items.map((item) => (
         <div key={item.id}>
           <div className="adaptive mt-5">
-            <Link href={`/product/${item.product.id}`}>
+            <Link href={`/product/${item.productId}`}>
               <Image
                 className="rounded-3xl shadow-lg border-2 border-gray-200 object-cover md:w-[200px] w-full h-[200px] bg-white transition hover:border-primary"
                 src={item.product.imageUrl}

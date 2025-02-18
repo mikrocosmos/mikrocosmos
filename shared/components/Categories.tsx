@@ -17,7 +17,7 @@ export const Categories: React.FC<Props> = ({ className, inBurger }) => {
   return (
     <ul
       className={cn(
-        "w-[250px] h-full flex flex-col justify-between gap-4 py-5",
+        "w-[250px] flex flex-col justify-between gap-4 py-5",
         className,
       )}
     >

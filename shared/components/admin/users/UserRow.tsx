@@ -27,7 +27,7 @@ export const UserRow: React.FC<Props> = async ({
     ["CASHIER", "Кассир"],
   ]);
   return (
-    <TableRow className={cn("mt-2", className)}>
+    <TableRow className={cn("mt-2 max-w-[380px]", className)}>
       <TableCell>{id}</TableCell>
       <TableCell>{phone}</TableCell>
       <TableCell>{email}</TableCell>

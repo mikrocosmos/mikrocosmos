@@ -8,15 +8,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/shared/components/ui/sheet";
-import { X } from "lucide-react";
-import {
-  AdminSidebarContent,
-  AdminSidebarItem,
-  LogoutBtn,
-} from "@/shared/components/admin";
+import { ArrowLeft, X } from "lucide-react";
+import { LogoutBtn } from "@/shared/components/admin";
 import { HeaderFilial } from "@/shared/components";
 import { sidebarItems } from "@/shared/constants";
 import { getUserSession } from "@/shared/lib/getUserSession";
+import Link from "next/link";
 
 export const AdminBurger: React.FC<PropsWithChildren> = async ({
   children,
@@ -35,15 +32,25 @@ export const AdminBurger: React.FC<PropsWithChildren> = async ({
         <HeaderFilial />
         <ul className="flex h-full flex-1 flex-col gap-5">
           {sidebarItems(session?.role).map((item) => (
-            <AdminSidebarItem
-              key={item.name}
-              name={item.name}
-              link={item.link}
-              icon={item.icon}
-            />
+            <li key={item.name}>
+              <SheetClose asChild>
+                <Link
+                  href={`/admin/${item.link}`}
+                  className="flex gap-3 items-center text-lg transition hover:text-[#C7ACFF]"
+                >
+                  {item.icon} {item.name}
+                </Link>
+              </SheetClose>
+            </li>
           ))}
         </ul>
-        <SheetFooter className="my-5">
+        <SheetFooter className="my-5 w-full flex items-center flex-row justify-between">
+          <Link
+            className="flex gap-3 items-center text-lg transition hover:text-[#C7ACFF]"
+            href="/"
+          >
+            <ArrowLeft />В магазин
+          </Link>
           <LogoutBtn />
         </SheetFooter>
       </SheetContent>

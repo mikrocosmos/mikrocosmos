@@ -60,11 +60,11 @@ export const CheckoutForm: React.FC<Props> = ({ className }) => {
         ...data,
         userId: Number(session?.user?.id),
       });
-      toast("Заказ оформлен", toastSuccess);
 
       if (url) {
         location.href = url;
       }
+      toast("Заказ оформлен", toastSuccess);
     } catch (e) {
       console.error("[CHECKOUT], Client Error", e);
       toast("Не удалось оформить заказ", toastError);

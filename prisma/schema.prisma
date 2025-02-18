@@ -26,7 +26,7 @@ model User {
 
 model Category {
   id            Int           @id @default(autoincrement())
-  name          String
+  name          String        @unique
   order         Int
   subCategories SubCategory[]
   createdAt     DateTime      @default(now())
@@ -58,17 +58,18 @@ model ProductVary {
 }
 
 model Product {
-  id          Int               @id @default(autoincrement())
-  name        String
-  vary        ProductVary       @relation(fields: [varyId], references: [id])
-  varyId      Int
-  price       Float
-  description String
-  imageUrl    String
-  cartItems   CartItem[]
-  branchIds   BranchToProduct[]
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id              Int               @id @default(autoincrement())
+  name            String
+  vary            ProductVary       @relation(fields: [varyId], references: [id])
+  varyId          Int
+  price           Float
+  description     String
+  imageUrl        String
+  cartItems       CartItem[]
+  branchIds       BranchToProduct[]
+  orderedProducts OrderedProducts[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
 }
 
 model Branch {
@@ -118,23 +119,34 @@ model CartItem {
 }
 
 model Order {
-  id         Int         @id @default(autoincrement())
-  user       User        @relation(fields: [userId], references: [id])
+  id         Int               @id @default(autoincrement())
+  user       User              @relation(fields: [userId], references: [id])
   userId     Int
   token      String
-  totalPrice Int         @default(0)
+  totalPrice Int               @default(0)
   status     OrderStatus
   paymentId  String?
-  items      Json
+  items      OrderedProducts[]
   fullName   String
   email      String
   phone      String
   comment    String?
-  branch     Branch      @relation(fields: [branchId], references: [id])
+  branch     Branch            @relation(fields: [branchId], references: [id])
   branchId   Int
   codeWord   String?
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+}
+
+model OrderedProducts {
+  id        Int      @id @default(autoincrement())
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   Int
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model HeroSlide {

@@ -3,7 +3,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -15,7 +14,7 @@ export const BurgerDrawer: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
-      <SheetContent className="w-full h-full flex flex-col gap-8 justify-between pb-0 border-0 bg-popover">
+      <SheetContent className="w-full h-full flex flex-col pb-40 justify-between border-0 bg-popover">
         <SheetHeader className="text-left flex-row justify-between items-center">
           <SheetTitle className="text-2xl font-bold">Меню</SheetTitle>
           <SheetClose>
@@ -25,13 +24,14 @@ export const BurgerDrawer: React.FC<PropsWithChildren> = ({ children }) => {
         <div>
           <SearchInput />
         </div>
+        <HeaderFilial className="text-xl mt-4" />
         <div className="flex-1 text-xl">
           <p>Категории</p>
-          <Categories inBurger className="pl-4" />
+          <Categories
+            inBurger
+            className="pl-4 scrollable-container !h-[480px]"
+          />
         </div>
-        <SheetFooter>
-          <HeaderFilial className="mb-8 text-xl" />
-        </SheetFooter>
       </SheetContent>
     </Sheet>
   );

@@ -6,7 +6,7 @@ export default async function AdminAddBranchPage() {
   await checkAdmin();
   return (
     <Container className="admin-page">
-      <Title text="Редактировать категорию" className="font-semibold" />
+      <Title text="Добавить филиал" className="font-semibold" />
       <AddBranchForm className="mt-4 w-[80vw]" />
     </Container>
   );
